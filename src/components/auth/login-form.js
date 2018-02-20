@@ -3,8 +3,7 @@ import { GoogleLogin } from 'react-google-login-component';
 import { FacebookLogin } from 'react-facebook-login-component';
 import {Field, reduxForm, focus} from 'redux-form';
 import {required, nonEmpty} from '../../validators';
-import { connect } from 'react-redux';
-import {login} from '../../actions/auth';
+import {socialLogin, login} from '../../actions/auth';
 
 import '../../styles/login-form.css';
 
@@ -13,7 +12,7 @@ export class LoginForm extends React.Component {
   responseGoogle (googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
     console.log({accessToken: id_token});
-    //anything else you want to do(save to localStorage)...
+    return this.props.dispatch(socialLogin(id_token, 'Google'))
   }
 
   responseFacebook (response) {
@@ -55,7 +54,7 @@ export class LoginForm extends React.Component {
         <div className="form-div">
           <form
             className="login-form"
-            onSubmit={console.log('logging in!')}>
+            onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
             <Field
               placeholder="Username"
               component="input"
@@ -85,12 +84,6 @@ export class LoginForm extends React.Component {
     )
   }
 }
-
-// const mapStateToProps = (state) => ({
-//   loading: false
-// });
-
-LoginForm = connect()(LoginForm);
 
 export default reduxForm({
   form: 'login',

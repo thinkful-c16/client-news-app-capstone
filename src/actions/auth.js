@@ -6,14 +6,20 @@ import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
 
+//Social Auth- send fetch request to backend with the access token provided by each Google & Facebook
+//then get the response and use that token to login
+//tell the backend which service was used
+//body of the request should include token and service
+
+
 //Google Auth
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
+// function onSignIn(googleUser) {
+//   var profile = googleUser.getBasicProfile();
+//   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+//   console.log('Name: ' + profile.getName());
+//   console.log('Image URL: ' + profile.getImageUrl());
+//   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+// }
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
@@ -60,6 +66,38 @@ const storeAuthInfo = (authToken, dispatch) => {
     dispatch(authSuccess(decodedToken.user));
     saveAuthToken(authToken);
 };
+
+export const socialLogin = (token, service) => dispatch => {
+    dispatch(authRequest());
+    return(
+        fetch(`${API_BASE_URL}/auth/social`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                token,
+                service
+            })
+        })
+        .then(res => normalizeResponseErrors(res))
+            .then(res => res.json())
+            // .then(({authToken}) => storeAuthInfo(authToken, dispatch))
+            .catch(err => {
+                const {code} = err;
+                const message =
+                    code === 401
+                        ? 'Error with service'
+                        : 'Unable to login, please try again';
+                dispatch(authError(err));
+                return Promise.reject(
+                    new SubmissionError({
+                        _error: message
+                    })
+                );
+            })
+    )
+}
 
 export const login = (username, password) => dispatch => {
     dispatch(authRequest());
