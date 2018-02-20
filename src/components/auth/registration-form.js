@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import '../../styles/registration-form.css'
 
 //update min password length before publishing!!
-const passwordLength = length({min: 4, max: 72});
+const passwordLength = length({min: 1, max: 72});
 const matchesPassword = matches('password');
 
 export class RegistrationForm extends React.Component {
