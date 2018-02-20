@@ -3,6 +3,7 @@ import { GoogleLogin } from 'react-google-login-component';
 import { FacebookLogin } from 'react-facebook-login-component';
 import {Field, reduxForm, focus} from 'redux-form';
 import {required, nonEmpty} from '../../validators';
+import { connect } from 'react-redux';
 
 import '../../styles/login-form.css';
 
@@ -77,6 +78,12 @@ export class LoginForm extends React.Component {
     )
   }
 }
+
+// const mapStateToProps = (state) => ({
+//   loading: false
+// });
+
+LoginForm = connect()(LoginForm);
 
 export default reduxForm({
   form: 'login',
