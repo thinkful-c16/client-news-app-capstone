@@ -1,18 +1,21 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-export function Nav(props) {
+export class Nav extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  if (props.loggedIn) {
+  if (this.props.loggedIn) {
     console.log('logged in!');
   }
 
-
-  return (
-    <div className="nav-bar">
-      <span>Hello World, this will be the nav bar!</span>
-    </div>
-  )
+  render() {
+    return (
+      <div className="nav-bar">
+        <span>Hello World, this will be the nav bar!</span>
+      </div>
+    )};
 }
 
 const mapStateToProps = state => ({
