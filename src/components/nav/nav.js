@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import NavHeader from './nav-header';
+
 export class Nav extends React.Component {
   constructor(props) {
     super(props);
@@ -8,9 +10,7 @@ export class Nav extends React.Component {
 
   render() {
     return (
-      <div className="nav-bar">
-        <span>Hello World, this will be the nav bar!</span>
-      </div>
+      <NavHeader />
     )};
 }
 
