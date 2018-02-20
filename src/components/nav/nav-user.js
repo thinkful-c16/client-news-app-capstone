@@ -18,3 +18,6 @@ export class NavUser extends React.Component {
 const mapStateToProps = state => ({
   userName: state.auth.currentUser.username
 });
+
+export default connect(mapStateToProps)(NavUser);
+
