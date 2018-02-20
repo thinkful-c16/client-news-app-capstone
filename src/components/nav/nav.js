@@ -10,7 +10,13 @@ export class Nav extends React.Component {
 
   render() {
     return (
-      <NavHeader />
+      <div className="nav-bar">
+        <NavHeader />
+        {this.props.loggedIn &&
+          <NavLinks />
+          <NavUser />
+        }
+      </div>
     )};
 }
 
