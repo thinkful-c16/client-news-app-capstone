@@ -26,7 +26,7 @@ export class LoginForm extends React.Component {
     return(
       <div className="login-container">
         <div className="social-logins">
-          <div className="social-buttons">
+          <div className="fb-button">
             <FacebookLogin socialId="1989958031254651"
                         language="en_US"
                         scope="public_profile,email"
@@ -37,7 +37,7 @@ export class LoginForm extends React.Component {
                         className="facebook-login"
                         buttonText="Login With Facebook"/>
           </div>
-          <div className="social-buttons">
+          <div className="google-button">
             <GoogleLogin socialId="1013252237653-lobmsullofdr8n94saqon5fi77gkp8mb.apps.googleusercontent.com"
                          className="google-login"
                          scope="profile"
@@ -45,34 +45,38 @@ export class LoginForm extends React.Component {
                          responseHandler={this.responseGoogle}
                          buttonText="Login With Google"/>
           </div>
-          <div className="divider">
-            <div className="or"><span>or</span></div>
-          </div>
-          <div>
-            <form
-              className="login-form"
-              onSubmit={console.log('logging in!')}>
-              <Field
-                placeholder="Username"
-                component="input"
-                type="text"
-                name="username"
-                id="username"
-                validate={[required, nonEmpty]}
-              />
-              <Field
-                placeholder="Password"
-                component="input"
-                type="password"
-                name="password"
-                id="password"
-                validate={[required, nonEmpty]}
-              />
-              <button className="login-button">
-                Login
-              </button>
-            </form>
-          </div>
+        </div>
+        <div className="divider">
+          <div className="or"><span>or</span></div>
+        </div>
+        <div className="form-div">
+          <form
+            className="login-form"
+            onSubmit={console.log('logging in!')}>
+            <Field
+              placeholder="Username"
+              component="input"
+              type="text"
+              name="username"
+              id="username"
+              validate={[required, nonEmpty]}
+            />
+            <Field
+              placeholder="Password"
+              component="input"
+              type="password"
+              name="password"
+              id="password"
+              validate={[required, nonEmpty]}
+            />
+            <button className="login-button"
+                    type="submit">
+              Login
+            </button>
+            <div className="memory">
+              <p>Placeholder for 'remember me' and 'forgot password?' links</p>
+            </div>
+          </form>
         </div>
       </div>
     )
