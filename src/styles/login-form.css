@@ -3,10 +3,11 @@
   flex-direction: column;
   margin: auto;
   height: 30%;
-  width: 30%;
+  width: 40%;
   border: 1px solid black;
   border-radius: 5px;
   background-color: lightgray;
+  align-items: center;
 }
 
 .social-logins {
@@ -33,6 +34,7 @@
   order: 3;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 #username {

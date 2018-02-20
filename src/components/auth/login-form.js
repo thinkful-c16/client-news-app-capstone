@@ -19,9 +19,7 @@ export class LoginForm extends React.Component {
     console.log(response);
     //anything else you want to do(save to localStorage)...
   }
-
-  if 
-
+  
   render(){
     return(
       <div className="login-container">
