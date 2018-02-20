@@ -6,10 +6,6 @@ export class Nav extends React.Component {
     super(props);
   }
 
-  if (this.props.loggedIn) {
-    console.log('logged in!');
-  }
-
   render() {
     return (
       <div className="nav-bar">
