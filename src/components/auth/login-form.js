@@ -4,6 +4,7 @@ import { FacebookLogin } from 'react-facebook-login-component';
 import {Field, reduxForm, focus} from 'redux-form';
 import {required, nonEmpty} from '../../validators';
 import { connect } from 'react-redux';
+import {login} from '../../actions/auth';
 
 import '../../styles/login-form.css';
 
@@ -20,6 +21,10 @@ export class LoginForm extends React.Component {
     //anything else you want to do(save to localStorage)...
   }
   
+  onSubmit(values) {
+    return this.props.dispatch(login(values.username, values.password));
+  }
+
   render(){
     return(
       <div className="login-container">
