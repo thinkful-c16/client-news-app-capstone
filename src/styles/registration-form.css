@@ -1,0 +1,71 @@
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  height: 30%;
+  width: 40%;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: lightgray;
+  align-items: center;
+}
+
+.welcome-msg {
+  order: 1
+}
+
+.social-reg {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.fb-button {
+  order: 1
+}
+
+.google-button {
+  order: 2
+}
+
+.divider {
+  order: 3
+}
+
+.auth-form {
+  order: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fullName {
+  order: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.email-address{
+  order: 2
+}
+
+.create-pw{
+  order: 3
+}
+
+.confirm-pw{
+  order: 4
+}
+
+.register-button {
+  order: 5;
+  width: 100%
+}
+
+#firstname, #lastname {
+  width: 50%;
+}
+
+#emailaddress, #createpw, #confirmpw {
+  width: 100%;
+}
