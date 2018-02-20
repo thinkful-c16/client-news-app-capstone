@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import NavHeader from './nav-header';
+import NavUser from './nav-user';
+import NavLinks from './nav-links';
 
 import '../../styles/nav.css';
 
