@@ -1,19 +1,27 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import NavHeader from './nav-header';
+import NavUser from './nav-user';
+import NavLinks from './nav-links';
+
+import '../../styles/nav.css';
+
 export class Nav extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  if (this.props.loggedIn) {
-    console.log('logged in!');
-  }
-
   render() {
     return (
       <div className="nav-bar">
-        <span>Hello World, this will be the nav bar!</span>
+        <NavHeader />
+        {this.props.loggedIn &&
+          <div className="nav-components">
+            <NavLinks />
+            <NavUser />
+          </div>
+        }
       </div>
     )};
 }
