@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import NavHeader from './nav-header';
 
+import '../../styles/nav.css';
+
 export class Nav extends React.Component {
   constructor(props) {
     super(props);
