@@ -48,7 +48,7 @@ export class LoginForm extends React.Component {
               <GoogleLogin socialId="1013252237653-lobmsullofdr8n94saqon5fi77gkp8mb.apps.googleusercontent.com"
                           className="google-login"
                           scope="profile"
-                          fetchBasicProfile={false}
+                          fetchBasicProfile={true}
                           responseHandler={this.responseGoogle.bind(this)}
                           buttonText="Login With Google"/>
             </div>
