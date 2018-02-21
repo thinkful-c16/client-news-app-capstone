@@ -22,7 +22,7 @@ export class LoginForm extends React.Component {
   }
   
   onSubmit(values) {
-    return this.props.dispatch(login(values.username, values.password));
+    return this.props.dispatch(login(values.email, values.password));
   }
 
   render(){
@@ -61,7 +61,7 @@ export class LoginForm extends React.Component {
               className="login-form"
               onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
               <Field
-                placeholder="E-mail"
+                placeholder="E-mail Address"
                 component="input"
                 type="text"
                 name="email"

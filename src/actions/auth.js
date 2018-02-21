@@ -91,7 +91,7 @@ export const socialLogin = (token, service) => dispatch => {
     )
 }
 
-export const login = (username, password) => dispatch => {
+export const login = (email, password) => dispatch => {
     dispatch(authRequest());
     return (
         fetch(`${API_BASE_URL}/auth/login`, {
@@ -100,7 +100,7 @@ export const login = (username, password) => dispatch => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                username,
+                email,
                 password
             })
         })
