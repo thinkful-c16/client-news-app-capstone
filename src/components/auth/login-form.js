@@ -4,6 +4,7 @@ import { FacebookLogin } from 'react-facebook-login-component';
 import {Field, reduxForm, focus} from 'redux-form';
 import {required, nonEmpty} from '../../validators';
 import {socialLogin, login} from '../../actions/auth';
+import AppDescription from './app-description.js';
 
 import '../../styles/login-form.css';
 
@@ -85,6 +86,7 @@ export class LoginForm extends React.Component {
             </form>
           </div>
         </div>
+        <AppDescription />
       </div>
     )
   }
