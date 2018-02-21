@@ -62,19 +62,18 @@ const storeAuthInfo = (authToken, dispatch) => {
 export const socialLogin = (token, service) => dispatch => {
     dispatch(authRequest());
     return(
-        fetch(`${API_BASE_URL}/auth/social`, {
+        fetch(`${API_BASE_URL}/auth/${service}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                token,
-                service
+                token
             })
         })
         .then(res => normalizeResponseErrors(res))
             .then(res => res.json())
-            // .then(({authToken}) => storeAuthInfo(authToken, dispatch))
+            .then(({authToken}) => storeAuthInfo(authToken, dispatch))
             .catch(err => {
                 const {code} = err;
                 const message =

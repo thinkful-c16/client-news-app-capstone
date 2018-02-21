@@ -5,6 +5,7 @@ import {Field, reduxForm, focus} from 'redux-form';
 import {required, nonEmpty} from '../../validators';
 import {socialLogin, login} from '../../actions/auth';
 import AppDescription from './app-description.js';
+import { connect } from 'react-redux';
 
 import '../../styles/login-form.css';
 
@@ -13,12 +14,11 @@ export class LoginForm extends React.Component {
   responseGoogle (googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
     console.log({accessToken: id_token});
-    return this.props.dispatch(socialLogin(id_token, 'Google'))
+    return this.props.dispatch(socialLogin(id_token, 'google'))
   }
 
   responseFacebook (response) {
-    console.log(response);
-    //anything else you want to do(save to localStorage)...
+    return this.props.dispatch(socialLogin(response.accessToken, 'facebook'))
   }
   
   onSubmit(values) {
@@ -37,7 +37,7 @@ export class LoginForm extends React.Component {
               <FacebookLogin socialId="1989958031254651"
                           language="en_US"
                           scope="public_profile,email"
-                          responseHandler={this.responseFacebook}
+                          responseHandler={this.responseFacebook.bind(this)}
                           xfbml={true}
                           fields="id,email,name"
                           version="v2.5"
@@ -49,7 +49,7 @@ export class LoginForm extends React.Component {
                           className="google-login"
                           scope="profile"
                           fetchBasicProfile={false}
-                          responseHandler={this.responseGoogle}
+                          responseHandler={this.responseGoogle.bind(this)}
                           buttonText="Login With Google"/>
             </div>
           </div>
@@ -91,6 +91,12 @@ export class LoginForm extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state, props) => ({
+  
+})
+
+LoginForm = connect(mapStateToProps)(LoginForm)
 
 export default reduxForm({
   form: 'login',
