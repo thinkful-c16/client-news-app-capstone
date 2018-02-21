@@ -9,20 +9,21 @@ export class Explore extends React.Component{
   }
 
   render() {
-    const headlinesList = this.props.headlines.map(headline => {
+    const exploreList = this.props.exploreData.map(item => {
       return <li key={shortid.generate()}>
-        <a href={headline.url} target="_blank">
-          <img src={headline.urlToImage} width='100' alt={headline.title} />
-          {headline.title}
+        <span>{item.user} {item.activity} this article:</span>
+        <a href={item.article.url} target="_blank">
+          <img src={item.article.urlToImage} width='100' alt={item.title} />
+          {item.article.title}
         </a>
       </li>
     });
     
     return(
       <div className='dashboard'>
-        <h2>Today's Top Headlines</h2>
+        <h2>Explore</h2>
         <ul>
-          {headlinesList}
+          {exploreList}
         </ul>
       </div>
     )
@@ -31,7 +32,7 @@ export class Explore extends React.Component{
 
 const mapStateToProps = (state, props) => {
   return {
-    activity: [
+    exploreData: [
       {
         "user": "Wade C.",
         "activity": "shared",
