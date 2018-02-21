@@ -1,0 +1,41 @@
+.app-desc-container {
+  border-top: 1px solid black;
+  padding-top: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.share-head {
+  order: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.desc-thumb-div {
+  order: 2;
+  width: 80%;
+  display: flex;
+  align-self: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.desc-thumbnails {
+  width: 25%;
+  height: 100px;
+  background-color: lightgray;
+  border: 1px solid black;
+}
+
+.desc-paragraph-div {
+  order: 3;
+  display: flex;
+  justify-content: center;
+}
+
+.app-desc {
+  width: 80%;
+  font-size: 0.75em;
+}
