@@ -20,7 +20,7 @@ export class Explore extends React.Component{
     });
     
     return(
-      <div className='dashboard'>
+      <div className='explore'>
         <h2>Explore</h2>
         <ul>
           {exploreList}
@@ -69,4 +69,4 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(Explore);
