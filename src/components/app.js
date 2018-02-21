@@ -11,10 +11,10 @@ export class App extends Component {
 
   render() {
 
-    if (this.props.loggedIn) {
-      console.log('logged in');
-      return <Redirect to="/dashboard" />;
-    }
+    // if (this.props.loggedIn) {
+    //   console.log('logged in');
+    //   return <Redirect to="/dashboard" />;
+    // }
 
     return (
       <div className="App">
