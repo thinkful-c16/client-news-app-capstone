@@ -4,16 +4,18 @@ import RegistrationForm from './auth/registration-form.js';
 import Dashboard from './dashboard/dashboard.js';
 import Explore from './explore/explore.js';
 import Nav from './nav/nav.js';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 export class App extends Component {
 
-  // if (props.loggedIn) {
-  //   return <Redirect to="/dashboard" />;
-  // }
-
   render() {
+
+    if (this.props.loggedIn) {
+      console.log('logged in');
+      return <Redirect to="/dashboard" />;
+    }
+
     return (
       <div className="App">
         <Nav />
@@ -26,4 +28,8 @@ export class App extends Component {
   }
 }
 
-export default withRouter(connect()(App));
+const mapStateToProps = state => ({
+  loggedIn: state.auth.currentUser !== null
+});
+
+export default withRouter(connect(mapStateToProps)(App));
