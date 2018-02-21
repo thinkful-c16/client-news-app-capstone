@@ -52,3 +52,13 @@
 .memory {
   order: 4;
 }
+
+.log-signup {
+  text-align: center;
+}
+
+.signup-link {
+  color: lightblue;
+  font-weight: bold;
+  text-decoration: none;
+}
