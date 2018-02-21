@@ -27,82 +27,87 @@ export class RegistrationForm extends React.Component {
 
   render(){
     return(
-      <div className="registration-container">
-        <div className="welcome-msg">
-          <h4>Welcome to News App - Let's get started</h4>
-        </div>
-        <div className="social-reg">
-          <div className="fb-button">
-            <FacebookLogin socialId="1989958031254651"
-                           language="en_US"
-                           scope="public_profile,email"
-                           responseHandler={this.responseFacebook}
-                           xfbml={true}
-                           fields="id,email,name"
-                           version="v2.5"
-                           className="facebook-login"
-                           buttonText="Login With Facebook"/>
+      <div>
+        <h4 className="log-signup">
+          <a className="signup-link" href="/">Login</a> or Signup
+        </h4>
+        <div className="registration-container">
+          <div className="welcome-msg">
+            <h4>Welcome to News App - Let's get started</h4>
           </div>
-          <div className="google-button">
-            <GoogleLogin socialId="1013252237653-lobmsullofdr8n94saqon5fi77gkp8mb.apps.googleusercontent.com"
-                         className="google-login"
-                         scope="profile"
-                         fetchBasicProfile={false}
-                         responseHandler={this.responseGoogle}
-                         buttonText="Login With Google"/>
+          <div className="social-reg">
+            <div className="fb-button">
+              <FacebookLogin socialId="1989958031254651"
+                            language="en_US"
+                            scope="public_profile,email"
+                            responseHandler={this.responseFacebook}
+                            xfbml={true}
+                            fields="id,email,name"
+                            version="v2.5"
+                            className="facebook-login"
+                            buttonText="Login With Facebook"/>
+            </div>
+            <div className="google-button">
+              <GoogleLogin socialId="1013252237653-lobmsullofdr8n94saqon5fi77gkp8mb.apps.googleusercontent.com"
+                          className="google-login"
+                          scope="profile"
+                          fetchBasicProfile={false}
+                          responseHandler={this.responseGoogle}
+                          buttonText="Login With Google"/>
+            </div>
           </div>
-        </div>
-        <div className="divider">
-          <h4>Or sign up with</h4>
-        </div>
-        <div className="auth-form">
-          <div className="fullName">
-            <Field 
-              placeholder="First Name"
-              name="firstName"
-              component="input"
-              type="text"
-              id="firstname" 
-              validate={[required, nonEmpty, isTrimmed]} />
-            <Field
-              placeholder="Last Name"
-              name="lastName"
-              component="input"
-              type="text"
-              id="lastname"
-              validate={[required, nonEmpty, isTrimmed]} />
+          <div className="divider">
+            <h4>Or sign up with</h4>
           </div>
-          <div className="email-address">
-            <Field
-              placeholder="E-mail Address"
-              name="email"
-              component="input" 
-              type="text"
-              id="emailaddress"
-              validate={[required, nonEmpty, isTrimmed]}  />
+          <div className="auth-form">
+            <div className="fullName">
+              <Field 
+                placeholder="First Name"
+                name="firstName"
+                component="input"
+                type="text"
+                id="firstname" 
+                validate={[required, nonEmpty, isTrimmed]} />
+              <Field
+                placeholder="Last Name"
+                name="lastName"
+                component="input"
+                type="text"
+                id="lastname"
+                validate={[required, nonEmpty, isTrimmed]} />
+            </div>
+            <div className="email-address">
+              <Field
+                placeholder="E-mail Address"
+                name="email"
+                component="input" 
+                type="text"
+                id="emailaddress"
+                validate={[required, nonEmpty, isTrimmed]}  />
+            </div>
+            <div className="create-pw">
+              <Field
+                placeholder="Password"
+                name="password"
+                component="input" 
+                type="password"
+                id="createpw"
+                validate={[required, passwordLength, isTrimmed]}   />
+            </div>
+            <div className="confirm-pw">
+              <Field
+                placeholder="Confirm Password"
+                name="password"
+                component="input"
+                type="password"
+                id="confirmpw"
+                validate={[required, nonEmpty, matchesPassword]}    />
+            </div>
+            <button className="register-button"
+              type="submit">
+              Register
+            </button>
           </div>
-          <div className="create-pw">
-            <Field
-              placeholder="Password"
-              name="password"
-              component="input" 
-              type="password"
-              id="createpw"
-              validate={[required, passwordLength, isTrimmed]}   />
-          </div>
-          <div className="confirm-pw">
-            <Field
-              placeholder="Confirm Password"
-              name="password"
-              component="input"
-              type="password"
-              id="confirmpw"
-              validate={[required, nonEmpty, matchesPassword]}    />
-          </div>
-          <button className="register-button"
-            type="submit">
-            Register
-          </button>
         </div>
       </div>
     )
