@@ -61,11 +61,11 @@ export class LoginForm extends React.Component {
               className="login-form"
               onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
               <Field
-                placeholder="Username"
+                placeholder="E-mail"
                 component="input"
                 type="text"
-                name="username"
-                id="username"
+                name="email"
+                id="email"
                 validate={[required, nonEmpty]}
               />
               <Field
