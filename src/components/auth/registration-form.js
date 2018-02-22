@@ -2,9 +2,9 @@ import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import {Redirect} from 'react-router-dom';// 
 import {registerUser} from '../../actions/users';
-import {login} from '../../actions/auth';
 import { GoogleLogin } from 'react-google-login-component';
 import { FacebookLogin } from 'react-facebook-login-component';
+import {socialLogin, login} from '../../actions/auth';
 import {required, nonEmpty, matches, length, isTrimmed} from '../../validators';
 import { connect } from 'react-redux';
 
@@ -19,12 +19,11 @@ export class RegistrationForm extends React.Component {
   responseGoogle (googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
     console.log({accessToken: id_token});
-    //anything else you want to do(save to localStorage)...
+    return this.props.dispatch(socialLogin(id_token, 'google'))
   }
 
   responseFacebook (response) {
-    console.log(response);
-    //anything else you want to do(save to localStorage)...
+    return this.props.dispatch(socialLogin(response.accessToken, 'facebook'))
   }
 
   onSubmit(values) {
@@ -57,23 +56,23 @@ export class RegistrationForm extends React.Component {
             <h4>Welcome to News App - Let's get started</h4>
           </div>
           <div className="social-reg">
-            <div className="fb-button">
+          <div className="fb-button">
               <FacebookLogin socialId="1989958031254651"
-                            language="en_US"
-                            scope="public_profile,email"
-                            responseHandler={this.responseFacebook}
-                            xfbml={true}
-                            fields="id,email,name"
-                            version="v2.5"
-                            className="facebook-login"
-                            buttonText="Login With Facebook"/>
+                          language="en_US"
+                          scope="public_profile,email"
+                          responseHandler={this.responseFacebook.bind(this)}
+                          xfbml={true}
+                          fields="id,email,name"
+                          version="v2.5"
+                          className="facebook-login"
+                          buttonText="Login With Facebook"/>
             </div>
             <div className="google-button">
               <GoogleLogin socialId="1013252237653-lobmsullofdr8n94saqon5fi77gkp8mb.apps.googleusercontent.com"
                           className="google-login"
                           scope="profile"
-                          fetchBasicProfile={false}
-                          responseHandler={this.responseGoogle}
+                          fetchBasicProfile={true}
+                          responseHandler={this.responseGoogle.bind(this)}
                           buttonText="Login With Google"/>
             </div>
           </div>
@@ -114,7 +113,7 @@ export class RegistrationForm extends React.Component {
                 <Field
                   placeholder="Password"
                   name="password"
-                  component="input" 
+                  component="Input" 
                   type="password"
                   id="createpw"
                   validate={[required, passwordLength, isTrimmed]}   />
@@ -122,8 +121,8 @@ export class RegistrationForm extends React.Component {
               <div className="confirm-pw">
                 <Field
                   placeholder="Confirm Password"
-                  name="password"
-                  component="input"
+                  name="passwordconfirm"
+                  component="Input"
                   type="password"
                   id="confirmpw"
                   validate={[required, nonEmpty, matchesPassword]}    />
