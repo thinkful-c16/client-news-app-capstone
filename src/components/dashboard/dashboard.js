@@ -7,14 +7,20 @@ import * as actions from '../../actions/api';
 //remove Dashboard from app.js
 
 export class Dashboard extends React.Component{
+  constructor(props) {
+    super(props);
+    this.updateDashboard = this.updateDashboard.bind(this);
+  }
 
   componentDidMount() {
+    console.log('ello mate');
     this.props.dispatch(actions.fetchTopHeadlines());
   }
 
-  // updateDashboard() {
-
-  // }
+  updateDashboard(query) {
+    console.log(query);
+    this.props.dispatch(actions.updateHeadlines(query));
+  }
 
 
   render() {
@@ -31,7 +37,7 @@ export class Dashboard extends React.Component{
     
     return(
       <div className='dashboard'>
-        <Search />
+        <Search onClick={query => this.updateDashboard(query)}/>
         <h2>Today's Top Headlines</h2>
         <ul>
           {headlinesList}

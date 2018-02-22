@@ -56,11 +56,11 @@ export const fetchTopHeadlines = () => (dispatch, getState) => {
 export const updateHeadlines = (query) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   dispatch(fetchTopHeadlinesRequest());
-  fetch(`${API_BASE_URL}/qSearch`, {
+  return fetch(`${API_BASE_URL}/qSearch`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${authToken}`,
-      Accept: 'application/json'
+     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       searchTerm: query
@@ -73,7 +73,7 @@ export const updateHeadlines = (query) => (dispatch, getState) => {
     return res.json(); 
     })
   .then(headlines => {
-    //console.log(headlines);
+    console.log('anything?', headlines);
     dispatch(fetchTopHeadlinesSuccess(headlines.articles));
   })
   .catch(err => {

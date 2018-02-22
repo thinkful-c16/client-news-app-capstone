@@ -7,7 +7,7 @@ export class SearchAdvanced extends React.Component {
   render() {
     return (
       <div className="advanced-search-div">
-        <a className="search-icon">
+        <a className="search-icon" onClick={() => this.props.onClick(document.getElementById('searchInput').value)}>
           search icon here
         </a>
         <input type="text" id="searchInput" />
