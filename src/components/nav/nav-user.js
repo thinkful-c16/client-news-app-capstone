@@ -29,7 +29,7 @@ logOut() {
 }
 
 const mapStateToProps = state => ({
-  userName: 'first and last goes here',
+  userName: `${state.auth.currentUser.firstName} ${state.auth.currentUser.lastName}`,
   loggedIn: state.auth.currentUser !== null
 });
 
