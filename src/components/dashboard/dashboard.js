@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Search from '../search/search.js';
 import requiresLogin from '../requires-login';
 import shortid from 'shortid';
 //remove Dashboard from app.js
@@ -21,6 +22,7 @@ export class Dashboard extends React.Component{
     
     return(
       <div className='dashboard'>
+        <Search />
         <h2>Today's Top Headlines</h2>
         <ul>
           {headlinesList}

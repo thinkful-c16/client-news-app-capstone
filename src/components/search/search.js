@@ -1,5 +1,8 @@
 import React from 'react';
-import {FontAwesome} from 'react-fontawesome';
+import SearchSimple from './search-simple.js';
+import SearchAdvanced from './search-advanced.js';
+// import { FontAwesome } from 'react-fontawesome';
+import '../../styles/search.css';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -7,6 +10,7 @@ export default class Search extends React.Component {
     this.state = {
      searchAdvanced: false
     }
+    this.searchToggle = this.searchToggle.bind(this);
   }
 
   searchToggle() {
@@ -23,6 +27,18 @@ export default class Search extends React.Component {
   }
 
   render() {
+
+    let angleButton;
+    if (this.state.searchAdvanced) {
+      angleButton = <a className="search-options-icon" onClick={this.searchToggle}>
+                      angle up goes here
+                    </a>;
+    } else {
+      angleButton = <a className="search-options-icon" onClick={this.searchToggle}>
+                      angle down goes here
+                    </a>;
+    }
+
     return (
       <div className="search-div">
       {this.state.searchAdvanced ? (
@@ -30,9 +46,7 @@ export default class Search extends React.Component {
       ) : (
         <SearchSimple />
         )}
-      <a className="search-options-icon">
-        <FontAwesome name="angle-down" />
-      </a>
+        {angleButton}
       </div>
     )
 
