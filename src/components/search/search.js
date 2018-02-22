@@ -28,18 +28,28 @@ export default class Search extends React.Component {
 
   render() {
 
+    let searchMessage;
     let angleButton;
     if (this.state.searchAdvanced) {
+      searchMessage = <div className="search-message">
+                        Search for headlines by query and/or category:
+                      </div>;
       angleButton = <a className="search-options-icon" onClick={this.searchToggle}>
                       angle up goes here
                     </a>;
     } else {
+      searchMessage = <div className="search-message">
+                        Search for headlines by query:
+                      </div>;
       angleButton = <a className="search-options-icon" onClick={this.searchToggle}>
                       angle down goes here
                     </a>;
     }
 
     return (
+      <div className="search-message">
+      
+      </div>
       <div className="search-div">
       {this.state.searchAdvanced ? (
         <SearchAdvanced />
