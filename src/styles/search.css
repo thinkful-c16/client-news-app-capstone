@@ -1,0 +1,8 @@
+.search-div {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  padding: 10px;
+  border: 1px solid black;
+  background-color: lightgray;
+}
