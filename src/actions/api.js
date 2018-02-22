@@ -1,5 +1,5 @@
 //import API_BASE_URL from '';
-const API_BASE_URL = 'http://localhost:3000/api'
+const API_BASE_URL = 'http://localhost:8080/api'
 
 export const FETCH_TOP_HEADLINES_REQUEST = "FETCH_TOP_HEADLINES_REQUEST";
 export const fetchTopHeadlinesRequest = () => {
@@ -29,9 +29,15 @@ export const fetchTopHeadlinesError = (error) => {
   }
 }
 
-export const fetchTopHeadlines = () => dispath => {
+export const fetchTopHeadlines = () => (dispath, getState) => {
+  const authToken = getState().auth.authToken;
   dispath(fetchTopHeadlinesRequest());
-  fetch(`${API_BASE_URL}/top20`)
+  fetch(`${API_BASE_URL}/top20`, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      Accept: 'application/json'
+    }
+  })
   .then(res => {
     if(!res.ok) {
       console.log("There was an issue with your request.")
@@ -39,7 +45,8 @@ export const fetchTopHeadlines = () => dispath => {
     return res.json(); 
     })
   .then(headlines => {
-    dispath(fetchTopHeadlinesSuccess(headlines));
+    //console.log(headlines);
+    dispath(fetchTopHeadlinesSuccess(headlines.articles));
   })
   .catch(err => {
     dispath(fetchTopHeadlinesError(err))
