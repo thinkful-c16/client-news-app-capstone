@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchSimple from './search-simple.js';
 import SearchAdvanced from './search-advanced.js';
-// import { FontAwesome } from 'react-fontawesome';
+import FontAwesome from 'react-fontawesome';
 import '../../styles/search.css';
 
 export default class Search extends React.Component {
@@ -34,16 +34,16 @@ export default class Search extends React.Component {
       searchMessage = <div className="search-message">
                         Advanced Search:
                       </div>;
-      angleButton = <a className="search-options-icon" onClick={this.searchToggle}>
-                      angle up goes here
-                    </a>;
+      angleButton = <button className="search-options-icon" onClick={this.searchToggle}>
+                      <FontAwesome name='angle-double-left' size='2x' />
+                    </button>;
     } else {
       searchMessage = <div className="search-message">
                         Search:
                       </div>;
-      angleButton = <a className="search-options-icon" onClick={this.searchToggle}>
-                      angle down goes here
-                    </a>;
+      angleButton = <button className="search-options-icon" onClick={this.searchToggle}>
+                      <FontAwesome name='angle-double-down' size='2x' />
+                    </button>;
     }
 
     return (
