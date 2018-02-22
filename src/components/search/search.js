@@ -34,16 +34,16 @@ export default class Search extends React.Component {
       searchMessage = <div className="search-message">
                         Advanced Search:
                       </div>;
-      angleButton = <a className="search-options-icon" onClick={this.searchToggle}>
-                      <FontAwesome name='rocket' />
-                    </a>;
+      angleButton = <button className="search-options-icon" onClick={this.searchToggle}>
+                      <FontAwesome name='angle-double-left' size='2x' />
+                    </button>;
     } else {
       searchMessage = <div className="search-message">
                         Search:
                       </div>;
-      angleButton = <a className="search-options-icon" onClick={this.searchToggle}>
-                      <FontAwesome name='rocket' />
-                    </a>;
+      angleButton = <button className="search-options-icon" onClick={this.searchToggle}>
+                      <FontAwesome name='angle-double-down' size='2x' />
+                    </button>;
     }
 
     return (
