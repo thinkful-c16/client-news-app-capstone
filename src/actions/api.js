@@ -29,9 +29,9 @@ export const fetchTopHeadlinesError = (error) => {
   }
 }
 
-export const fetchTopHeadlines = () => (dispath, getState) => {
+export const fetchTopHeadlines = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  dispath(fetchTopHeadlinesRequest());
+  dispatch(fetchTopHeadlinesRequest());
   fetch(`${API_BASE_URL}/top20`, {
     headers: {
       Authorization: `Bearer ${authToken}`,
@@ -46,9 +46,37 @@ export const fetchTopHeadlines = () => (dispath, getState) => {
     })
   .then(headlines => {
     //console.log(headlines);
-    dispath(fetchTopHeadlinesSuccess(headlines.articles));
+    dispatch(fetchTopHeadlinesSuccess(headlines.articles));
   })
   .catch(err => {
-    dispath(fetchTopHeadlinesError(err))
+    dispatch(fetchTopHeadlinesError(err))
   })
 };
+
+export const updateHeadlines = (query) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  dispatch(fetchTopHeadlinesRequest());
+  return fetch(`${API_BASE_URL}/qSearch`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+     'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      searchTerm: query
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      console.log("There was an issue with your request.")
+    }
+    return res.json(); 
+    })
+  .then(headlines => {
+    console.log('anything?', headlines);
+    dispatch(fetchTopHeadlinesSuccess(headlines.articles));
+  })
+  .catch(err => {
+    dispatch(fetchTopHeadlinesError(err))
+  })
+}
