@@ -48,7 +48,7 @@ export class LoginForm extends React.Component {
                           fields="id,email,name"
                           version="v2.5"
                           className="facebook-login"
-                          buttonText="Login With Facebook"/>
+                          buttonText="Connect With Facebook"/>
             </div>
             <div className="google-button">
               <GoogleLogin socialId="1013252237653-lobmsullofdr8n94saqon5fi77gkp8mb.apps.googleusercontent.com"
@@ -56,7 +56,7 @@ export class LoginForm extends React.Component {
                           scope="profile"
                           fetchBasicProfile={true}
                           responseHandler={this.responseGoogle.bind(this)}
-                          buttonText="Login With Google"/>
+                          buttonText="Connect With Google"/>
             </div>
           </div>
           <div className="divider">
