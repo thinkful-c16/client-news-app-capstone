@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
+import * as actions from '../../actions/api';
 //remove Dashboard from app.js
 
 export class Dashboard extends React.Component{
   componentDidMount() {
-    //this.props.dispatch(getTopHeadlines());
+    this.props.dispatch(actions.fetchTopHeadlines());
   }
 
   render() {
