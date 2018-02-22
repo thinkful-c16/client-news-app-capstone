@@ -7,10 +7,14 @@ import * as actions from '../../actions/api';
 //remove Dashboard from app.js
 
 export class Dashboard extends React.Component{
-  
+
   componentDidMount() {
     this.props.dispatch(actions.fetchTopHeadlines());
   }
+
+  // updateDashboard() {
+
+  // }
 
 
   render() {
