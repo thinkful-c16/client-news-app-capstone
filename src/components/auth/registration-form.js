@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-import {Link, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';// 
 import {registerUser} from '../../actions/users';
 import {login} from '../../actions/auth';
 import { GoogleLogin } from 'react-google-login-component';
@@ -42,6 +42,11 @@ export class RegistrationForm extends React.Component {
   }
 
   render(){
+
+    if (this.props.loggedIn) {
+      return <Redirect to="/dashboard" />;
+    }
+
     return(
       <div>
         <h4 className="log-signup">
@@ -135,7 +140,11 @@ export class RegistrationForm extends React.Component {
   }
 }
 
-RegistrationForm = connect()(RegistrationForm);
+const mapStateToProps = (state, props) => ({
+  loggedIn: state.auth.currentUser !== null
+})
+
+RegistrationForm = connect(mapStateToProps)(RegistrationForm);
 
 export default reduxForm({
   form: 'register',

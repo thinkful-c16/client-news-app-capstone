@@ -2,6 +2,7 @@ import React from 'react';
 import { GoogleLogin } from 'react-google-login-component';
 import { FacebookLogin } from 'react-facebook-login-component';
 import {Field, reduxForm, focus} from 'redux-form';
+import {Redirect} from 'react-router-dom';
 import {required, nonEmpty} from '../../validators';
 import {socialLogin, login} from '../../actions/auth';
 import AppDescription from './app-description.js';
@@ -26,6 +27,11 @@ export class LoginForm extends React.Component {
   }
 
   render(){
+
+    if (this.props.loggedIn) {
+      return <Redirect to="/dashboard" />;
+    }
+
     return(
       <div>
         <h4 className="log-signup">
@@ -48,7 +54,7 @@ export class LoginForm extends React.Component {
               <GoogleLogin socialId="1013252237653-lobmsullofdr8n94saqon5fi77gkp8mb.apps.googleusercontent.com"
                           className="google-login"
                           scope="profile"
-                          fetchBasicProfile={false}
+                          fetchBasicProfile={true}
                           responseHandler={this.responseGoogle.bind(this)}
                           buttonText="Login With Google"/>
             </div>
@@ -93,7 +99,7 @@ export class LoginForm extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  
+  loggedIn: state.auth.currentUser !== null
 })
 
 LoginForm = connect(mapStateToProps)(LoginForm)

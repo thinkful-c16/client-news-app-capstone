@@ -8,9 +8,6 @@ import NavLinks from './nav-links';
 import '../../styles/nav.css';
 
 export class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
