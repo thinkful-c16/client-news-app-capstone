@@ -34,12 +34,24 @@ export class Dashboard extends React.Component{
       this.setState({
         dashboardHeader: `Your Search Results for "${query}"`
       })
-      this.props.dispatch(actions.updateHeadlines(query));
+      this.props.dispatch(actions.simpleSearch(query));
     }
   }
 
   advancedSearch(input, category) {
-    console.log(input, category);
+    const query = input.trim();
+    if (query === "") {
+      console.log('search without query', category);
+      this.setState({
+        dashboardHeader: `Today's Top Headlines for ${category}`
+      })
+      this.props.dispatch(actions.advancedSearchCategory(category));
+    } else {
+      this.setState({
+        dashboardHeader: `Today's Top Headlines including "${query}" in ${category}`
+      })
+      this.props.dispatch(actions.advancedSearchQueryCategory(query, category));
+    }
   }
 
 

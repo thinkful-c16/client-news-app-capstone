@@ -53,7 +53,7 @@ export const fetchTopHeadlines = () => (dispatch, getState) => {
   })
 };
 
-export const updateHeadlines = (query) => (dispatch, getState) => {
+export const simpleSearch = (query) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   dispatch(fetchTopHeadlinesRequest());
   return fetch(`${API_BASE_URL}/qSearch`, {
@@ -64,6 +64,63 @@ export const updateHeadlines = (query) => (dispatch, getState) => {
     },
     body: JSON.stringify({
       searchTerm: query
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      console.log("There was an issue with your request.")
+    }
+    return res.json(); 
+    })
+  .then(headlines => {
+    console.log('anything?', headlines);
+    dispatch(fetchTopHeadlinesSuccess(headlines.articles));
+  })
+  .catch(err => {
+    dispatch(fetchTopHeadlinesError(err))
+  })
+}
+
+export const advancedSearchCategory = (category) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  dispatch(fetchTopHeadlinesRequest());
+  return fetch(`${API_BASE_URL}/catSearch`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+     'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      searchCategory: category
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      console.log("There was an issue with your request.")
+    }
+    return res.json(); 
+    })
+  .then(headlines => {
+    console.log('anything?', headlines);
+    dispatch(fetchTopHeadlinesSuccess(headlines.articles));
+  })
+  .catch(err => {
+    dispatch(fetchTopHeadlinesError(err))
+  })
+}
+
+export const advancedSearchQueryCategory = (query, category) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  dispatch(fetchTopHeadlinesRequest());
+  return fetch(`${API_BASE_URL}/qCatSearch`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+     'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      searchTerm: query,
+      searchCategory: category
     })
   })
   .then(res => {
