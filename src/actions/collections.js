@@ -83,3 +83,53 @@ export const addToCollectionError = (error) => {
 		error
 	}
 }
+
+export const DELETE_COLLECTION_REQUEST = "DELETE_COLLECTION_REQUEST";
+export const deleteCollectionRequest = () => {
+	return {
+		type: DELETE_COLLECTION_REQUEST,
+		loading: true,
+		error: null
+	}
+}
+
+export const DELETE_COLLECTION_SUCCESS = "DELETE_COLLECTION_SUCCESS";
+export const deleteCollectionSuccess = (collectionId) => {
+  return {
+		type: DELETE_COLLECTION_SUCCESS,
+		loading: false,
+		collectionId
+	}
+}
+
+export const DELETE_COLLECTION_ERROR = "DELETE_COLLECTION_ERROR";
+export const deleteCollectionError = (error) => {
+	return {
+		type: DELETE_COLLECTION_ERROR,
+		loading: false,
+		error
+	}
+}
+
+export const fetchCollections = () => (dispatch, getState) => {
+	const authToken = getState().auth.authToken;
+	dispatch(fetchCollectionsRequest());
+	fetch(`${API_BASE_URL}/collections`, {
+		headers: {
+			Authorization: `Bearer ${authToken}`,
+			Accept: 'application/json'
+		}
+	})
+	.then (res => {
+		if(!res.ok) {
+			console.log("There was an issue with your request. Please try again.")
+		}
+		return res.json();
+	})
+	.then(data => {
+		dispatch(fetchCollectionsSuccess(data.collections));
+	})
+	.catch(err => {
+		dispatch(fetchCollectionsError(err))
+	})
+};
