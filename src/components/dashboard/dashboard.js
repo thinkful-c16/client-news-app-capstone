@@ -4,6 +4,7 @@ import Search from '../search/search.js';
 import requiresLogin from '../requires-login';
 import shortid from 'shortid';
 import * as actions from '../../actions/api';
+import '../../styles/dashboard.css';
 //remove Dashboard from app.js
 
 export class Dashboard extends React.Component{
