@@ -4,21 +4,6 @@ import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
 
-//Social Auth- send fetch request to backend with the access token provided by each Google & Facebook
-//then get the response and use that token to login
-//tell the backend which service was used
-//body of the request should include token and service
-
-
-//Google Auth
-// function onSignIn(googleUser) {
-//   var profile = googleUser.getBasicProfile();
-//   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-//   console.log('Name: ' + profile.getName());
-//   console.log('Image URL: ' + profile.getImageUrl());
-//   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-// }
-
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
     type: SET_AUTH_TOKEN,
@@ -47,9 +32,6 @@ export const authError = error => ({
     error
 });
 
-
-// Stores the auth token in state and localStorage, and decodes and stores
-// the user data stored in the token
 const storeAuthInfo = (authToken, dispatch) => {
     const decodedToken = jwtDecode(authToken);
     dispatch(setAuthToken(authToken));
@@ -113,8 +95,6 @@ export const login = (email, password) => dispatch => {
                         ? 'Incorrect username or password'
                         : 'Unable to login, please try again';
                 dispatch(authError(err));
-                // Could not authenticate, so return a SubmissionError for Redux
-                // Form
                 return Promise.reject(
                     new SubmissionError({
                         _error: message
