@@ -6,7 +6,7 @@ const initialState = {
   collections: []
 }
 
-export default function updateCollections(state=initialState, action) {
+export default function collectionsReducer(state=initialState, action) {
   if(action.type === actions.FETCH_COLLECTIONS_REQUEST) {
 		return Object.assign({}, state, {
 			loading: action.loading

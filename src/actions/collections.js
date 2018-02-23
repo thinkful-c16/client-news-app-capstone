@@ -3,7 +3,7 @@ const API_BASE_URL = 'http://localhost:8080/api'
 export const FETCH_COLLECTIONS_REQUEST = "FETCH_COLLECTIONS_REQUEST";
 export const fetchCollectionsRequest = () => {
   return {
-    type: FETCH_COLLECTIONS_REQUEST = "FETCH_COLLECTIONS_REQUEST",
+    type: FETCH_COLLECTIONS_REQUEST,
     loading: true,
     error: null
   }
@@ -20,7 +20,7 @@ export const fetchCollectionsSuccess = (collections) => {
 }
 
 export const FETCH_COLLECTIONS_ERROR = "FETCH_COLLECTIONS_ERROR";
-export const fetchCollectionsError = () => {
+export const fetchCollectionsError = (error) => {
 	return {
 		type: FETCH_COLLECTIONS_ERROR,
 		loading: false,
@@ -31,7 +31,7 @@ export const fetchCollectionsError = () => {
 export const CREATE_COLLECTION_REQUEST = "CREATE_COLLECTION_REQUEST";
 export const createCollectionRequest = () => {
   return {
-    type: CREATE_COLLECTION_REQUEST = "CREATE_COLLECTION_REQUEST",
+    type: CREATE_COLLECTION_REQUEST,
     loading: true,
     error: null
   }
@@ -48,7 +48,7 @@ export const createCollectionSuccess = (collectionName) => {
 }
 
 export const CREATE_COLLECTION_ERROR = "CREATE_COLLECTION_ERROR";
-export const createCollectionError = () => {
+export const createCollectionError = (error) => {
 	return {
 		type: CREATE_COLLECTION_ERROR,
 		loading: false,
