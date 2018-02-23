@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import requiresLogin from '../requires-login';
 
 import '../../styles/collections-dash.css';
 
@@ -87,7 +88,7 @@ const dummyCollectionData = [
     }
 ]
 
-export default class CollectionsDashboard extends React.Component {
+export class CollectionsDashboard extends React.Component {
   componentDidMount() {
     //function dispatch to get collections
   }
@@ -137,3 +138,5 @@ export default class CollectionsDashboard extends React.Component {
     )
   }
 }
+
+export default requiresLogin()(connect()(CollectionsDashboard));
