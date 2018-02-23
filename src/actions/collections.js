@@ -133,3 +133,14 @@ export const fetchCollections = () => (dispatch, getState) => {
 		dispatch(fetchCollectionsError(err))
 	})
 };
+
+export const addToCollection = (collectionId, article) => (dispatch, getState) => {
+	const authToken = getState().auth.authToken;
+	dispatch(addToCollectionRequest());
+	fetch(`${API_BASE_URL}/collections/${collectionId}`, {
+		headers: {
+			Authorization: `Bearer ${authToken}`,
+			'Content-Type': 'application/JSON'
+		}
+	})
+}
