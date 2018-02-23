@@ -5,6 +5,7 @@ import requiresLogin from '../requires-login';
 import shortid from 'shortid';
 import * as actions from '../../actions/api';
 import '../../styles/dashboard.css';
+import FontAwesome from 'react-fontawesome';
 //remove Dashboard from app.js
 
 export class Dashboard extends React.Component{
@@ -55,6 +56,9 @@ export class Dashboard extends React.Component{
     }
   }
 
+  showDropdown() {
+    console.log('show dropdown');
+  }
 
   render() {
     const myList = this.props.headlines;
@@ -65,6 +69,17 @@ export class Dashboard extends React.Component{
           <img src={headline.urlToImage} width='100' alt={headline.title} />
           {headline.title}
         </a>
+        <div className='dropdown'>
+          <button className="dropbtn" onClick = {this.showDropdown}>
+            <FontAwesome name='arrow-alt-circle-down' size='4x' />
+          </button>
+          <div id={headline.id} className="dropdown-content">
+            <a href={headline.url}>Read article on {headline.author}</a>
+            <a href="#">Save to New Collection</a>
+            <a href="#">Save to Existing Collection</a>
+            <a href="#">Share to Social Media</a>
+          </div>
+        </div>
       </li>
     });
     
