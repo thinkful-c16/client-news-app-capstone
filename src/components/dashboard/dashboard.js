@@ -71,7 +71,7 @@ export class Dashboard extends React.Component{
         </a>
         <div className='dropdown'>
           <button className="dropbtn" onClick = {this.showDropdown}>
-            <FontAwesome name='arrow-alt-circle-down' size='4x' />
+            <FontAwesome name='chevron-circle-down' />
           </button>
           <div id={headline.id} className="dropdown-content">
             <a href={headline.url}>Read article on {headline.author}</a>
