@@ -12,7 +12,7 @@ export class Dashboard extends React.Component{
     this.state = {
       dashboardHeader: null
     }
-    this.updateDashboard = this.updateDashboard.bind(this);
+    this.simpleSearch = this.simpleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -22,11 +22,19 @@ export class Dashboard extends React.Component{
     this.props.dispatch(actions.fetchTopHeadlines());
   }
 
-  updateDashboard(query) {
-    this.setState({
-      dashboardHeader: `Your search results for ${query}`
-    })
-    this.props.dispatch(actions.updateHeadlines(query));
+  simpleSearch(input) {
+    const query = input.trim();
+    if (query === "") {
+      this.setState({
+        dashboardHeader: `Today's Top Headlines`
+      })
+      this.props.dispatch(actions.fetchTopHeadlines());
+    } else {
+      this.setState({
+        dashboardHeader: `Your Search Results for "${query}"`
+      })
+      this.props.dispatch(actions.updateHeadlines(query));
+    }
   }
 
 
@@ -44,7 +52,7 @@ export class Dashboard extends React.Component{
     
     return(
       <div className='dashboard'>
-        <Search onClick={query => this.updateDashboard(query)}/>
+        <Search onClick={input => this.simpleSearch(input)}/>
         <h2>{this.state.dashboardHeader}</h2>
         <ul>
           {headlinesList}
