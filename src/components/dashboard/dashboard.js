@@ -13,6 +13,7 @@ export class Dashboard extends React.Component{
       dashboardHeader: null
     }
     this.simpleSearch = this.simpleSearch.bind(this);
+    this.advancedSearch = this.advancedSearch.bind(this);
   }
 
   componentDidMount() {
@@ -37,6 +38,10 @@ export class Dashboard extends React.Component{
     }
   }
 
+  advancedSearch(input, category) {
+    console.log(input, category);
+  }
+
 
   render() {
     const myList = this.props.headlines;
@@ -52,7 +57,7 @@ export class Dashboard extends React.Component{
     
     return(
       <div className='dashboard'>
-        <Search onClick={input => this.simpleSearch(input)}/>
+        <Search onSimpleSearch={input => this.simpleSearch(input)} onAdvancedSearch={(input, category) => this.advancedSearch(input, category)}/>
         <h2>{this.state.dashboardHeader}</h2>
         <ul>
           {headlinesList}

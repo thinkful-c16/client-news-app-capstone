@@ -7,7 +7,7 @@ export class SearchAdvanced extends React.Component {
   render() {
     return (
       <div className="advanced-search-div">
-        <button className="search-icon" onClick={() => this.props.onClick(document.getElementById('searchInput').value)}>
+        <button className="search-icon" onClick={() => this.props.onClick(document.getElementById('searchInput').value, document.getElementById('categoryDropdown').value)}>
           <FontAwesome name='search' />
         </button>
         <input type="text" id="searchInput" />
