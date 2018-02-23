@@ -51,9 +51,9 @@ export default class Search extends React.Component {
         {searchMessage}
         <div className="search-input">
           {this.state.searchAdvanced ? (
-            <SearchAdvanced onClick={query => this.props.onClick(query)}/>
+            <SearchAdvanced onClick={(query, category) => this.props.onAdvancedSearch(query, category)}/>
           ) : (
-            <SearchSimple onClick={query => this.props.onClick(query)}/>
+            <SearchSimple onClick={query => this.props.onSimpleSearch(query)}/>
           )}
           {angleButton}
         </div>

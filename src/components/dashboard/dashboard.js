@@ -4,22 +4,55 @@ import Search from '../search/search.js';
 import requiresLogin from '../requires-login';
 import shortid from 'shortid';
 import * as actions from '../../actions/api';
+import '../../styles/dashboard.css';
 //remove Dashboard from app.js
 
 export class Dashboard extends React.Component{
   constructor(props) {
     super(props);
-    this.updateDashboard = this.updateDashboard.bind(this);
+    this.state = {
+      dashboardHeader: null
+    }
+    this.simpleSearch = this.simpleSearch.bind(this);
+    this.advancedSearch = this.advancedSearch.bind(this);
   }
 
   componentDidMount() {
-    console.log('ello mate');
+    this.setState({
+      dashboardHeader: `Today's Top Headlines`
+    })
     this.props.dispatch(actions.fetchTopHeadlines());
   }
 
-  updateDashboard(query) {
-    console.log(query);
-    this.props.dispatch(actions.updateHeadlines(query));
+  simpleSearch(input) {
+    const query = input.trim();
+    if (query === "") {
+      this.setState({
+        dashboardHeader: `Today's Top Headlines`
+      })
+      this.props.dispatch(actions.fetchTopHeadlines());
+    } else {
+      this.setState({
+        dashboardHeader: `Your Search Results for "${query}"`
+      })
+      this.props.dispatch(actions.simpleSearch(query));
+    }
+  }
+
+  advancedSearch(input, category) {
+    const query = input.trim();
+    if (query === "") {
+      console.log('search without query', category);
+      this.setState({
+        dashboardHeader: `Today's Top Headlines for ${category}`
+      })
+      this.props.dispatch(actions.advancedSearchCategory(category));
+    } else {
+      this.setState({
+        dashboardHeader: `Today's Top Headlines including "${query}" in ${category}`
+      })
+      this.props.dispatch(actions.advancedSearchQueryCategory(query, category));
+    }
   }
 
 
@@ -37,8 +70,8 @@ export class Dashboard extends React.Component{
     
     return(
       <div className='dashboard'>
-        <Search onClick={query => this.updateDashboard(query)}/>
-        <h2>Today's Top Headlines</h2>
+        <Search onSimpleSearch={input => this.simpleSearch(input)} onAdvancedSearch={(input, category) => this.advancedSearch(input, category)}/>
+        <h2>{this.state.dashboardHeader}</h2>
         <ul>
           {headlinesList}
         </ul>
