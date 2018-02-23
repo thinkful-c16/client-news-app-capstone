@@ -20,7 +20,7 @@ logOut() {
     }
 
     return (
-      <div className="nav-username">
+      <div className="nav-user-controls">
         <span>Hello {this.props.userName}!</span>
         {logOutButton}
       </div>

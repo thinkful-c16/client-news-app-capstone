@@ -14,7 +14,6 @@ export class LoginForm extends React.Component {
 
   responseGoogle (googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
-    console.log({accessToken: id_token});
     return this.props.dispatch(socialLogin(id_token, 'google'))
   }
 

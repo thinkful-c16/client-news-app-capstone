@@ -1,8 +1,34 @@
 .search-div {
   width: 100%;
-  height: 20px;
   display: flex;
-  padding: 10px;
-  border: 1px solid black;
+  justify-content: flex-end;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid black;
   background-color: lightgray;
+}
+
+.search-div button {
+  height: 28px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+.search-input {
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 8px;
+  padding-right: 20px;
+}
+
+.search-input input {
+  height: 20px;
+  width: 16em;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.search-message {
+  padding-top: 8px;
+  font-weight: bold;
 }

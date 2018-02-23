@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchSimple from './search-simple.js';
 import SearchAdvanced from './search-advanced.js';
-// import { FontAwesome } from 'react-fontawesome';
+import FontAwesome from 'react-fontawesome';
 import '../../styles/search.css';
 
 export default class Search extends React.Component {
@@ -28,25 +28,35 @@ export default class Search extends React.Component {
 
   render() {
 
+    let searchMessage;
     let angleButton;
     if (this.state.searchAdvanced) {
-      angleButton = <a className="search-options-icon" onClick={this.searchToggle}>
-                      angle up goes here
-                    </a>;
+      searchMessage = <div className="search-message">
+                        Advanced Search:
+                      </div>;
+      angleButton = <button className="search-options-icon" onClick={this.searchToggle}>
+                      <FontAwesome name='angle-double-left' size='2x' />
+                    </button>;
     } else {
-      angleButton = <a className="search-options-icon" onClick={this.searchToggle}>
-                      angle down goes here
-                    </a>;
+      searchMessage = <div className="search-message">
+                        Search:
+                      </div>;
+      angleButton = <button className="search-options-icon" onClick={this.searchToggle}>
+                      <FontAwesome name='angle-double-down' size='2x' />
+                    </button>;
     }
 
     return (
       <div className="search-div">
-      {this.state.searchAdvanced ? (
-        <SearchAdvanced />
-      ) : (
-        <SearchSimple />
-        )}
-        {angleButton}
+        {searchMessage}
+        <div className="search-input">
+          {this.state.searchAdvanced ? (
+            <SearchAdvanced onClick={(query, category) => this.props.onAdvancedSearch(query, category)}/>
+          ) : (
+            <SearchSimple onClick={query => this.props.onSimpleSearch(query)}/>
+          )}
+          {angleButton}
+        </div>
       </div>
     )
 

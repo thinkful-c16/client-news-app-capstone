@@ -1,5 +1,4 @@
-//import API_BASE_URL from '';
-const API_BASE_URL = 'http://localhost:8080/api'
+import { API_BASE_URL } from '../config';
 
 export const FETCH_TOP_HEADLINES_REQUEST = "FETCH_TOP_HEADLINES_REQUEST";
 export const fetchTopHeadlinesRequest = () => {
@@ -29,9 +28,9 @@ export const fetchTopHeadlinesError = (error) => {
   }
 }
 
-export const fetchTopHeadlines = () => (dispath, getState) => {
+export const fetchTopHeadlines = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  dispath(fetchTopHeadlinesRequest());
+  dispatch(fetchTopHeadlinesRequest());
   fetch(`${API_BASE_URL}/top20`, {
     headers: {
       Authorization: `Bearer ${authToken}`,
@@ -46,9 +45,94 @@ export const fetchTopHeadlines = () => (dispath, getState) => {
     })
   .then(headlines => {
     //console.log(headlines);
-    dispath(fetchTopHeadlinesSuccess(headlines.articles));
+    dispatch(fetchTopHeadlinesSuccess(headlines.articles));
   })
   .catch(err => {
-    dispath(fetchTopHeadlinesError(err))
+    dispatch(fetchTopHeadlinesError(err))
   })
 };
+
+export const simpleSearch = (query) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  dispatch(fetchTopHeadlinesRequest());
+  return fetch(`${API_BASE_URL}/qSearch`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+     'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      searchTerm: query
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      console.log("There was an issue with your request.")
+    }
+    return res.json(); 
+    })
+  .then(headlines => {
+    console.log('anything?', headlines);
+    dispatch(fetchTopHeadlinesSuccess(headlines.articles));
+  })
+  .catch(err => {
+    dispatch(fetchTopHeadlinesError(err))
+  })
+}
+
+export const advancedSearchCategory = (category) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  dispatch(fetchTopHeadlinesRequest());
+  return fetch(`${API_BASE_URL}/catSearch`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+     'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      searchCategory: category
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      console.log("There was an issue with your request.")
+    }
+    return res.json(); 
+    })
+  .then(headlines => {
+    console.log('anything?', headlines);
+    dispatch(fetchTopHeadlinesSuccess(headlines.articles));
+  })
+  .catch(err => {
+    dispatch(fetchTopHeadlinesError(err))
+  })
+}
+
+export const advancedSearchQueryCategory = (query, category) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  dispatch(fetchTopHeadlinesRequest());
+  return fetch(`${API_BASE_URL}/qCatSearch`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+     'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      searchTerm: query,
+      searchCategory: category
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      console.log("There was an issue with your request.")
+    }
+    return res.json(); 
+    })
+  .then(headlines => {
+    console.log('anything?', headlines);
+    dispatch(fetchTopHeadlinesSuccess(headlines.articles));
+  })
+  .catch(err => {
+    dispatch(fetchTopHeadlinesError(err))
+  })
+}
