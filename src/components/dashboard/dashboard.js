@@ -5,7 +5,6 @@ import requiresLogin from '../requires-login';
 import shortid from 'shortid';
 import * as actions from '../../actions/api';
 import '../../styles/dashboard.css';
-import FontAwesome from 'react-fontawesome';
 import ListItem from './listitem'
 //remove Dashboard from app.js
 
@@ -62,6 +61,7 @@ export class Dashboard extends React.Component{
 
     const headlinesList = myList.map(headline => {
       return <ListItem
+        key={shortid.generate()}
         url={headline.url}
         urlToImage={headline.urlToImage}
         title={headline.title}
