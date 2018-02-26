@@ -16,8 +16,7 @@
     display: inline-block;
 }
 
-.dropdown-content {
-    display: none;
+.dropcontent {
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
@@ -25,13 +24,18 @@
     z-index: 1;
 }
 
-.dropdown-content a {
+.dropcontent a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
 
-.dropdown-content a:hover {background-color: #ddd}
+.dropcontent a:hover {background-color: #ddd}
 
-.show {display:block;}
+.hidden {
+    display:none;
+ }
+.show{
+    display:block;
+ }
