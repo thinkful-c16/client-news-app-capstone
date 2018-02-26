@@ -84,6 +84,34 @@ export const addToCollectionError = (error) => {
 	}
 }
 
+export const DELETE_FROM_COLLECTION_REQUEST = "DELETE_FROM_COLLECTION_REQUEST";
+export const deleteCollectionRequest = () => {
+	return {
+		type: DELETE_COLLECTION_REQUEST,
+		loading: true,
+		error: null
+	}
+}
+
+export const DELETE_FROM_COLLECTION_SUCCESS = "DELETE_FROM_COLLECTION_SUCCESS";
+export const deleteCollectionSuccess = (collectionId, article) => {
+  return {
+		type: DELETE_COLLECTION_SUCCESS,
+		loading: false,
+		collectionId,
+		article
+	}
+}
+
+export const DELETE_FROM_COLLECTION_ERROR = "DELETE_FROM_COLLECTION_ERROR";
+export const deleteCollectionError = (error) => {
+	return {
+		type: DELETE_COLLECTION_ERROR,
+		loading: false,
+		error
+	}
+}
+
 export const DELETE_COLLECTION_REQUEST = "DELETE_COLLECTION_REQUEST";
 export const deleteCollectionRequest = () => {
 	return {
@@ -138,9 +166,24 @@ export const addToCollection = (collectionId, article) => (dispatch, getState) =
 	const authToken = getState().auth.authToken;
 	dispatch(addToCollectionRequest());
 	fetch(`${API_BASE_URL}/collections/${collectionId}`, {
+		method: 'POST',
 		headers: {
 			Authorization: `Bearer ${authToken}`,
-			'Content-Type': 'application/JSON'
+			'Content-Type': 'application/JSON',
+		},
+		body: JSON.stringify(article)
+	})
+	.then (res => {
+		if(!res.ok) {
+			console.log("There was an issue with your request. Please try again.")
 		}
+		return res.json();
+	})
+	.then(data => {
+		dispatch(addToCollectionSuccess(data));
+		dispatch(fetchCollections());
+	})
+	.catch(err => {
+		dispatch(addToCollectionError(err));
 	})
 }
