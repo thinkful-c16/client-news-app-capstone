@@ -66,11 +66,12 @@ export const addToCollectionRequest = () => {
 }
 
 export const ADD_TO_COLLECTION_SUCCESS = "ADD_TO_COLLECTION_SUCCESS";
-export const addToCollectionSuccess = (article) => {
+export const addToCollectionSuccess = (data) => {
 	return {
 		type: ADD_TO_COLLECTION_SUCCESS,
 		loading: false,
-		article
+		collectionId: data.collectionId,
+		article: data.article
 	}
 }
 
@@ -84,7 +85,7 @@ export const addToCollectionError = (error) => {
 }
 
 export const DELETE_FROM_COLLECTION_REQUEST = "DELETE_FROM_COLLECTION_REQUEST";
-export const deleteCollectionRequest = () => {
+export const deleteFromCollectionRequest = () => {
 	return {
 		type: DELETE_COLLECTION_REQUEST,
 		loading: true,
@@ -93,7 +94,7 @@ export const deleteCollectionRequest = () => {
 }
 
 export const DELETE_FROM_COLLECTION_SUCCESS = "DELETE_FROM_COLLECTION_SUCCESS";
-export const deleteCollectionSuccess = (collectionId, article) => {
+export const deleteFromCollectionSuccess = (data) => {
   return {
 		type: DELETE_COLLECTION_SUCCESS,
 		loading: false,
@@ -103,7 +104,7 @@ export const deleteCollectionSuccess = (collectionId, article) => {
 }
 
 export const DELETE_FROM_COLLECTION_ERROR = "DELETE_FROM_COLLECTION_ERROR";
-export const deleteCollectionError = (error) => {
+export const deleteFromCollectionError = (error) => {
 	return {
 		type: DELETE_COLLECTION_ERROR,
 		loading: false,
@@ -236,5 +237,33 @@ export const addToCollection = (collectionId, article) => (dispatch, getState) =
 	})
 	.catch(err => {
 		dispatch(addToCollectionError(err));
+	})
+}
+
+export const deleteFromCollection = (collectionId, articleId) => (dispatch, getState) => {
+	const authToken = getState().auth.authToken;
+	dispatch(deleteFromCollectionRequest());
+	fetch(`${API_BASE_URL}/collections/${collectionId}`, {
+		method: 'DELETE',
+		headers: {
+			Authorization: `Bearer ${authToken}`,
+			'Content-Type': 'application/JSON',
+		},
+		body: JSON.stringify({
+			articleId: articleId
+		})
+	})
+	.then (res => {
+		if(!res.ok) {
+			console.log("There was an issue with your request. Please try again.")
+		}
+		return res.json();
+	})
+	.then(data => {
+		dispatch(deleteFromCollectionSuccess(data));
+		dispatch(fetchCollections());
+	})
+	.catch(err => {
+		dispatch(deleteFromCollectionError(err));
 	})
 }
