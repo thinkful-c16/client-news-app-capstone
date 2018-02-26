@@ -56,8 +56,7 @@ export const createCollectionError = (error) => {
 	}
 }
 
-export const ADD_TO_COLLECTION_REQUEST =
-"ADD_TO_COLLECTION_REQUEST";
+export const ADD_TO_COLLECTION_REQUEST = "ADD_TO_COLLECTION_REQUEST";
 export const addToCollectionRequest = () => {
 	return {
 		type: ADD_TO_COLLECTION_REQUEST,
@@ -161,6 +160,34 @@ export const fetchCollections = () => (dispatch, getState) => {
 		dispatch(fetchCollectionsError(err))
 	})
 };
+
+export const createCollection = (collectionName) => (dispatch, getState) => {
+	const authToken = getState().auth.authToken;
+	dispatch(createCollectionRequest());
+	fetch(`${API_BASE_URL}/collections`, {
+		method: 'POST',
+		headers: {
+			Authorization: `Bearer ${authToken}`,
+			'Content-Type': 'application/JSON',
+		},
+		body: JSON.stringify({
+			collectionName: collectionName
+		})
+	})
+	.then (res => {
+		if(!res.ok) {
+			console.log("There was an issue with your request. Please try again.")
+		}
+		return res.json();
+	})
+	.then(data => {
+		dispatch(createCollectionSuccess(data.collectionName));
+		dispatch(fetchCollections());
+	})
+	.catch(err => {
+		dispatch(createCollectionError());
+	})
+}
 
 export const addToCollection = (collectionId, article) => (dispatch, getState) => {
 	const authToken = getState().auth.authToken;
