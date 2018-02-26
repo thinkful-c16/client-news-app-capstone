@@ -94,7 +94,7 @@ export const deleteFromCollectionRequest = () => {
 }
 
 export const DELETE_FROM_COLLECTION_SUCCESS = "DELETE_FROM_COLLECTION_SUCCESS";
-export const deleteFromCollectionSuccess = (data) => {
+export const deleteFromCollectionSuccess = (collectionId, article) => {
   return {
 		type: DELETE_COLLECTION_SUCCESS,
 		loading: false,
