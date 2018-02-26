@@ -189,6 +189,30 @@ export const createCollection = (collectionName) => (dispatch, getState) => {
 	})
 }
 
+export const deleteCollection = (collectionId) => (dispatch, getState) => {
+	const authToken = getState().auth.authToken;
+	dispatch(deleteCollectionRequest());
+	fetch(`${API_BASE_URL}/collections/${collectionId}`, {
+		method: 'DELETE',
+		headers: {
+			Authorization: `Bearer ${authToken}`
+		}
+	})
+	.then (res => {
+		if(!res.ok) {
+			console.log("There was an issue with your request. Please try again.")
+		}
+		return res.json();
+	})
+	.then ((data) => {
+		dispatch(deleteCollectionSuccess(data.collectionId));
+		dispatch(fetchCollections());
+	})
+	.catch(err => {
+		dispatch(createCollectionError());
+	})
+}
+
 export const addToCollection = (collectionId, article) => (dispatch, getState) => {
 	const authToken = getState().auth.authToken;
 	dispatch(addToCollectionRequest());
