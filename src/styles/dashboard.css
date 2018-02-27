@@ -43,14 +43,24 @@
 .main-section-dash {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .newsfeed-container {
-  order: 1;
-  width: 70%
+  order: 1
 }
 
 .activity-feed-container {
   order: 2;
-  width: 30%;
+  align-content: right;
+  background-color: lightblue;
+}
+
+.max {
+  width: 30%
+}
+
+.min {
+  width: 5%
 }

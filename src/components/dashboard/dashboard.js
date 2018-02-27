@@ -7,21 +7,27 @@ import * as actions from '../../actions/api';
 import '../../styles/dashboard.css';
 import ListItem from './listitem'
 import ActivityFeed from '../activity/activity-feed'
+import classNames from 'classnames';
+import FontAwesome from 'react-fontawesome';
 //remove Dashboard from app.js
 
 export class Dashboard extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      dashboardHeader: null
+      dashboardHeader: null,
+      feedClass: 'max',
+      feedButton: <FontAwesome name='chevron-circle-right' />
     }
     this.simpleSearch = this.simpleSearch.bind(this);
     this.advancedSearch = this.advancedSearch.bind(this);
+    this.toggleFeedClass = this.toggleFeedClass.bind(this);
   }
 
   componentWillMount() {
     this.setState({
-      dashboardHeader: `Today's Top Headlines`
+      dashboardHeader: `Today's Top Headlines`,
+      feedClass: 'max'
     })
     this.props.dispatch(actions.fetchTopHeadlines());
   }
@@ -57,6 +63,17 @@ export class Dashboard extends React.Component{
     }
   }
 
+	toggleFeedClass(){
+		if(this.state.feedClass === "max") {
+      this.setState({feedClass: "min",
+      feedButton: <FontAwesome name='chevron-circle-left' />})
+		}
+		else {
+      this.setState({feedClass: "max",
+      feedButton: <FontAwesome name='chevron-circle-right' />})
+		}
+	}
+
   render() {
     const myList = this.props.headlines;
 
@@ -81,7 +98,10 @@ export class Dashboard extends React.Component{
               {headlinesList}
             </ul>
           </div>
-          <div className='activity-feed-container'>
+          <div className={classNames('activity-feed-container', this.state.feedClass)}>
+            <div className='feed-btn' onClick={this.toggleFeedClass}>
+              {this.state.feedButton}
+            </div>
             <ActivityFeed />
           </div>
         </div>

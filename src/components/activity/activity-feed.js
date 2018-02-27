@@ -2,7 +2,7 @@ import React from 'react';
 import * as actions from '../../actions/activity';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
-import '../../styles/activity-feed.css'
+import '../../styles/activity-feed.css';
 
 //dummy data for "usersFollowing"
 let dummydata=[
@@ -84,18 +84,15 @@ let dummydata=[
 
 export class ActivityFeed extends React.Component {
 
-	componentWillMount(){
-		console.log('activity feed!')
-		//this.props.dispatch(actions.fetchActivity)
-	}
-
 	render() {
 		let sharedArticlesActivity = dummydata.map(friend => {friend.firstName, friend.lastName})
 		console.log(sharedArticlesActivity)
 
 		return(
 			<div className='af-main-container'>
-				stuff goes here
+				<div className='activity-content'>
+					stuff goes here
+				</div>
 			</div>
 		)
 	}
