@@ -75,8 +75,10 @@
 	border: none;
 	cursor: pointer;
 	font-size: 60px;
+	width: 100%;
+	text-align: right;
 }
 
 .dropbtn:hover, .dropbtn:focus {
-	background-color: #2980B9;
+	color: #2980B9;
 }
