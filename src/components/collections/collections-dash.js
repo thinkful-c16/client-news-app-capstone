@@ -97,11 +97,9 @@ export class CollectionsDashboard extends React.Component {
           )
         }
 
-          <div className="modal-container">
-            {this.state.isModalVisible &&
-              <span>Hello Modal!</span>
-            }
-          </div>
+        { this.state.isModalVisible &&
+            <CollectionsCreateModal />
+        }
 
         </div>
       )
