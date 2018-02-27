@@ -17,7 +17,8 @@ export class Dashboard extends React.Component{
     this.state = {
       dashboardHeader: null,
       feedClass: 'max',
-      feedButton: <FontAwesome name='chevron-circle-right' />
+      feedButton: <FontAwesome name='chevron-circle-right' />,
+      activityContent: <ActivityFeed />
     }
     this.simpleSearch = this.simpleSearch.bind(this);
     this.advancedSearch = this.advancedSearch.bind(this);
@@ -66,11 +67,13 @@ export class Dashboard extends React.Component{
 	toggleFeedClass(){
 		if(this.state.feedClass === "max") {
       this.setState({feedClass: "min",
-      feedButton: <FontAwesome name='chevron-circle-left' />})
+      feedButton: <FontAwesome name='chevron-circle-left' />,
+      activityContent: '...'})
 		}
 		else {
       this.setState({feedClass: "max",
-      feedButton: <FontAwesome name='chevron-circle-right' />})
+      feedButton: <FontAwesome name='chevron-circle-right' />,
+      activityContent: <ActivityFeed />})
 		}
 	}
 
@@ -102,7 +105,9 @@ export class Dashboard extends React.Component{
             <div className='feed-btn' onClick={this.toggleFeedClass}>
               {this.state.feedButton}
             </div>
-            <ActivityFeed />
+            <div className='activity'>
+              {this.state.activityContent}
+            </div>
           </div>
         </div>
       </div>
