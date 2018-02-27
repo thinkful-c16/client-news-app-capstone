@@ -20,6 +20,7 @@ export class CollectionsCreateModal extends React.Component {
         <form>
           <label className="collection-name-label" htmlFor="collectionNameInput">Name</label>
           <input type="text" className="collection-name-input" id="collectionNameInput"/>
+          <input type="submit" className="create-collection-submit" value="Create"/>
         </form>
       </div>
       <div className="backdrop-div">
