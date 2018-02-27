@@ -9,6 +9,13 @@
 
 .noCollections-dash-container h1 {
   padding: 10px;
+  text-align: center;
+}
+
+.noCollections-dash-container p {
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
 }
 
 .add-collection-div {

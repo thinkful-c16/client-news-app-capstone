@@ -44,18 +44,21 @@ export class CollectionsDashboard extends React.Component {
 
     return(
         <div className="parent-coll-container">
+          <div className="add-collection-div">
+            <a>
+              <FontAwesome name='plus-square' size='2x'/>
+            </a>
+            <h3>Add a collection</h3>
+          </div>
 
         { this.props.collections.length === 0 ? (
           <div  className="noCollections-dash-container">
               <h1>
-                Please create a collection
+                Uh oh! It looks like you don't have any collections!
               </h1>
-              <div className="add-collection-div">
-                <a>
-                  <FontAwesome name='plus-square' size='2x'/>
-                </a>
-                <h3>Add a collection</h3>
-              </div>
+              <p>
+                Please create a new collection by clicking "add a collection" up above. Go on, we know you want to!
+              </p>
           </div>) : (
 
             <div className="collections-dash-container">
