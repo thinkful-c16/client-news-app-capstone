@@ -24,7 +24,7 @@ export class CollectionsDashboard extends React.Component {
 
   componentWillMount() {
     console.log('hi');
-    // this.props.dispatch(actions.fetchCollections());
+    this.props.dispatch(actions.fetchCollections());
   }
 
   render() {
@@ -98,7 +98,7 @@ export class CollectionsDashboard extends React.Component {
         }
 
         { this.state.isModalVisible &&
-            <CollectionsCreateModal onClick={this.modalToggle}/>
+            <CollectionsCreateModal onCloseModal={this.modalToggle}/>
         }
 
         </div>

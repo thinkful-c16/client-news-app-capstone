@@ -155,7 +155,8 @@ export const fetchCollections = () => (dispatch, getState) => {
 		return res.json();
 	})
 	.then(data => {
-		dispatch(fetchCollectionsSuccess(data.collections));
+		console.log(data);
+		dispatch(fetchCollectionsSuccess(data));
 	})
 	.catch(err => {
 		dispatch(fetchCollectionsError(err))
@@ -172,7 +173,8 @@ export const createCollection = (collectionName) => (dispatch, getState) => {
 			'Content-Type': 'application/JSON',
 		},
 		body: JSON.stringify({
-			collectionName: collectionName
+			collectionTitle: collectionName,
+			collectionArticles: []
 		})
 	})
 	.then (res => {
