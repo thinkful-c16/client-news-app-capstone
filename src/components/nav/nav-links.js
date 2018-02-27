@@ -1,6 +1,7 @@
 import React from 'react';
 import Media from 'react-media';
 import {Link} from 'react-router-dom';
+import '../../styles/nav.css';
 
 export default class NavLinks extends React.Component {
 
