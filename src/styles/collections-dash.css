@@ -7,6 +7,34 @@
   order: 1;
 }
 
+.noCollections-dash-container h1 {
+  padding: 10px;
+  text-align: center;
+}
+
+.noCollections-dash-container p {
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.add-collection-div {
+  display: flex;
+  align-items: center;
+}
+
+.add-collection-div a {
+  padding: 10px;
+}
+
+.add-collection-div a:hover {
+  color: #2980B9;
+}
+
+.add-collection-div a:active {
+  color: black;
+}
+
 .featured-collection {
   order: 2;
   display: flex;
