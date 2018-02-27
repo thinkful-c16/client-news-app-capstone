@@ -1,8 +1,7 @@
 .nav-bar {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  border-bottom: 1px solid black;
+  background-color: #00303f;
 }
 
 .nav-header {
@@ -17,6 +16,10 @@
 
 .nav-header-div h1 {
   padding-left: 8px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 700;
+  font-size: 2.5em;
+  color: #f9f8fd;
 }
 
 .nav-links {
@@ -24,6 +27,7 @@
 }
 
 .nav-links a {
+  color: #cae4db;
   font-size: 18px;
   text-decoration: none;
   padding: 8px;
@@ -38,9 +42,21 @@
 .nav-user-controls span {
   padding: 8px;
   font-size: 20px;
+  color: #f9f8fd;
 }
 
 .nav-user-controls button {
+  height: 2em;
+  width: 10em;
   font-size: 14px;
   border-radius: 8px;
+  background-color: #dcae1d;
+  border: 0px;
+  color: #f9f8fd;
+  font-weight: 700;
+}
+
+.nav-user-controls button:hover {
+  cursor: pointer;
+  background-color: rgba(220, 174, 29, 0.7);
 }
