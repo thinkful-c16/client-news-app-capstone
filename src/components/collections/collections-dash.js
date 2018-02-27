@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
+import FontAwesome from 'react-fontawesome';
 import * as actions from '../../actions/collections';
 
 import '../../styles/collections-dash.css';
@@ -49,6 +50,12 @@ export class CollectionsDashboard extends React.Component {
               <h1>
                 Please create a collection
               </h1>
+              <div className="add-collection-div">
+                <a>
+                  <FontAwesome name='plus-square' size='2x'/>
+                </a>
+                <h3>Add a collection</h3>
+              </div>
           </div>) : (
 
             <div className="collections-dash-container">
