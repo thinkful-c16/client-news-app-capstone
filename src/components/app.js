@@ -7,6 +7,7 @@ import Nav from './nav/nav.js';
 import CollectionsDashboard from './collections/collections-dash.js';
 import { Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import '../styles/app.css';
 
 export class App extends Component {
 
@@ -19,12 +20,16 @@ export class App extends Component {
 
     return (
       <div className="App">
-        <Nav />
-        <Route exact path="/" component={LoginForm} />
-        <Route exact path="/register" component={RegistrationForm} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/explore" component={Explore} />
-        <Route exact path="/collections" component={CollectionsDashboard} />
+        <div className="nav-bar-container">
+          <Nav />
+        </div>
+        <div className="body-container">
+          <Route exact path="/" component={LoginForm} />
+          <Route exact path="/register" component={RegistrationForm} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/explore" component={Explore} />
+          <Route exact path="/collections" component={CollectionsDashboard} />
+        </div>
       </div>
     );
   }

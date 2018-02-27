@@ -12,7 +12,9 @@ export class Nav extends React.Component {
   render() {
     return (
       <div className="nav-bar">
+        <div className="nav-header">
         <NavHeader />
+        </div>
         {this.props.loggedIn &&
           <div className="nav-components">
             <NavLinks />

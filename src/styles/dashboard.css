@@ -35,7 +35,32 @@
 
 .hidden {
     display:none;
- }
+}
 .show{
     display:block;
- }
+}
+
+.main-section-dash {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.newsfeed-container {
+  order: 1
+}
+
+.activity-feed-container {
+  order: 2;
+  align-content: right;
+  background-color: lightblue;
+}
+
+.max {
+  width: 30%
+}
+
+.min {
+  width: 2%
+}
