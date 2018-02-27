@@ -2,11 +2,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
 import FontAwesome from 'react-fontawesome';
+import CollectionsCreateModal from './collections-create-modal';
 import * as actions from '../../actions/collections';
 
 import '../../styles/collections-dash.css';
 
 export class CollectionsDashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalVisible: false
+    }
+    this.modalToggle = this.modalToggle.bind(this);
+  }
+
+  modalToggle() {
+    this.setState({
+      isModalVisible: !this.state.isModalVisible 
+    });
+  }
 
   componentWillMount() {
     console.log('hi');
@@ -45,7 +59,7 @@ export class CollectionsDashboard extends React.Component {
     return(
         <div className="parent-coll-container">
           <div className="add-collection-div">
-            <a>
+            <a onClick={this.modalToggle}>
               <FontAwesome name='plus-square' size='2x'/>
             </a>
             <h3>Add a collection</h3>
@@ -82,6 +96,12 @@ export class CollectionsDashboard extends React.Component {
 
           )
         }
+
+          <div className="modal-container">
+            {this.state.isModalVisible &&
+              <span>Hello Modal!</span>
+            }
+          </div>
 
         </div>
       )
