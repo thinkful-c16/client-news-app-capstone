@@ -98,7 +98,7 @@ export class CollectionsDashboard extends React.Component {
         }
 
         { this.state.isModalVisible &&
-            <CollectionsCreateModal />
+            <CollectionsCreateModal onClick={this.modalToggle}/>
         }
 
         </div>
