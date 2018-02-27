@@ -2,6 +2,7 @@ import React from 'react';
 import * as actions from '../../actions/activity';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
+import '../../styles/activity-feed.css'
 
 //dummy data for "usersFollowing"
 let dummydata=[
@@ -93,7 +94,7 @@ export class ActivityFeed extends React.Component {
 		console.log(sharedArticlesActivity)
 
 		return(
-			<div>
+			<div className='af-main-container'>
 				stuff goes here
 			</div>
 		)

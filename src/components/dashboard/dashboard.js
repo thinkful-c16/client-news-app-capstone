@@ -6,6 +6,7 @@ import shortid from 'shortid';
 import * as actions from '../../actions/api';
 import '../../styles/dashboard.css';
 import ListItem from './listitem'
+import ActivityFeed from '../activity/activity-feed'
 //remove Dashboard from app.js
 
 export class Dashboard extends React.Component{
@@ -73,10 +74,17 @@ export class Dashboard extends React.Component{
     return(
       <div className='dashboard'>
         <Search onSimpleSearch={input => this.simpleSearch(input)} onAdvancedSearch={(input, category) => this.advancedSearch(input, category)}/>
-        <h2>{this.state.dashboardHeader}</h2>
-        <ul>
-          {headlinesList}
-        </ul>
+        <div className='main-section-dash'>
+          <div className='newsfeed-container'>
+            <h2>{this.state.dashboardHeader}</h2>
+            <ul>
+              {headlinesList}
+            </ul>
+          </div>
+          <div className='activity-feed-container'>
+            <ActivityFeed />
+          </div>
+        </div>
       </div>
     )
   }
