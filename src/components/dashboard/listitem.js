@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../styles/dashboard.css';
+import '../../styles/listitem.css';
 import FontAwesome from 'react-fontawesome';
 import classNames from 'classnames';
 
@@ -28,15 +29,13 @@ export default class ListItem extends React.Component{
   }
 
   render() {
-      return <li>
-        <a href={this.props.url} target="_blank">
-          <img src={this.props.urlToImage} width='100' alt={this.props.title} />
-          {this.props.title}
-        </a>
+      return <li className="article-list">
+        <img src={this.props.urlToImage} alt={this.props.title} />
+        <h2>{this.props.title}</h2>
         <div className='dropdown'>
-          <button className="dropbtn" onMouseDown= {(e) => this.toggleDropdown(e)}>
+          <div className="dropbtn" onMouseDown= {(e) => this.toggleDropdown(e)}>
             <FontAwesome name='chevron-circle-down' />
-          </button>
+          </div>
           <div id={this.props.id} className={classNames(this.state.dropdownClass, 'dropcontent')} ref={this.props.id}>
             <a href={this.props.url}>Read article on {this.props.author}</a>
             <a href="#">Save to New Collection</a>

@@ -97,7 +97,7 @@ export class Dashboard extends React.Component{
         <div className='main-section-dash'>
           <div className='newsfeed-container'>
             <h2>{this.state.dashboardHeader}</h2>
-            <ul>
+            <ul className='headlines-list'>
               {headlinesList}
             </ul>
           </div>
