@@ -1,0 +1,82 @@
+.article-list {
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	position: relative;
+	align-items: center;
+	margin: auto;
+	border: 1px solid darkgray;
+}
+
+.article-list:first-of-type {
+	width: 100%;
+	max-height: 500px;
+	margin-bottom: 10px;
+}
+
+.article-list:nth-of-type(n+2) {
+	width: 33%;
+	max-height: 300px;
+	margin-bottom: 10px;
+}
+
+.article-list img {
+	display: flex;
+	flex-shrink: 0;
+	min-width: 100%;
+	min-height: 100%;
+	z-index: 1;
+	position: relative;
+}
+
+.article-list h2 {
+	width: 80%;
+	position: absolute;
+	z-index: 2;
+	color: white;
+	text-shadow: 2px 2px black;
+}
+
+.dropdown {
+	z-index: 2;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	overflow: visible;
+	display: flex;
+	flex-direction: column;
+	align-items: right;
+}
+
+.dropcontent {
+	/* position: absolute; */
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 4;
+	overflow: visible;
+}
+
+.dropcontent a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropcontent a:hover {background-color: #ddd}
+
+.dropbtn {
+	background-color: transparent;
+	color: white;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	font-size: 60px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+	background-color: #2980B9;
+}
