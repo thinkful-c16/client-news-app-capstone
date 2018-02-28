@@ -96,7 +96,7 @@
 .dropbtn {
 	z-index: 4;
 	background-color: transparent;
-	color: white;
+	color: rgba(202, 228, 219, 1.0);
 	border-radius: 8px;
 	border: none;
 	cursor: pointer;
@@ -106,5 +106,5 @@
 }
 
 .dropbtn:hover, .dropbtn:focus {
-	color: #cae4db;
+	color: rgba(202, 228, 219, 0.7);
 }
