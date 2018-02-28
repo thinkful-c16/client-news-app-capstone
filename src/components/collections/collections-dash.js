@@ -46,46 +46,55 @@ export class CollectionsDashboard extends React.Component {
           )
         })
       }
-      if (this.props.collections.length >= 1) {
-        allCollectionsList = this.props.collections.map(data => {
-          if (data.collectionArticles.length !== 0 && data.collectionArticles[0].image) {
-            return(
-              <div className="all-collections-detail" key={shortid.generate()}>
-                <div className="list-img">
-                  <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
-                </div>
-                <li>{data.collectionTitle}</li>
+      if (this.props.collections[0].collectionArticles.length === 0) {
+        featArticleList =
+          <div className="article-list-detail" key={shortid.generate()}>
+            <li>
+            No articles found in this collection. You should add some!
+            </li>
+          </div>
+          
+      }
+    }
+    if (this.props.collections.length >= 1) {
+      allCollectionsList = this.props.collections.map(data => {
+        if (data.collectionArticles.length !== 0 && data.collectionArticles[0].image) {
+          return(
+            <div className="all-collections-detail" key={shortid.generate()}>
+              <div className="list-img">
+                <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
               </div>
-            )
-          }
-          else if (data.collectionArticles.length !== 0) {
-            return(
-              <div className="all-collections-detail" key={shortid.generate()}>
-                <div className="list-img">
-                  <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
-                </div>
-                <li>{data.collectionTitle}</li>
+              <li>{data.collectionTitle}</li>
+            </div>
+          )
+        }
+        else if (data.collectionArticles.length !== 0) {
+          return(
+            <div className="all-collections-detail" key={shortid.generate()}>
+              <div className="list-img">
+                <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
               </div>
-            )
-          } else {
-            return(
-              <div className="all-collections-detail" key={shortid.generate()}>
-                <li>{data.collectionTitle}</li>
-              </div>
-            )}
+              <li>{data.collectionTitle}</li>
+            </div>
+          )
+        } else {
+          return(
+            <div className="all-collections-detail" key={shortid.generate()}>
+              <li>{data.collectionTitle}</li>
+            </div>
+          )}
         })
-      } else {
-        featArticleList = 
+    } else {
+      featArticleList = 
         <div className="article-list-detail" key={shortid.generate()}>
           <span>No articles found in collection. Add some!</span>
         </div>
 
-        allCollectionsList =
+      allCollectionsList =
         <div className="all-collection-detail" key={shortid.generate()}>
           <span>No more collections found... why not create some more?</span>
           <FontAwesome name='smile' size='2x'/>
         </div>
-      }
     }
 
     return(

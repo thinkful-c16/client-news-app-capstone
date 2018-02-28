@@ -19,19 +19,36 @@ export default class ListItem extends React.Component{
       super(props);
       this.state = {
         dropdownClass: 'hidden',
-        socialDropClass: 'hidden'
+        socialDropClass: 'hidden',
+        saveToCollectionClass: 'hidden'
       }
       this.toggleDropdown = this.toggleDropdown.bind(this);
       this.toggleSocial = this.toggleSocial.bind(this);
+      this.toggleSaveToCollection = this.toggleSaveToCollection.bind(this);
       }
-    
+  
   componentDidMount() {
     this.setState({
-      dropdownClass: 'hidden'
+      dropdownClass: 'hidden',
+      saveToCollectionClass: 'hidden'
     })
   }
 
-  toggleDropdown(e) {
+  onSaveToCollection() {
+    console.log('heyo');
+    this.toggleDropdown();
+  }
+
+  toggleSaveToCollection() {
+    if (this.state.saveToCollectionClass === "hidden") {
+      this.setState({saveToCollectionClass: "show"})
+    }
+    else{
+      this.setState({saveToCollectionClass: "hidden"})
+    }
+  }
+
+  toggleDropdown() {
     if (this.state.dropdownClass === "hidden") {
       this.setState({dropdownClass: "show"})
     }
@@ -50,18 +67,21 @@ export default class ListItem extends React.Component{
   }
 
   render() {
-      return (
-      <li className="article-list">
-        <img src={this.props.urlToImage} alt={this.props.title} />
-        <h2>{this.props.title}</h2>
+
+      return <li className="article-list">
+        <img src={this.props.article.image} alt={this.props.article.title} />
+        <h2>{this.props.article.title}</h2>
         <div className='dropdown'>
-          <div className="dropbtn" onMouseDown= {(e) => this.toggleDropdown(e)}>
+          <div className="dropbtn" onMouseDown= {this.toggleDropdown}>
             <FontAwesome name='chevron-circle-down' />
           </div>
           <div id={this.props.id} className={classNames(this.state.dropdownClass, 'dropcontent')} ref={this.props.id}>
-            <a href={this.props.url}>Read article on {this.props.author}</a>
+            <a target="_blank" href={this.props.article.url}>Read article on {this.props.article.source.name}</a>
             <a href="#">Save to New Collection</a>
-            <a href="#">Save to Existing Collection</a>
+            <a href="#" onMouseOver={this.toggleSaveToCollection}>Save to Existing Collection</a>
+            <div className={classNames(this.state.saveToCollectionClass, 'collections-dropcontent')}>
+              hello
+            </div>
             <a href="#" onMouseOver={this.toggleSocial} >Share to Social Media</a>
               <div className={classNames(this.state.socialDropClass, 'social-content')}>
                 <TwitterShareButton

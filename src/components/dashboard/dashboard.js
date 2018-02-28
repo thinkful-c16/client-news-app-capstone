@@ -4,6 +4,7 @@ import Search from '../search/search.js';
 import requiresLogin from '../requires-login';
 import shortid from 'shortid';
 import * as actions from '../../actions/api';
+import {fetchCollections} from '../../actions/collections'
 import '../../styles/dashboard.css';
 import ListItem from './listitem'
 import ActivityFeed from '../activity/activity-feed'
@@ -31,6 +32,7 @@ export class Dashboard extends React.Component{
       feedClass: 'max'
     })
     this.props.dispatch(actions.fetchTopHeadlines());
+    this.props.dispatch(fetchCollections());
   }
 
   simpleSearch(input) {
@@ -83,11 +85,19 @@ export class Dashboard extends React.Component{
     const headlinesList = myList.map(headline => {
       return <ListItem
         key={shortid.generate()}
-        url={headline.url}
-        urlToImage={headline.urlToImage}
-        title={headline.title}
-        id={headline.id}
-        author={headline.author}
+        id= {headline.id}
+        article={{
+          source: {
+            id: headline.source.id,
+            name: headline.source.name
+          },
+          title: headline.title,
+          author: headline.author,
+          description: headline.description,
+          image: headline.urlToImage,
+          url: headline.url
+        }}
+        collections={this.props.collections}
       />
     });
     
@@ -117,7 +127,8 @@ export class Dashboard extends React.Component{
 
 const mapStateToProps = (state, props) => {
   return {
-    headlines: state.api.headlines
+    headlines: state.api.headlines,
+    collections: state.collections.collections
   }
 }
 
