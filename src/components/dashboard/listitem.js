@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../styles/dashboard.css';
 import '../../styles/listitem.css';
+import shortid from 'shortid';
 import FontAwesome from 'react-fontawesome';
 import classNames from 'classnames';
 import {
@@ -67,6 +68,17 @@ export default class ListItem extends React.Component{
   }
 
   render() {
+    let collectionsDropdownList;
+
+    if (this.props.collections.length !== 0) {
+      collectionsDropdownList = this.props.collections.map(collection => {
+        return(
+          <a key={shortid.generate()} href="#">{collection.collectionTitle}</a>
+        )
+      })
+    } else {
+      collectionsDropdownList = <a href="#">No collections found! Make one!</a>
+    }
 
       return ( <li className="article-list">
         <img src={this.props.article.image} alt={this.props.article.title} />
@@ -80,7 +92,7 @@ export default class ListItem extends React.Component{
             <a href="#">Save to New Collection</a>
             <a href="#" onMouseOver={this.toggleSaveToCollection}>Save to Existing Collection</a>
             <div className={classNames(this.state.saveToCollectionClass, 'collections-dropcontent')}>
-              hello
+              {collectionsDropdownList}
             </div>
             <a href="#" onMouseOver={this.toggleSocial} >Share to Social Media</a>
               <div className={classNames(this.state.socialDropClass, 'social-content')}>
