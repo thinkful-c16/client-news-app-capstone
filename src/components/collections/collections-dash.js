@@ -33,26 +33,39 @@ export class CollectionsDashboard extends React.Component {
     let allCollectionsList;
 
     if (this.props.collections.length !== 0){
-      featArticleList = this.props.collections[0].collectionArticles.map(data => {
-        return(
-        <div className="article-list-detail">
-          <li>
-          {data.title}
-          </li>
-        </div>
-        )
-      })
 
-      allCollectionsList = this.props.collections.map(data => {
-        return(
-          <div className="all-collections-detail">
-            <div className="list-img">
-              <img src={data.collectionArticles[0].image} />
-            </div>
-            <li>{data.collectionTitle}</li>
+      if (this.props.collections[0].collectionArticles.length !== 0) {
+        featArticleList = this.props.collections[0].collectionArticles.map(data => {
+          return(
+          <div className="article-list-detail">
+            <li>
+            {data.title}
+            </li>
           </div>
-        )
-      })
+          )
+        })
+
+        allCollectionsList = this.props.collections.map(data => {
+          return(
+            <div className="all-collections-detail">
+              <div className="list-img">
+                <img src={data.collectionArticles[0].image} />
+              </div>
+              <li>{data.collectionTitle}</li>
+            </div>
+          )
+        })
+      } else {
+        featArticleList = 
+        <div className="article-list-detail">
+          <span>No articles found in collection. Add some!</span>
+        </div>
+
+        allCollectionsList =
+        <div className="all-collection-detail">
+          <span>No more collections found... why not create some more?</span>
+        </div>
+      }
 
     }
 
