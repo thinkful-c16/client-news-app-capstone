@@ -3,15 +3,27 @@ import '../../styles/dashboard.css';
 import '../../styles/listitem.css';
 import FontAwesome from 'react-fontawesome';
 import classNames from 'classnames';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  RedditShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  RedditIcon
+} from 'react-share';
 
 export default class ListItem extends React.Component{
   constructor(props) {
       super(props);
       this.state = {
         dropdownClass: 'hidden',
+        socialDropClass: 'hidden',
         saveToCollectionClass: 'hidden'
       }
       this.toggleDropdown = this.toggleDropdown.bind(this);
+      this.toggleSocial = this.toggleSocial.bind(this);
       this.toggleSaveToCollection = this.toggleSaveToCollection.bind(this);
       }
   
@@ -45,7 +57,17 @@ export default class ListItem extends React.Component{
     }
   }
 
+  toggleSocial() {
+    if (this.state.socialDropClass === "hidden") {
+      this.setState({socialDropClass: "show"})
+    }
+    else{
+      this.setState({socialDropClass: "hidden"})
+    }
+  }
+
   render() {
+
       return <li className="article-list">
         <img src={this.props.article.image} alt={this.props.article.title} />
         <h2>{this.props.article.title}</h2>
@@ -60,9 +82,23 @@ export default class ListItem extends React.Component{
             <div className={classNames(this.state.saveToCollectionClass, 'collections-dropcontent')}>
               hello
             </div>
-            <a href="#">Share to Social Media</a>
+            <a href="#" onMouseOver={this.toggleSocial} >Share to Social Media</a>
+              <div className={classNames(this.state.socialDropClass, 'social-content')}>
+                <TwitterShareButton
+                  children={<TwitterIcon size={32} round={true} />}
+                  url={this.props.url}/>
+                <FacebookShareButton
+                  children={<FacebookIcon size={32} round={true} />}
+                  url={this.props.url} />
+                <LinkedinShareButton
+                  children={<LinkedinIcon size={32} round={true} />}
+                  url={this.props.url} />
+                <RedditShareButton
+                  children={<RedditIcon size={32} round={true} />}
+                  url={this.props.url} />
+              </div>
           </div>
         </div>
       </li>
-    }
+      )}
 }
