@@ -1,6 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../../styles/dashboard.css';
 import '../../styles/listitem.css';
+import requiresLogin from '../requires-login';
+import * as actions from '../../actions/collections';
+import shortid from 'shortid';
 import FontAwesome from 'react-fontawesome';
 import classNames from 'classnames';
 import {
@@ -14,7 +18,7 @@ import {
   RedditIcon
 } from 'react-share';
 
-export default class ListItem extends React.Component{
+export class ListItem extends React.Component{
   constructor(props) {
       super(props);
       this.state = {
@@ -25,6 +29,7 @@ export default class ListItem extends React.Component{
       this.toggleDropdown = this.toggleDropdown.bind(this);
       this.toggleSocial = this.toggleSocial.bind(this);
       this.toggleSaveToCollection = this.toggleSaveToCollection.bind(this);
+      this.onSaveToCollection = this.onSaveToCollection.bind(this);
       }
   
   componentDidMount() {
@@ -34,8 +39,9 @@ export default class ListItem extends React.Component{
     })
   }
 
-  onSaveToCollection() {
-    console.log('heyo');
+  onSaveToCollection(e) {
+    const collectionId = e.target.id;
+    this.props.dispatch(actions.addToCollection(collectionId, this.props.article));
     this.toggleDropdown();
   }
 
@@ -67,6 +73,17 @@ export default class ListItem extends React.Component{
   }
 
   render() {
+    let collectionsDropdownList;
+
+    if (this.props.collections.length !== 0) {
+      collectionsDropdownList = this.props.collections.map(collection => {
+        return(
+          <a key={shortid.generate()} id={collection._id} href="#" onClick={this.onSaveToCollection}>{collection.collectionTitle}</a>
+        )
+      })
+    } else {
+      collectionsDropdownList = <a href="#">No collections found! Make one!</a>
+    }
 
       return ( 
       <li className="article-list">
@@ -83,7 +100,7 @@ export default class ListItem extends React.Component{
             <a href="#">Save to New Collection</a>
             <a href="#" onMouseOver={this.toggleSaveToCollection}>Save to Existing Collection</a>
             <div className={classNames(this.state.saveToCollectionClass, 'collections-dropcontent')}>
-              hello
+              {collectionsDropdownList}
             </div>
             <a href="#" onMouseOver={this.toggleSocial} >Share to Social Media</a>
               <div className={classNames(this.state.socialDropClass, 'social-content')}>
@@ -105,3 +122,5 @@ export default class ListItem extends React.Component{
       </li>
       )}
 }
+
+export default requiresLogin()(connect()(ListItem));

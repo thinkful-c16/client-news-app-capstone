@@ -4,7 +4,7 @@ import Search from '../search/search.js';
 import requiresLogin from '../requires-login';
 import shortid from 'shortid';
 import * as actions from '../../actions/api';
-import {fetchCollections} from '../../actions/collections'
+import {fetchCollections} from '../../actions/collections';
 import '../../styles/dashboard.css';
 import ListItem from './listitem'
 import ActivityFeed from '../activity/activity-feed'
