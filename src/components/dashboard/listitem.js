@@ -37,7 +37,7 @@ export default class ListItem extends React.Component{
             <FontAwesome name='chevron-circle-down' />
           </div>
           <div id={this.props.id} className={classNames(this.state.dropdownClass, 'dropcontent')} ref={this.props.id}>
-            <a href={this.props.url}>Read article on {this.props.author}</a>
+            <a href={this.props.url}>Read article on {this.props.source}</a>
             <a href="#">Save to New Collection</a>
             <a href="#">Save to Existing Collection</a>
             <a href="#">Share to Social Media</a>

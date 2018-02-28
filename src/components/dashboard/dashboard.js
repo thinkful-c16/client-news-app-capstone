@@ -88,6 +88,7 @@ export class Dashboard extends React.Component{
         title={headline.title}
         id={headline.id}
         author={headline.author}
+        source={headline.source.name}
       />
     });
     
