@@ -4,8 +4,8 @@
   justify-content: flex-end;
   padding-top: 4px;
   padding-bottom: 4px;
-  border-bottom: 1px solid black;
-  background-color: lightgray;
+  background-color: #33363b;
+  color: #f9f8fd;
 }
 
 .search-div button {

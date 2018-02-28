@@ -10,6 +10,7 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  color: #33363b;
 }
 
 .newsfeed-container {
@@ -33,7 +34,7 @@
 .activity-feed-container {
   order: 2;
   align-content: right;
-  background-color: lightblue;
+  background-color: #cae4db;
 }
 
 .max {
