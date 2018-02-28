@@ -9,6 +9,19 @@
   border: 1px solid black;
   border-radius: 5px;
   background-color: lightgray;
+  animation: 3s ease-in;
+}
+
+@keyframes ease-in {
+  from {
+    margin-left: 100%;
+    width: 300%; 
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
 
 .modal-div h3 {
@@ -61,6 +74,10 @@
   width: 200px;
   background-color: #2980B9;
   color: white;
+}
+
+.error-message-div {
+  color: red;
 }
 
 .backdrop-div {
