@@ -68,9 +68,12 @@ export default class ListItem extends React.Component{
 
   render() {
 
-      return ( <li className="article-list">
-        <img src={this.props.article.image} alt={this.props.article.title} />
-        <h2>{this.props.article.title}</h2>
+      return ( 
+      <li className="article-list">
+        <div className="li-container">
+          <img src={this.props.article.image} alt={this.props.article.title} />
+          <h2>{this.props.article.title}</h2>
+        </div>
         <div className='dropdown'>
           <div className="dropbtn" onMouseDown= {this.toggleDropdown}>
             <FontAwesome name='chevron-circle-down' />
