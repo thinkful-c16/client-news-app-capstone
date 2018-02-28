@@ -86,16 +86,16 @@ export default class ListItem extends React.Component{
               <div className={classNames(this.state.socialDropClass, 'social-content')}>
                 <TwitterShareButton
                   children={<TwitterIcon size={32} round={true} />}
-                  url={this.props.url}/>
+                  url={this.props.article.url}/>
                 <FacebookShareButton
                   children={<FacebookIcon size={32} round={true} />}
-                  url={this.props.url} />
+                  url={this.props.article.url} />
                 <LinkedinShareButton
                   children={<LinkedinIcon size={32} round={true} />}
-                  url={this.props.url} />
+                  url={this.props.article.url} />
                 <RedditShareButton
                   children={<RedditIcon size={32} round={true} />}
-                  url={this.props.url} />
+                  url={this.props.article.url} />
               </div>
           </div>
         </div>
