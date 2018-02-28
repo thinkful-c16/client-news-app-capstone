@@ -34,6 +34,7 @@
 
 .nav-links {
   width: 70%;
+  padding-left: 4%;
 }
 
 .nav-links a {
@@ -41,6 +42,10 @@
   font-size: 18px;
   text-decoration: none;
   padding: 8px;
+}
+
+.nav-links a:hover {
+  color: rgba(202, 228, 219, 0.7)
 }
 
 .nav-user-controls {
