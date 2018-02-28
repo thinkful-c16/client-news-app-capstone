@@ -216,6 +216,36 @@ export const deleteCollection = (collectionId) => (dispatch, getState) => {
 	})
 }
 
+export const createAndAddToCollection = (collectionName, article) => (dispatch, getState) => {
+	const authToken = getState().auth.authToken;
+	dispatch(createCollectionRequest());
+	fetch(`${API_BASE_URL}/collections`, {
+		method: 'POST',
+		headers: {
+			Authorization: `Bearer ${authToken}`,
+			'Content-Type': 'application/JSON',
+		},
+		body: JSON.stringify({
+			collectionTitle: collectionName,
+			collectionArticles: []
+		})
+	})
+	.then (res => {
+		if(!res.ok) {
+			console.log("There was an issue with your request. Please try again.")
+		}
+		return res.json();
+	})
+	.then(data => {
+		dispatch(createCollectionSuccess(data.collectionTitle));
+		dispatch(addToCollection(data._id, article));
+		dispatch(fetchCollections());
+	})
+	.catch(err => {
+		dispatch(createCollectionError());
+	})
+}
+
 export const addToCollection = (collectionId, article) => (dispatch, getState) => {
 	const authToken = getState().auth.authToken;
 	dispatch(addToCollectionRequest());

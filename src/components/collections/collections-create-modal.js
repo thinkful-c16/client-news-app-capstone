@@ -28,6 +28,16 @@ export class CollectionsCreateModal extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    if (this.props.article) {
+      console.log('created new collection with article:', this.props.article)
+      this.handleCreateCollectionWithArticle();
+    } else {
+      console.log('created new collection without article')
+      this.handleCreateCollection();
+    }
+  }
+
+  handleCreateCollection() {
     const input = this.state.collectionNameValue.trim();
     if (input !== '') {
       this.props.dispatch(actions.createCollection(this.state.collectionNameValue));
@@ -35,6 +45,17 @@ export class CollectionsCreateModal extends React.Component {
     } else {
       this.setState({errorMessage: 'Collection name cannot be empty! Please add a name for your new collection.'})
     }
+  }
+
+  handleCreateCollectionWithArticle() {
+    const input = this.state.collectionNameValue.trim();
+    if (input !== '') {
+      this.props.dispatch(actions.createAndAddToCollection(this.state.collectionNameValue, this.props.article));
+      this.props.onCloseModal();
+    } else {
+      this.setState({errorMessage: 'Collection name cannot be empty! Please add a name for your new collection.'})
+    }
+    console.log('create new collection with article:', this.props.article);
   }
 
   render() {

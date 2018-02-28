@@ -131,7 +131,7 @@ export class ListItem extends React.Component{
           </div>
         </div>
         { this.state.isModalVisible &&
-            <CollectionsCreateModal onCloseModal={this.modalToggle}/>
+            <CollectionsCreateModal article={this.props.article} onCloseModal={this.modalToggle}/>
         }
       </li>
       )}
