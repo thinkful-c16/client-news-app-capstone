@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import '../../styles/dashboard.css';
 import '../../styles/listitem.css';
 import requiresLogin from '../requires-login';
+import CollectionsCreateModal from '../collections/collections-create-modal';
 import * as actions from '../../actions/collections';
 import shortid from 'shortid';
 import FontAwesome from 'react-fontawesome';
@@ -22,10 +23,12 @@ export class ListItem extends React.Component{
   constructor(props) {
       super(props);
       this.state = {
+        isModalVisible: false,
         dropdownClass: 'hidden',
         socialDropClass: 'hidden',
         saveToCollectionClass: 'hidden'
       }
+      this.modalToggle = this.modalToggle.bind(this);
       this.toggleDropdown = this.toggleDropdown.bind(this);
       this.toggleSocial = this.toggleSocial.bind(this);
       this.toggleSaveToCollection = this.toggleSaveToCollection.bind(this);
@@ -37,6 +40,14 @@ export class ListItem extends React.Component{
       dropdownClass: 'hidden',
       saveToCollectionClass: 'hidden'
     })
+  }
+
+  modalToggle() {
+    console.log('heyo');
+    this.setState({
+      isModalVisible: !this.state.isModalVisible 
+    });
+    console.log(this.state);
   }
 
   onSaveToCollection(e) {
@@ -97,7 +108,7 @@ export class ListItem extends React.Component{
           </div>
           <div id={this.props.id} className={classNames(this.state.dropdownClass, 'dropcontent')} ref={this.props.id}>
             <a target="_blank" href={this.props.article.url}>Read article on {this.props.article.source.name}</a>
-            <a href="#">Save to New Collection</a>
+            <a onClick={this.modalToggle}>Save to New Collection</a>
             <a href="#" onMouseOver={this.toggleSaveToCollection}>Save to Existing Collection</a>
             <div className={classNames(this.state.saveToCollectionClass, 'collections-dropcontent')}>
               {collectionsDropdownList}
@@ -119,6 +130,9 @@ export class ListItem extends React.Component{
               </div>
           </div>
         </div>
+        { this.state.isModalVisible &&
+            <CollectionsCreateModal onCloseModal={this.modalToggle}/>
+        }
       </li>
       )}
 }
