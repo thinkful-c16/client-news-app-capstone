@@ -24,7 +24,7 @@ export class CollectionsCreateModal extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.dispatch(actions.createCollection(this.state.collectionNameValue));
-    this.props.onCloseModal;
+    this.props.onCloseModal();
   }
 
   render() {

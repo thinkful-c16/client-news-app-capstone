@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
 import FontAwesome from 'react-fontawesome';
+import shortid from 'shortid';
 import CollectionsCreateModal from './collections-create-modal';
 import * as actions from '../../actions/collections';
 
@@ -37,36 +38,54 @@ export class CollectionsDashboard extends React.Component {
       if (this.props.collections[0].collectionArticles.length !== 0) {
         featArticleList = this.props.collections[0].collectionArticles.map(data => {
           return(
-          <div className="article-list-detail">
+          <div className="article-list-detail" key={shortid.generate()}>
             <li>
             {data.title}
             </li>
           </div>
           )
         })
-
+      }
+      if (this.props.collections.length >= 1) {
         allCollectionsList = this.props.collections.map(data => {
-          return(
-            <div className="all-collections-detail">
-              <div className="list-img">
-                <img src={data.collectionArticles[0].image} />
+          if (data.collectionArticles.length !== 0 && data.collectionArticles[0].image) {
+            return(
+              <div className="all-collections-detail" key={shortid.generate()}>
+                <div className="list-img">
+                  <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
+                </div>
+                <li>{data.collectionTitle}</li>
               </div>
-              <li>{data.collectionTitle}</li>
-            </div>
-          )
+            )
+          }
+          else if (data.collectionArticles.length !== 0) {
+            return(
+              <div className="all-collections-detail" key={shortid.generate()}>
+                <div className="list-img">
+                  <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
+                </div>
+                <li>{data.collectionTitle}</li>
+              </div>
+            )
+          } else {
+            return(
+              <div className="all-collections-detail" key={shortid.generate()}>
+                <li>{data.collectionTitle}</li>
+              </div>
+            )}
         })
       } else {
         featArticleList = 
-        <div className="article-list-detail">
+        <div className="article-list-detail" key={shortid.generate()}>
           <span>No articles found in collection. Add some!</span>
         </div>
 
         allCollectionsList =
-        <div className="all-collection-detail">
+        <div className="all-collection-detail" key={shortid.generate()}>
           <span>No more collections found... why not create some more?</span>
+          <FontAwesome name='smile' size='2x'/>
         </div>
       }
-
     }
 
     return(
@@ -91,13 +110,19 @@ export class CollectionsDashboard extends React.Component {
             <div className="collections-dash-container">
               <h1 className="collections-head">My Collections</h1>
               <div className="featured-collection">
-                <div className="featured-article">
-                  <h1>{this.props.collections[0].collectionTitle}</h1>
-                  <img src={this.props.collections[0].collectionArticles[0].image} />
-                  <div className="see-more">
-                    <p>...</p>
+                { this.props.collections[0].collectionArticles.length !== 0 ? (
+                  <div className="featured-article">
+                      <h1>{this.props.collections[0].collectionTitle}</h1>
+                      <img src={this.props.collections[0].collectionArticles[0].image} />
+                      <div className="see-more">
+                        <p>...</p>
+                      </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="feature-article">
+                    <h1>{this.props.collections[0].collectionTitle}</h1>
+                  </div>
+                )}
                 <div className="featured-article-list">
                 {featArticleList}
                 </div>
