@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   color: #f9f8fd;
+  overflow: hidden;
 }
 
 .share-head {
