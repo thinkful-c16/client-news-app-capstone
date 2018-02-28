@@ -68,7 +68,7 @@ export default class ListItem extends React.Component{
 
   render() {
 
-      return <li className="article-list">
+      return ( <li className="article-list">
         <img src={this.props.article.image} alt={this.props.article.title} />
         <h2>{this.props.article.title}</h2>
         <div className='dropdown'>
