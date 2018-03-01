@@ -5,8 +5,13 @@ export default function NavHeader(props) {
   return (
     <div className="nav-header-div">
       <header className="nav-header">
-        <img src="../../images/logo.png" alt="logo"/>
-        <h1 className="nav-title">NEWS SPOT</h1>
+        <div className="nav-name">
+          <img src="../../images/logo.png" alt="logo"/>
+          <h1 className="nav-title">NEWS SPOT</h1>
+        </div>
+        <div className="nav-desc">
+          <h3>Your Insights, Our World</h3>
+        </div>
       </header>
     </div>
   );

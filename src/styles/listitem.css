@@ -18,13 +18,13 @@
 
 .article-list:first-of-type {
 	width: 100%;
-	max-height: 500px;
+	height: 45vh;
 	margin-bottom: 10px;
 }
 
 .article-list:nth-of-type(n+2) {
 	width: 33%;
-	height: 300px;
+	height: 30vh;
 	margin-bottom: 10px;
 }
 
@@ -56,7 +56,6 @@
 
 .dropcontent, .social-content {
 	z-index: 5;
-	/* position: absolute; */
 	background-color: #f1f1f1;
 	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -68,10 +67,28 @@
 	color: black;
 	padding: 12px 16px;
 	text-decoration: none;
+}
+
+.dropcontent a {
 	display: block;
 }
 
-.dropcontent a:hover, .social-content a:hover {background-color: #ddd}
+.social-content {
+  text-align: center;
+}
+
+.SocialMediaShareButton, .SocialMediaShareButton div {
+	display: inline;
+	padding: 2px;
+}
+
+.social-icon:hover {
+	cursor: pointer;
+}
+
+.dropcontent a:hover, .social-content a:hover {
+	background-color: #ddd;
+}
 
 .collections-dropcontent {
 	background-color: #f1f1f1;
