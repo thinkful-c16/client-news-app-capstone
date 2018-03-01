@@ -53,7 +53,7 @@ export class RegistrationForm extends React.Component {
         </h4>
         <div className="registration-container">
           <div className="welcome-msg">
-            <h4>Welcome to News App - Let's get started</h4>
+            <h4>Welcome to News Spot - Let's get started</h4>
           </div>
           <div className="social-reg">
           <div className="fb-button">
