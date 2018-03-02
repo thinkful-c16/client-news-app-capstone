@@ -29,5 +29,5 @@ export const fetchActivityError = (error) => {
 }
 
 export const fetchActivities = () => (dispatch) => {
-  dispatch(fetchActivitiesRequest)
+  dispatch(fetchActivityRequest)
 }
