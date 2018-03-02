@@ -10,12 +10,12 @@ export const fetchActivityRequest = () => {
 }
 
 export const FETCH_ACTIVITY_SUCCESS = "FETCH_ACTIVITY_SUCCESS";
-export const fetchActivitySuccess = (activity) => {
+export const fetchActivitySuccess = (activities) => {
 	return {
 		type: FETCH_ACTIVITY_SUCCESS,
 		loading: false,
 		error: null,
-		activity
+		activities
 	}
 }
 
@@ -43,9 +43,8 @@ export const fetchActivities = () => (dispatch, getState) => {
 		}
 		return res.json();
 	})
-	.then(activities => {
-		console.log(activities);
-		// dispatch(fetchActivitiesSuccess())
+	.then(data => {
+		dispatch(fetchActivitySuccess(data))
 	})
 	.catch(err => {
 		dispatch(fetchActivityError(err))

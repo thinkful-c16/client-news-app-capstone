@@ -1,4 +1,5 @@
 import React from 'react';
+import requiresLogin from '../requires-login';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import {fetchActivities} from '../../actions/activity';
@@ -8,21 +9,35 @@ import '../../styles/explore.css';
 
 export class Explore extends React.Component{
   componentWillMount() {
-    console.log(fetchActivities());
-    // this.props.dispatch(fetchActivities());
+    this.props.dispatch(fetchActivities());
   }
 
   render() {
+    let activity;
+
+    const exploreList = this.props.activities.activities.map(item => {
+      if (item.activityType === "new collection") {
+        activity = item.data.username.firstName + item.data.username.lastName + "created a new collection called "+ item.data.collectionTitle
+      }
+      else if(item.activityType === "new collection article"){
+        activity =  item.data.username.firstName + item.data.username.lastName +"added the article "+"to "+item.data.collectionTitle+" collection"
+      }
+    });
+
+    console.log(this.props.activities.activities);
     return(
       <div className="explore">
         <div className="all-activities">
+          <li key={shortid.generate()}>
+            <span>{activity}</span>
+          </li>
         </div>
         <div className="search-window">
           <div className="my-friend-info">
             <h3>You are following 0 people and you have 0 followers.</h3>
           </div>
           <div className="friend-search">
-            <h7>Search for friends to follow:</h7>
+            <p>Search for friends to follow:</p>
             <input type="text" id="friendSearchInput" placeholder="Enter Name Here" />
             <button className="search-icon" onClick={() => console.log('searching for friend')}><FontAwesome name='search' /></button>
           </div>
@@ -54,10 +69,10 @@ export class Explore extends React.Component{
 //   }
 // }
 
-// const mapStateToProps = (state, props) => {
-//   return {
-//     activities: state.activities.activities
-//   }
-// }
+const mapStateToProps = (state, props) => {
+  return {
+    activities: state.activities
+  }
+}
 
-export default connect()(Explore);
+export default requiresLogin()(connect(mapStateToProps)(Explore));
