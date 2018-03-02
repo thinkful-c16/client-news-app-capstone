@@ -8,6 +8,7 @@ import * as actions from '../../actions/collections';
 import shortid from 'shortid';
 import FontAwesome from 'react-fontawesome';
 import classNames from 'classnames';
+import {shareActivity} from '../../actions/activity';
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -117,16 +118,20 @@ export class ListItem extends React.Component{
               <div className={classNames(this.state.socialDropClass, 'social-content')}>
                 <TwitterShareButton
                   children={<TwitterIcon size={32} round={true} />}
-                  url={this.props.article.url}/>
+                  url={this.props.article.url}
+                  beforeOnClick={this.props.dispatch(shareActivity(this.props.article, 'twitter'))} />
                 <FacebookShareButton
                   children={<FacebookIcon size={32} round={true} />}
-                  url={this.props.article.url} />
+                  url={this.props.article.url}
+                  beforeOnClick={this.props.dispatch(shareActivity(this.props.article, 'facebook'))} />
                 <LinkedinShareButton
                   children={<LinkedinIcon size={32} round={true} />}
-                  url={this.props.article.url} />
+                  url={this.props.article.url}
+                  beforeOnClick={this.props.dispatch(shareActivity(this.props.article, 'linkedin'))} />
                 <RedditShareButton
                   children={<RedditIcon size={32} round={true} />}
-                  url={this.props.article.url} />
+                  url={this.props.article.url}
+                  beforeOnClick={this.props.dispatch(shareActivity(this.props.article, 'reddit'))} />
               </div>
           </div>
         </div>
