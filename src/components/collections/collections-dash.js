@@ -12,7 +12,8 @@ export class CollectionsDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalVisible: false
+      isModalVisible: false,
+      featuredIndex: 0
     }
     this.modalToggle = this.modalToggle.bind(this);
     this.removeCollection = this.removeCollection.bind(this);
@@ -29,12 +30,17 @@ export class CollectionsDashboard extends React.Component {
     console.log(e.currentTarget.id)
     const collectionId = e.currentTarget.id;
     this.props.dispatch(actions.deleteCollection(collectionId));
+    this.setState({
+      featuredIndex: 0
+    })
   }
 
   changeFeatured(e) {
-    console.log(e.currentTarget);
     const index = e.currentTarget.id;
-    console.log(index);
+    console.log('hiya', index);
+    this.setState({
+      featuredIndex: index
+    })
   }
 
   // componentDidUpdate() {
@@ -51,23 +57,22 @@ export class CollectionsDashboard extends React.Component {
 
     let featArticle;
     let featArticleList;
-    let allCollectionsList;
-    let collectionIndex = 0; 
+    let allCollectionsList; 
 
     if (this.props.collections.length !== 0){
 
-      if (this.props.collections[0].collectionArticles.length !== 0) {
+      if (this.props.collections[this.state.featuredIndex].collectionArticles.length !== 0) {
 
         featArticle =
           <div className="featured-article">
-            <h1>{this.props.collections[0].collectionTitle}</h1>
-            <img src={this.props.collections[0].collectionArticles[0].image} />
+            <h1>{this.props.collections[this.state.featuredIndex].collectionTitle}</h1>
+            <img src={this.props.collections[this.state.featuredIndex].collectionArticles[0].image} />
             <div className="see-more">
               <p>...</p>
             </div>
           </div>
 
-        featArticleList = this.props.collections[0].collectionArticles.map(data => {
+        featArticleList = this.props.collections[this.state.featuredIndex].collectionArticles.map(data => {
           return(
           <div className="article-list-detail" key={shortid.generate()}>
             <li>
@@ -77,7 +82,7 @@ export class CollectionsDashboard extends React.Component {
           )
         })
       }
-      if (this.props.collections[0].collectionArticles.length === 0) {
+      if (this.props.collections[this.state.featuredIndex].collectionArticles.length === 0) {
 
         featArticle =
           <div className="feature-article">
@@ -95,10 +100,13 @@ export class CollectionsDashboard extends React.Component {
     }
     if (this.props.collections.length >= 1) {
 
+      let toReturn;
+      let collectionIndex = 0;
+
       allCollectionsList = this.props.collections.map(data => {
 
         if (data.collectionArticles.length !== 0 && data.collectionArticles[0].image) {
-          return(
+          toReturn =
             <div className="all-collections-detail" key={shortid.generate()}>
               <div className="list-img">
                 <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
@@ -110,18 +118,17 @@ export class CollectionsDashboard extends React.Component {
                 <FontAwesome name='minus-circle' size='2x'/>
               </a>
             </div>
-          )
         } else {
-          return(
+          toReturn =
               <div className="all-collections-detail" key={shortid.generate()}>
                 <li>{data.collectionTitle}</li>
                 <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
                   <FontAwesome name='minus-circle' size='2x'/>
                 </a>
               </div>
-          )
         }
       collectionIndex += 1;
+      return(toReturn);
       })
     } else {
       featArticleList = 
