@@ -118,6 +118,12 @@
   order: 2;
   list-style-type: none;
   padding-left: 50px;
+  padding-right: 25px;
+}
+
+.all-collections-detail a {
+  order: 3;
+  list-style-type: none;
 }
 
 .list-img img {

@@ -15,12 +15,17 @@ export class CollectionsDashboard extends React.Component {
       isModalVisible: false
     }
     this.modalToggle = this.modalToggle.bind(this);
+    this.removeCollection = this.removeCollection.bind(this);
   }
 
   modalToggle() {
     this.setState({
       isModalVisible: !this.state.isModalVisible 
     });
+  }
+
+  removeCollection(e) {
+    console.log(e.currentTarget.id)
   }
 
   componentWillMount() {
@@ -65,6 +70,9 @@ export class CollectionsDashboard extends React.Component {
                 <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
               </div>
               <li>{data.collectionTitle}</li>
+              <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
+                <FontAwesome name='minus-circle' size='2x'/>
+              </a>
             </div>
           )
         }
@@ -75,12 +83,18 @@ export class CollectionsDashboard extends React.Component {
                 <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
               </div>
               <li>{data.collectionTitle}</li>
+              <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
+                <FontAwesome name='minus-circle' size='2x'/>
+              </a>
             </div>
           )
         } else {
           return(
             <div className="all-collections-detail" key={shortid.generate()}>
               <li>{data.collectionTitle}</li>
+              <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
+                <FontAwesome name='minus-circle' size='2x'/>
+              </a>
             </div>
           )}
         })
