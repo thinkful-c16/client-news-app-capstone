@@ -15,8 +15,8 @@ export default function collectionsReducer(state=initialState, action) {
 	else if(action.type === actions.FETCH_COLLECTIONS_SUCCESS) {
 		return Object.assign({}, state, {
 			loading: action.loading,
-			collections: action.collections,
-			error: action.error
+			error: action.error,
+			collections: action.collections
 		});
 	}
 	else if(action.type === actions.FETCH_COLLECTIONS_ERROR) {
