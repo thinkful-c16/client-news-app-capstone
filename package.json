@@ -5,6 +5,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "jwt-decode": "^2.2.0",
+    "npm": "^5.7.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-facebook": "^4.2.1",

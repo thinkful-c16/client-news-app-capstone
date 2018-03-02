@@ -122,11 +122,10 @@ export const deleteCollectionRequest = () => {
 }
 
 export const DELETE_COLLECTION_SUCCESS = "DELETE_COLLECTION_SUCCESS";
-export const deleteCollectionSuccess = (collectionId) => {
+export const deleteCollectionSuccess = () => {
   return {
 		type: DELETE_COLLECTION_SUCCESS,
-		loading: false,
-		collectionId
+		loading: false
 	}
 }
 
@@ -155,7 +154,7 @@ export const fetchCollections = () => (dispatch, getState) => {
 		return res.json();
 	})
 	.then(data => {
-		console.log(data);
+		console.log('here', data);
 		dispatch(fetchCollectionsSuccess(data));
 	})
 	.catch(err => {
@@ -170,7 +169,7 @@ export const createCollection = (collectionName) => (dispatch, getState) => {
 		method: 'POST',
 		headers: {
 			Authorization: `Bearer ${authToken}`,
-			'Content-Type': 'application/JSON',
+			'Content-Type': 'application/JSON'
 		},
 		body: JSON.stringify({
 			collectionTitle: collectionName,
@@ -205,14 +204,15 @@ export const deleteCollection = (collectionId) => (dispatch, getState) => {
 		if(!res.ok) {
 			console.log("There was an issue with your request. Please try again.")
 		}
-		return res.json();
+		return res.status;
 	})
-	.then ((data) => {
-		dispatch(deleteCollectionSuccess(data.collectionId));
+	.then (() => {
+		dispatch(deleteCollectionSuccess());
 		dispatch(fetchCollections());
 	})
 	.catch(err => {
-		dispatch(createCollectionError());
+		console.log(err);
+		dispatch(deleteCollectionError());
 	})
 }
 

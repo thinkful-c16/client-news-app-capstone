@@ -28,6 +28,7 @@ export const fetchActivityError = (error) => {
 	}
 }
 
+
 export const fetchActivities = () => (dispatch, getState) => {
 	const authToken = getState().auth.authToken;
 	dispatch(fetchActivityRequest());
