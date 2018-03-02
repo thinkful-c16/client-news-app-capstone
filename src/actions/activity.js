@@ -10,12 +10,12 @@ export const fetchActivityRequest = () => {
 }
 
 export const FETCH_ACTIVITY_SUCCESS = "FETCH_ACTIVITY_SUCCESS";
-export const fetchActivitySuccess = (activity) => {
+export const fetchActivitySuccess = (activities) => {
 	return {
 		type: FETCH_ACTIVITY_SUCCESS,
 		loading: false,
 		error: null,
-		activity
+		activities
 	}
 }
 
@@ -28,6 +28,26 @@ export const fetchActivityError = (error) => {
 	}
 }
 
-export const fetchActivities = () => (dispatch) => {
-  dispatch(fetchActivityRequest)
-}
+
+export const fetchActivities = () => (dispatch, getState) => {
+	const authToken = getState().auth.authToken;
+	dispatch(fetchActivityRequest());
+	fetch(`${API_BASE_URL}/activities`, {
+		headers: {
+			Authorization: `Bearer ${authToken}`,
+			Accept: 'application/json'
+		}
+	})
+	.then(res => {
+		if(!res.ok) {
+			console.log("Sorry, there was an error with your request")
+		}
+		return res.json();
+	})
+	.then(data => {
+		dispatch(fetchActivitySuccess(data))
+	})
+	.catch(err => {
+		dispatch(fetchActivityError(err))
+	})
+};

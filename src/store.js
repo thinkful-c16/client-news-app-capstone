@@ -3,6 +3,7 @@ import {reducer as formReducer} from 'redux-form';
 import authReducer from './reducers/auth';
 import apiReducer from './reducers/api';
 import collectionsReducer from './reducers/collections';
+import activityReducer from './reducers/activity';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
@@ -14,7 +15,8 @@ const store = createStore(
         form: formReducer,
         auth: authReducer,
         api: apiReducer,
-        collections: collectionsReducer
+        collections: collectionsReducer,
+        activities: activityReducer
     }),
     composeWithDevTools(applyMiddleware(thunk))
 );

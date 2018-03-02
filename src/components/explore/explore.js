@@ -1,72 +1,78 @@
 import React from 'react';
+import requiresLogin from '../requires-login';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
+import {fetchActivities} from '../../actions/activity';
+import FontAwesome from 'react-fontawesome';
+import '../../styles/explore.css';
 //remove Dashboard from app.js
 
 export class Explore extends React.Component{
-  componentDidMount() {
-    //this.props.dispatch(updateExplore());
+  componentWillMount() {
+    this.props.dispatch(fetchActivities());
   }
 
   render() {
-    const exploreList = this.props.exploreData.map(item => {
-      return <li key={shortid.generate()}>
-        <span>{item.user} {item.activity} this article:</span>
-        <a href={item.article.url} target="_blank">
-          <img src={item.article.urlToImage} width='100' alt={item.title} />
-          {item.article.title}
-        </a>
-      </li>
+    let activity;
+
+    const exploreList = this.props.activities.activities.map(item => {
+      if (item.activityType === "new collection") {
+        activity = item.data.username.firstName + item.data.username.lastName + "created a new collection called "+ item.data.collectionTitle
+      }
+      else if(item.activityType === "new collection article"){
+        activity =  item.data.username.firstName + item.data.username.lastName +"added the article "+"to "+item.data.collectionTitle+" collection"
+      }
     });
-    
+
+    console.log(this.props.activities.activities);
     return(
-      <div className='explore'>
-        <h2>Explore</h2>
-        <ul>
-          {exploreList}
-        </ul>
+      <div className="explore">
+        <div className="all-activities">
+          <li key={shortid.generate()}>
+            <span>{activity}</span>
+          </li>
+        </div>
+        <div className="search-window">
+          <div className="my-friend-info">
+            <h3>You are following 0 people and you have 0 followers.</h3>
+          </div>
+          <div className="friend-search">
+            <p>Search for friends to follow:</p>
+            <input type="text" id="friendSearchInput" placeholder="Enter Name Here" />
+            <button className="search-icon" onClick={() => console.log('searching for friend')}><FontAwesome name='search' /></button>
+          </div>
+        </div>
       </div>
     )
   }
 }
 
+//   render() {
+//     const exploreList = this.props.exploreData.map(item => {
+//       return <li key={shortid.generate()}>
+//         <span>{item.user} {item.activity} this article:</span>
+//         <a href={item.article.url} target="_blank">
+//           <img src={item.article.urlToImage} width='100' alt={item.title} />
+//           {item.article.title}
+//         </a>
+//       </li>
+//     });
+    
+//     return(
+//       <div className='explore'>
+//         <h2>Explore</h2>
+//         <ul>
+//           {exploreList}
+//         </ul>
+//       </div>
+//     )
+//   }
+// }
+
 const mapStateToProps = (state, props) => {
   return {
-    exploreData: [
-      {
-        "user": "Wade C.",
-        "activity": "shared",
-        "article": {
-          "source": {
-            "id": null,
-            "name": "Sfgate.com"
-          },
-          "author": "",
-          "title": "The Latest: Trump tells Pa. Republicans to challenge new map",
-          "description": "HARRISBURG, Pa. (AP) - The Latest on redistricting in Pennsylvania (all times local):\n2:30 p.m.\nFederal and state Republican Party officials are expected to sue to contest a Pennsylvania court's redrawing of the state's 18 congressional districts.\nThe Nationa…",
-          "url": "https://www.sfgate.com/news/article/The-Latest-Trump-tells-Pa-Republicans-to-12626713.php",
-          "urlToImage": "https://s.hdnux.com/photos/71/47/35/15103868/3/rawImage.jpg",
-          "publishedAt": "2018-02-20T19:58:09Z"
-        }
-      },
-      {
-        "user": "Blueman",
-        "activity": "liked",
-        "article": {
-          "source": {
-            "id": "the-new-york-times",
-            "name": "The New York Times"
-          },
-          "author": "Eileen Sullivan and Kenneth P. Vogel",
-          "title": "Former Skadden Lawyer Accused in Russia Investigation of Making False Statements",
-          "description": "The attorney was interviewed by the special counsel about work he did in Ukraine with Rick Gates, who went on to serve on President Trump’s campaign.",
-          "url": "https://www.nytimes.com/2018/02/20/us/politics/alex-van-der-zwaan-gates-russia-mueller.html",
-          "urlToImage": "https://static01.nyt.com/images/2018/02/21/us/politics/21dc-mueller1/21dc-mueller1-facebookJumbo.jpg",
-          "publishedAt": "2018-02-20T19:32:00Z"
-        }
-      }
-    ]
+    activities: state.activities
   }
 }
 
-export default connect(mapStateToProps)(Explore);
+export default requiresLogin()(connect(mapStateToProps)(Explore));

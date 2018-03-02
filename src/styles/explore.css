@@ -1,0 +1,26 @@
+.explore{
+  display: flex;
+  flex-direction: row;
+}
+
+.all-activities {
+  order: 1;
+  width: 50%
+}
+
+.search-window {
+  order: 2;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.my-friend-info {
+  order: 1;
+  height: 10vh;
+}
+
+.friend-search {
+  order: 2;
+  margin-top: 30px;
+}
