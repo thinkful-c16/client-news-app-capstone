@@ -26,7 +26,14 @@ export class CollectionsDashboard extends React.Component {
 
   removeCollection(e) {
     console.log(e.currentTarget.id)
+    const collectionId = e.currentTarget.id;
+    this.props.dispatch(actions.deleteCollection(collectionId));
   }
+
+  // componentDidUpdate() {
+  //   console.log('update');
+  //   this.props.dispatch(actions.fetchCollections());
+  // }
 
   componentWillMount() {
     console.log('hi');
