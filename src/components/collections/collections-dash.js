@@ -16,6 +16,7 @@ export class CollectionsDashboard extends React.Component {
     }
     this.modalToggle = this.modalToggle.bind(this);
     this.removeCollection = this.removeCollection.bind(this);
+    this.changeFeatured = this.changeFeatured.bind(this);
   }
 
   modalToggle() {
@@ -30,6 +31,12 @@ export class CollectionsDashboard extends React.Component {
     this.props.dispatch(actions.deleteCollection(collectionId));
   }
 
+  changeFeatured(e) {
+    console.log(e.currentTarget);
+    const index = e.currentTarget.id;
+    console.log(index);
+  }
+
   // componentDidUpdate() {
   //   console.log('update');
   //   this.props.dispatch(actions.fetchCollections());
@@ -42,12 +49,24 @@ export class CollectionsDashboard extends React.Component {
 
   render() {
 
+    let featArticle;
     let featArticleList;
     let allCollectionsList;
+    let collectionIndex = 0; 
 
     if (this.props.collections.length !== 0){
 
       if (this.props.collections[0].collectionArticles.length !== 0) {
+
+        featArticle =
+          <div className="featured-article">
+            <h1>{this.props.collections[0].collectionTitle}</h1>
+            <img src={this.props.collections[0].collectionArticles[0].image} />
+            <div className="see-more">
+              <p>...</p>
+            </div>
+          </div>
+
         featArticleList = this.props.collections[0].collectionArticles.map(data => {
           return(
           <div className="article-list-detail" key={shortid.generate()}>
@@ -59,6 +78,12 @@ export class CollectionsDashboard extends React.Component {
         })
       }
       if (this.props.collections[0].collectionArticles.length === 0) {
+
+        featArticle =
+          <div className="feature-article">
+            <h1>{this.props.collections[0].collectionTitle}</h1>
+          </div>
+
         featArticleList =
           <div className="article-list-detail" key={shortid.generate()}>
             <li>
@@ -69,14 +94,18 @@ export class CollectionsDashboard extends React.Component {
       }
     }
     if (this.props.collections.length >= 1) {
+
       allCollectionsList = this.props.collections.map(data => {
+
         if (data.collectionArticles.length !== 0 && data.collectionArticles[0].image) {
           return(
             <div className="all-collections-detail" key={shortid.generate()}>
               <div className="list-img">
                 <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
               </div>
-              <li>{data.collectionTitle}</li>
+              <a className='all-collections-title' id={collectionIndex} onClick={this.changeFeatured}>
+                <li>{data.collectionTitle}</li>
+              </a>
               <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
                 <FontAwesome name='minus-circle' size='2x'/>
               </a>
@@ -91,7 +120,9 @@ export class CollectionsDashboard extends React.Component {
                 </a>
               </div>
           )
-        }})
+        }
+      collectionIndex += 1;
+      })
     } else {
       featArticleList = 
         <div className="article-list-detail" key={shortid.generate()}>
@@ -127,19 +158,7 @@ export class CollectionsDashboard extends React.Component {
             <div className="collections-dash-container">
               <h1 className="collections-head">My Collections</h1>
               <div className="featured-collection">
-                { this.props.collections[0].collectionArticles.length !== 0 ? (
-                  <div className="featured-article">
-                      <h1>{this.props.collections[0].collectionTitle}</h1>
-                      <img src={this.props.collections[0].collectionArticles[0].image} />
-                      <div className="see-more">
-                        <p>...</p>
-                      </div>
-                  </div>
-                ) : (
-                  <div className="feature-article">
-                    <h1>{this.props.collections[0].collectionTitle}</h1>
-                  </div>
-                )}
+                {featArticle}
                 <div className="featured-article-list">
                 {featArticleList}
                 </div>
