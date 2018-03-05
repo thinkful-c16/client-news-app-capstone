@@ -302,15 +302,11 @@ export const addToCollection = (collectionId, article) => (dispatch, getState) =
 export const deleteFromCollection = (collectionId, articleId) => (dispatch, getState) => {
 	const authToken = getState().auth.authToken;
 	dispatch(deleteFromCollectionRequest());
-	fetch(`${API_BASE_URL}/collections/${collectionId}`, {
+	fetch(`${API_BASE_URL}/collections/${collectionId}/${articleId}`, {
 		method: 'DELETE',
 		headers: {
-			Authorization: `Bearer ${authToken}`,
-			'Content-Type': 'application/JSON',
-		},
-		body: JSON.stringify({
-			articleId: articleId
-		})
+			Authorization: `Bearer ${authToken}`
+		}
 	})
 	.then (res => {
 		if(!res.ok) {
