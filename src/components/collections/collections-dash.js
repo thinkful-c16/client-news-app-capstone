@@ -4,6 +4,7 @@ import requiresLogin from '../requires-login';
 import FontAwesome from 'react-fontawesome';
 import shortid from 'shortid';
 import CollectionsCreateModal from './collections-create-modal';
+import CollectionsRenameModal from './collections-rename-modal';
 import * as actions from '../../actions/collections';
 
 import '../../styles/collections-dash.css';
@@ -12,19 +13,37 @@ export class CollectionsDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalVisible: false,
-      featuredIndex: 0
+      isCreateModalVisible: false,
+      isRenameModalVisible: false,
+      featuredIndex: 0,
+      collectionToRename: null
     }
-    this.modalToggle = this.modalToggle.bind(this);
+    this.renameModalToggle = this.renameModalToggle.bind(this);
+    this.createModalToggle = this.createModalToggle.bind(this);
+    this.renameCollection = this.renameCollection.bind(this);
     this.removeArticle = this.removeArticle.bind(this);
     this.removeCollection = this.removeCollection.bind(this);
     this.changeFeatured = this.changeFeatured.bind(this);
   }
 
-  modalToggle() {
+  createModalToggle() {
     this.setState({
-      isModalVisible: !this.state.isModalVisible 
+      isCreateModalVisible: !this.state.isCreateModalVisible 
     });
+  }
+
+  renameModalToggle() {
+    console.log('made it');
+    this.setState({
+      isRenameModalVisible: !this.state.isRenameModalVisible 
+    });
+  }
+
+  renameCollection(collectionId) {
+    this.setState({
+      collectionToRename: collectionId
+    })
+    this.renameModalToggle();
   }
 
   removeCollection(e) {
@@ -68,19 +87,22 @@ export class CollectionsDashboard extends React.Component {
 
       if (this.props.collections[this.state.featuredIndex].collectionArticles.length !== 0) {
 
+        const collectionId = this.props.collections[this.state.featuredIndex]._id;
+
         featArticle =
           <div className="featured-article">
             <h1>{this.props.collections[this.state.featuredIndex].collectionTitle}</h1>
             <img src={this.props.collections[this.state.featuredIndex].collectionArticles[0].image} alt={this.props.collections[this.state.featuredIndex].collectionArticles[0].title}/>
-            <div className="edit-title">
-              <FontAwesome name='edit' />
+            <div className="edit-title" onClick={() => this.renameCollection(collectionId)}>
+              <FontAwesome name='edit'/>
               <p>edit title</p>
             </div>
           </div>
 
         featArticleList = this.props.collections[this.state.featuredIndex].collectionArticles.map(data => {
-          const collectionId = this.props.collections[this.state.featuredIndex]._id;
+
           const articleId = data._id;
+
           return(
           <div className="article-list-detail" key={shortid.generate()}>
             <li>
@@ -95,9 +117,15 @@ export class CollectionsDashboard extends React.Component {
       }
       if (this.props.collections[this.state.featuredIndex].collectionArticles.length === 0) {
 
+        const collectionId = this.props.collections[this.state.featuredIndex]._id;
+
         featArticle =
           <div className="feature-article">
             <h1>{this.props.collections[0].collectionTitle}</h1>
+            <div className="edit-title" onClick={() => this.renameCollection(collectionId)}>
+              <FontAwesome name='edit'/>
+              <p>edit title</p>
+            </div>
           </div>
 
         featArticleList =
@@ -157,7 +185,7 @@ export class CollectionsDashboard extends React.Component {
     return(
         <div className="parent-coll-container">
           <div className="add-collection-div">
-            <a onClick={this.modalToggle}>
+            <a onClick={this.createModalToggle}>
               <FontAwesome name='plus-square' size='2x'/>
             </a>
             <h3>Add a collection</h3>
@@ -189,8 +217,11 @@ export class CollectionsDashboard extends React.Component {
           )
         }
 
-        { this.state.isModalVisible &&
-            <CollectionsCreateModal onCloseModal={this.modalToggle}/>
+        { this.state.isCreateModalVisible &&
+            <CollectionsCreateModal onCloseModal={this.createModalToggle}/>
+        }
+        { this.state.isRenameModalVisible &&
+            <CollectionsRenameModal onCloseModal={this.renameModalToggle} collectionId={this.state.collectionToRename}/>
         }
 
         </div>
