@@ -134,6 +134,16 @@
   min-height: 100%;
 }
 
+.remove-article {
+  color: red;
+  cursor: pointer;
+}
+
+.remove-collection {
+  color: red;
+  cursor: pointer;
+}
+
 .edit-title {
   position: absolute;
   z-index: 3;
@@ -143,11 +153,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .edit-title p {
   padding-left: 10px;
-  color: white;
+  color: #00303f;
   font-style: italic;
   font-size: 14px;
+}
+
+.edit-title p:hover {
+  color: white;
+  cursor: pointer;
 }
