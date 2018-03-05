@@ -183,3 +183,14 @@
 .or {
   padding-bottom: 10px;
 }
+
+@media only screen 
+and (max-device-width : 768px) {
+  .login-container {
+    width: 100vw;
+  }
+
+  .description-container {
+    display: none;
+  }
+}

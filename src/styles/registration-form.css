@@ -143,3 +143,10 @@
   background-color: rgba(220, 174, 29, 0.7);
   cursor: pointer;
 }
+
+@media only screen 
+and (max-device-width : 768px) {
+  .registration-container {
+    width: 100%;
+  }
+}

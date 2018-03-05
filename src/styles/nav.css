@@ -102,3 +102,17 @@
   cursor: pointer;
   background-color: rgba(220, 174, 29, 0.7);
 }
+
+@media only screen 
+and (max-device-width : 768px) {
+  .nav-name {
+    display: flex;
+    width: 100%;
+  }
+  .nav-title {
+    width: 100%;
+  }
+  .nav-desc {
+    display: none;
+  }
+}
