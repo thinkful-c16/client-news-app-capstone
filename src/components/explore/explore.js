@@ -18,13 +18,13 @@ export class Explore extends React.Component{
 
     const exploreList = this.props.activities.activities.reverse().map(item => {
       if (item.activityType === "new collection") {
-        activity = item.data.username.firstName + item.data.username.lastName + " created a new collection called "+ item.data.collectionTitle
+        activity = item.data.username.firstName + " "+item.data.username.lastName + " created a new collection called "+ `"` + item.data.collectionTitle+ `"`
       }
       else if(item.activityType === "new collection article"){
-        activity =  item.data.username.firstName + item.data.username.lastName +" added the article "+item.data.articleTitle+" to "+item.data.collectionTitle+" collection"
+        activity =  item.data.username.firstName + " " + item.data.username.lastName +" added the article "+ `"` +item.data.articleTitle+ `"`+" to "+ `"`+item.data.collectionTitle+ `"`+" collection"
       }
       else if(item.activityType === "share article"){
-        activity = item.data.user.firstName + " "+ item.data.user.lastName +" shared the article "+item.data.articleTitle+" to "+item.channel
+        activity = item.data.user.firstName + " "+ item.data.user.lastName +" shared the article "+ `"`+item.data.articleTitle+ `"`+" to "+item.channel
       }
 
       return(
@@ -35,11 +35,9 @@ export class Explore extends React.Component{
     });
 
     return(
-      <div className="explore">
-        <div className="all-activities">
-          <p>Activity</p>
-          {exploreList}
-        </div>
+      <div className="all-activities">
+        <p>Activity</p>
+        {exploreList}
       </div>
     )
   }

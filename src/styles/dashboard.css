@@ -37,6 +37,11 @@ and (min-device-width : 768px) {
   order: 2;
   align-content: right;
   background-color: #cae4db;
+  max-height: 250vh;
+}
+
+.activity {
+  height: 100%;
 }
 
 .max {
