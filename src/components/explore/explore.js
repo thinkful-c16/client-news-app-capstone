@@ -55,6 +55,8 @@ export class Explore extends React.Component{
       )
     });
 
+    let resultsList;
+
     return(
       <div className="explore">
         <div className="all-activities">
@@ -68,6 +70,9 @@ export class Explore extends React.Component{
             <p>Search for friends to follow:</p>
             <input type="text" id="friendSearchInput" placeholder="Enter Name Here" onChange={this.handleInputChange} />
             <button className="search-icon" onClick={this.performSearch}><FontAwesome name='search' /></button>
+          </div>
+          <div className="friend-search-results">
+            {resultsList}
           </div>
         </div>
       </div>
