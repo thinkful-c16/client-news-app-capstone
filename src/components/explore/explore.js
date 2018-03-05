@@ -16,15 +16,15 @@ export class Explore extends React.Component{
   render() {
     let activity;
 
-    const exploreList = this.props.activities.activities.map(item => {
+    const exploreList = this.props.activities.activities.reverse().map(item => {
       if (item.activityType === "new collection") {
-        activity = item.data.username.firstName + item.data.username.lastName + "created a new collection called "+ item.data.collectionTitle
+        activity = item.data.username.firstName + item.data.username.lastName + " created a new collection called "+ item.data.collectionTitle
       }
       else if(item.activityType === "new collection article"){
-        activity =  item.data.username.firstName + item.data.username.lastName +"added the article "+item.data.articleTitle+" to "+item.data.collectionTitle+" collection"
+        activity =  item.data.username.firstName + item.data.username.lastName +" added the article "+item.data.articleTitle+" to "+item.data.collectionTitle+" collection"
       }
       else if(item.activityType === "share article"){
-        activity = item.user.firstName + item.user.name.lastName +"shared the article "+item.data.articleTitle+" to "+item.channel
+        activity = item.data.user.firstName + " "+ item.data.user.lastName +" shared the article "+item.data.articleTitle+" to "+item.channel
       }
 
       return(
@@ -37,17 +37,8 @@ export class Explore extends React.Component{
     return(
       <div className="explore">
         <div className="all-activities">
+          <p>Activity</p>
           {exploreList}
-        </div>
-        <div className="search-window">
-          <div className="my-friend-info">
-            <h3>You are following 0 people and you have 0 followers.</h3>
-          </div>
-          <div className="friend-search">
-            <p>Search for friends to follow:</p>
-            <input type="text" id="friendSearchInput" placeholder="Enter Name Here" />
-            <button className="search-icon" onClick={() => console.log('searching for friend')}><FontAwesome name='search' /></button>
-          </div>
         </div>
       </div>
     )

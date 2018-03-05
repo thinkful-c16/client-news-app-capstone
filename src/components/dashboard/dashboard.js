@@ -7,7 +7,7 @@ import * as actions from '../../actions/api';
 import {fetchCollections} from '../../actions/collections';
 import '../../styles/dashboard.css';
 import ListItem from './listitem'
-import ActivityFeed from '../activity/activity-feed'
+import Explore from '../explore/explore'
 import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 //remove Dashboard from app.js
@@ -19,7 +19,7 @@ export class Dashboard extends React.Component{
       dashboardHeader: null,
       feedClass: 'max',
       feedButton: <FontAwesome name='chevron-circle-right' />,
-      activityContent: <ActivityFeed />
+      activityContent: <Explore />
     }
     this.simpleSearch = this.simpleSearch.bind(this);
     this.advancedSearch = this.advancedSearch.bind(this);
@@ -75,7 +75,7 @@ export class Dashboard extends React.Component{
 		else {
       this.setState({feedClass: "max",
       feedButton: <FontAwesome name='chevron-circle-right' />,
-      activityContent: <ActivityFeed />})
+      activityContent: <Explore />})
 		}
 	}
 

@@ -1,11 +1,18 @@
-.explore{
-  display: flex;
-  flex-direction: row;
+.all-activities li {
+  list-style-type: none;
+  padding-left: 30px;
+  padding-top: 30px;
+  width: 80%;
+  font-size: 1em;
 }
 
-.all-activities {
-  order: 1;
-  width: 50%
+.all-activities p {
+  padding-left: 30px;
+}
+
+/* .explore{
+  display: flex;
+  flex-direction: row;
 }
 
 .search-window {
@@ -23,4 +30,4 @@
 .friend-search {
   order: 2;
   margin-top: 30px;
-}
+} */
