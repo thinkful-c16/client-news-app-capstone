@@ -154,7 +154,7 @@ export class CollectionsDashboard extends React.Component {
                 <li>{data.collectionTitle}</li>
               </a>
               <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
-                <FontAwesome name='minus-circle' size='2x'/>
+                <FontAwesome name='minus-circle' />
               </a>
             </div>
         } else {
@@ -162,7 +162,7 @@ export class CollectionsDashboard extends React.Component {
               <div className="all-collections-detail" key={shortid.generate()}>
                 <li>{data.collectionTitle}</li>
                 <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
-                  <FontAwesome name='minus-circle' size='2x'/>
+                  <FontAwesome name='minus-circle' />
                 </a>
               </div>
         }

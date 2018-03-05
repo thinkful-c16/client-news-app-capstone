@@ -140,9 +140,19 @@
   cursor: pointer;
 }
 
+.remove-article svg:hover {
+  height: 40px;
+  width: 40px;
+}
+
 .remove-collection {
   color: red;
   cursor: pointer;
+}
+
+.remove-collection svg:hover {
+  height: 40px;
+  width: 40px;
 }
 
 .edit-title {
