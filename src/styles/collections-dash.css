@@ -80,6 +80,7 @@
 
 .article-list-detail li {
   list-style-type: none;
+  padding-right: 10px;
 }
 
 .article-list-detail {
@@ -133,21 +134,20 @@
   min-height: 100%;
 }
 
-.see-more {
+.edit-title {
   position: absolute;
   z-index: 3;
-  bottom: 5%;
-  right: 5%;
-  width: 5vh;
-  height: 5vh;
-  background-color: white;
-  border-radius: 20%;
+  left: 6%;
+  top: 12%;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.see-more p {
-  color: black;
-  font-size: 2em;
+.edit-title p {
+  padding-left: 10px;
+  color: white;
+  font-style: italic;
+  font-size: 14px;
 }

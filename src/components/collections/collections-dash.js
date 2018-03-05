@@ -71,9 +71,10 @@ export class CollectionsDashboard extends React.Component {
         featArticle =
           <div className="featured-article">
             <h1>{this.props.collections[this.state.featuredIndex].collectionTitle}</h1>
-            <img src={this.props.collections[this.state.featuredIndex].collectionArticles[0].image} />
-            <div className="see-more">
-              <p>...</p>
+            <img src={this.props.collections[this.state.featuredIndex].collectionArticles[0].image} alt={this.props.collections[this.state.featuredIndex].collectionArticles[0].title}/>
+            <div className="edit-title">
+              <FontAwesome name='edit' />
+              <p>edit title</p>
             </div>
           </div>
 
@@ -86,7 +87,7 @@ export class CollectionsDashboard extends React.Component {
             {data.title}
             </li>
             <a className='remove-article' onClick={() => this.removeArticle(collectionId, articleId)}>
-                <FontAwesome name='minus-circle' size='2x'/>
+                <FontAwesome name='minus-circle' />
             </a>
           </div>
           )

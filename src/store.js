@@ -7,9 +7,6 @@ import activityReducer from './reducers/activity';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
-const enhancer = composeWithDevTools(
-    applyMiddleware(thunk)
-)
 const store = createStore(
     combineReducers({
         form: formReducer,

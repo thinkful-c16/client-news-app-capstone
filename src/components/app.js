@@ -5,7 +5,7 @@ import Dashboard from './dashboard/dashboard.js';
 import Explore from './explore/explore.js';
 import Nav from './nav/nav.js';
 import CollectionsDashboard from './collections/collections-dash.js';
-import { Route, withRouter, Redirect } from 'react-router-dom';
+import { Route, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../styles/app.css';
 
