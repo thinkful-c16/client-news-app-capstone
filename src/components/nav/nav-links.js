@@ -18,7 +18,6 @@ export default class NavLinks extends React.Component {
             ) : (
               <div className="desktop-links">
                 <Link to="/dashboard">Dashboard</Link>
-                <Link to ="/explore">Explore</Link>
                 <Link to ="/collections">My Collections</Link>
               </div>
             )

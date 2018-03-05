@@ -16,7 +16,6 @@
 .newsfeed-container {
   order: 1;
   max-width: 70%;
-  display: flex;
   flex-direction: column;
 }
 
