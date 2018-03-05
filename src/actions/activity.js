@@ -1,14 +1,5 @@
 import { API_BASE_URL } from '../config';
 
-export const CREATE_COLLECTION_ERROR = "CREATE_COLLECTION_ERROR";
-export const createCollectionError = (error) => {
-	return {
-		type: CREATE_COLLECTION_ERROR,
-		loading: false,
-		error
-	}
-}
-
 export const FETCH_ACTIVITY_REQUEST = "FETCH_ACTIVITY_REQUEST";
 export const fetchActivityRequest = () => {
   return {
@@ -37,17 +28,21 @@ export const fetchActivityError = (error) => {
 	}
 }
 
-export const shareActivity = (article, channel) => (dispatch) => {
+export const shareActivity = (article, channel) => (dispatch, getState) => {
+  console.log('share activity running:', article, channel)
+  console.log(typeof JSON.stringify({
+	  'data1': article,
+	  'data2': channel
+  }));
   const authToken = getState().auth.authToken;
-  fetch(`${API_BASE_URL}/activity`, {
+  fetch(`${API_BASE_URL}/activities`, {
 	method: 'POST',
 	headers: {
-		Authorization: `Bearer ${authToken}`,
-		Accept: 'application/json'
+		Authorization: `Bearer ${authToken}`
 		},
 	body: JSON.stringify({
-		article: article,
-		channel: channel
+		"data1": article,
+		"data2": channel
 		})	
 	})
 	.then (res => {
