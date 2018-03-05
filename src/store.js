@@ -6,6 +6,7 @@ import collectionsReducer from './reducers/collections';
 import activityReducer from './reducers/activity';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
+import followersReducer from './reducers/followers';
 
 const enhancer = composeWithDevTools(
     applyMiddleware(thunk)
@@ -16,7 +17,8 @@ const store = createStore(
         auth: authReducer,
         api: apiReducer,
         collections: collectionsReducer,
-        activities: activityReducer
+        activities: activityReducer,
+        followers: followersReducer
     }),
     composeWithDevTools(applyMiddleware(thunk))
 );

@@ -49,15 +49,12 @@ export class ListItem extends React.Component{
   }
 
   modalToggle() {
-    console.log('heyo');
     this.setState({
       isModalVisible: !this.state.isModalVisible 
     });
-    console.log(this.state);
   }
 
   shareTwitter() {
-    console.log(this.props);
     this.props.dispatch(shareActivity(this.props.article, 'twitter'));
   }
 
