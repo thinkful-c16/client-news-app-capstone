@@ -59,6 +59,23 @@ export default function collectionsReducer(state=initialState, action) {
 			error: action.error
 		});
 	}
+	else if (action.type === actions.RENAME_COLLECTION_REQUEST) {
+		return Object.assign({}, state, {
+			loading: action.loading
+		});
+	}
+	else if (action.type === actions.RENAME_COLLECTION_SUCCESS) {
+		return Object.assign({}, state, {
+			loading: action.loading,
+			error: action.error
+		});
+	}
+	else if (action.type === actions.RENAME_COLLECTION_ERROR) {
+		return Object.assign({}, state, {
+			loading: action.loading,
+			error: action.error
+		});
+	}
 	else if (action.type === actions.DELETE_FROM_COLLECTION_REQUEST) {
 		return Object.assign({}, state, {
 			loading: action.loading

@@ -64,6 +64,23 @@
   color: white;
 }
 
+.includes-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.includes-detail * {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.includes-detail img {
+  width: 10%;
+  height: 10%;
+
+}
+
 .error-message-div {
   color: red;
 }

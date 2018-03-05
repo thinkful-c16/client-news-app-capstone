@@ -84,6 +84,33 @@ export const addToCollectionError = (error) => {
 	}
 }
 
+export const RENAME_COLLECTION_REQUEST = "RENAME_COLLECTION_REQUEST";
+export const renameCollectionRequest = () => {
+	return {
+		type: RENAME_COLLECTION_REQUEST,
+		loading: true,
+		error: null
+	}
+}
+
+export const RENAME_COLLECTION_SUCCESS = "RENAME_COLLECTION_SUCCESS";
+export const renameCollectionSuccess = () => {
+	return {
+		type: RENAME_COLLECTION_SUCCESS,
+		loading: false,
+		error: null
+	}
+}
+
+export const RENAME_COLLECTION_ERROR = "RENAME_COLLECTION_ERROR";
+export const renameCollectionError = (error) => {
+	return {
+		type: RENAME_COLLECTION_ERROR,
+		loading: false,
+		error: error
+	}
+}
+
 export const DELETE_FROM_COLLECTION_REQUEST = "DELETE_FROM_COLLECTION_REQUEST";
 export const deleteFromCollectionRequest = () => {
 	return {
@@ -289,7 +316,7 @@ export const deleteFromCollection = (collectionId, articleId) => (dispatch, getS
 		if(!res.ok) {
 			console.log("There was an issue with your request. Please try again.")
 		}
-		return res.json();
+		return res.status;
 	})
 	.then(data => {
 		dispatch(deleteFromCollectionSuccess(data));
@@ -297,5 +324,34 @@ export const deleteFromCollection = (collectionId, articleId) => (dispatch, getS
 	})
 	.catch(err => {
 		dispatch(deleteFromCollectionError(err));
+	})
+}
+
+export const renameCollection = (collectionId, collectionName) => (dispatch, getState) => {
+	const authToken = getState().auth.authToken;
+	dispatch(renameCollectionRequest());
+	fetch(`${API_BASE_URL}/collections/${collectionId}`, {
+		method: 'PUT',
+		headers: {
+			Authorization: `Bearer ${authToken}`,
+			'Content-Type': 'application/JSON'
+		},
+		body: JSON.stringify({
+			id: collectionId,
+			collectionTitle: collectionName
+		})
+	})
+	.then (res => {
+		if(!res.ok) {
+			console.log("There was an issue with your request. Please try again.")
+		}
+		return res.status;
+	})
+	.then(data => {
+		dispatch(renameCollectionSuccess());
+		dispatch(fetchCollections());
+	})
+	.catch(err => {
+		dispatch(renameCollectionError());
 	})
 }

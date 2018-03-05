@@ -80,6 +80,7 @@
 
 .article-list-detail li {
   list-style-type: none;
+  padding-right: 10px;
 }
 
 .article-list-detail {
@@ -101,6 +102,7 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 2%;
+  align-items: center;
 }
 
 .list-img {
@@ -133,21 +135,46 @@
   min-height: 100%;
 }
 
-.see-more {
+.remove-article {
+  color: red;
+  cursor: pointer;
+}
+
+.remove-article svg:hover {
+  height: 40px;
+  width: 40px;
+}
+
+.remove-collection {
+  color: red;
+  cursor: pointer;
+}
+
+.remove-collection svg:hover {
+  height: 40px;
+  width: 40px;
+}
+
+.edit-title {
   position: absolute;
   z-index: 3;
-  bottom: 5%;
-  right: 5%;
-  width: 5vh;
-  height: 5vh;
-  background-color: white;
-  border-radius: 20%;
+  left: 6%;
+  top: 12%;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
-.see-more p {
-  color: black;
-  font-size: 2em;
+.edit-title p {
+  padding-left: 10px;
+  color: #00303f;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.edit-title p:hover {
+  color: white;
+  cursor: pointer;
 }

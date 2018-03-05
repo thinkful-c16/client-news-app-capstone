@@ -73,6 +73,16 @@ export class CollectionsCreateModal extends React.Component {
           <div className="error-message-div">{this.state.errorMessage}</div>
           <input type="submit" className="create-collection-submit" value="Create"/>
         </form>
+        { this.props.article &&
+          <div className="includes">
+            <h3>Collection will include:</h3>
+            <div className="includes-detail">
+              <img src={this.props.article.image} alt={this.props.article.title} />
+              <a target="_blank" href={this.props.article.url}>{this.props.article.title}</a>
+              <span>from {this.props.article.source.name}</span>
+            </div>
+          </div>
+        }
       </div>
       <div className="backdrop-div">
       </div>
