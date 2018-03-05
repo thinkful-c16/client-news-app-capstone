@@ -49,28 +49,25 @@ export class ListItem extends React.Component{
   }
 
   modalToggle() {
-    console.log('heyo');
     this.setState({
       isModalVisible: !this.state.isModalVisible 
     });
-    console.log(this.state);
   }
 
   shareTwitter() {
-    console.log(this.props);
-    this.props.dispatch(shareActivity(this.props.article, 'twitter'));
+    this.props.dispatch(shareActivity(this.props.article, 'Twitter'));
   }
 
   shareFacebook() {
-    this.props.dispatch(shareActivity(this.props.article, 'facebook'));
+    this.props.dispatch(shareActivity(this.props.article, 'Facebook'));
   }
 
   shareLinkedin() {
-    this.props.dispatch(shareActivity(this.prop.article, 'linkedin'));
+    this.props.dispatch(shareActivity(this.prop.article, 'LinkedIn'));
   }
 
   shareReddit() {
-    this.props.dispatch(shareActivity(this.props.article, 'reddit'));
+    this.props.dispatch(shareActivity(this.props.article, 'Reddit'));
   }
 
   onSaveToCollection(e) {
