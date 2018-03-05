@@ -8,6 +8,7 @@ import * as actions from '../../actions/collections';
 import shortid from 'shortid';
 import FontAwesome from 'react-fontawesome';
 import classNames from 'classnames';
+import {shareActivity} from '../../actions/activity';
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -26,13 +27,18 @@ export class ListItem extends React.Component{
         isModalVisible: false,
         dropdownClass: 'hidden',
         socialDropClass: 'hidden',
-        saveToCollectionClass: 'hidden'
+        saveToCollectionClass: 'hidden',
+
       }
       this.modalToggle = this.modalToggle.bind(this);
       this.toggleDropdown = this.toggleDropdown.bind(this);
       this.toggleSocial = this.toggleSocial.bind(this);
       this.toggleSaveToCollection = this.toggleSaveToCollection.bind(this);
       this.onSaveToCollection = this.onSaveToCollection.bind(this);
+      this.shareTwitter = this.shareTwitter.bind(this);
+      this.shareFacebook = this.shareFacebook.bind(this);
+      this.shareLinkedin = this.shareLinkedin.bind(this);
+      this.shareReddit = this.shareReddit.bind(this);
       }
   
   componentDidMount() {
@@ -48,6 +54,22 @@ export class ListItem extends React.Component{
       isModalVisible: !this.state.isModalVisible 
     });
     console.log(this.state);
+  }
+
+  shareTwitter() {
+    this.props.dispatch(shareActivity(this.props.article, 'twitter'));
+  }
+
+  shareFacebook() {
+    this.props.dispatch(shareActivity(this.props.article, 'facebook'));
+  }
+
+  shareLinkedin() {
+    this.props.dispatch(shareActivity(this.props.article, 'linkedin'));
+  }
+
+  shareReddit() {
+    this.props.dispatch(shareActivity(this.props.article, 'reddit'));
   }
 
   onSaveToCollection(e) {
@@ -115,18 +137,26 @@ export class ListItem extends React.Component{
             </div>
             <a href="#" onMouseOver={this.toggleSocial} >Share to Social Media</a>
               <div className={classNames(this.state.socialDropClass, 'social-content')}>
-                <TwitterShareButton
-                  children={<TwitterIcon size={32} round={true} />}
-                  url={this.props.article.url}/>
-                <FacebookShareButton
-                  children={<FacebookIcon size={32} round={true} />}
-                  url={this.props.article.url} />
-                <LinkedinShareButton
-                  children={<LinkedinIcon size={32} round={true} />}
-                  url={this.props.article.url} />
-                <RedditShareButton
-                  children={<RedditIcon size={32} round={true} />}
-                  url={this.props.article.url} />
+                <div onClick={this.shareTwitter}>
+                  <TwitterShareButton
+                    children={<TwitterIcon size={32} round={true} />}
+                    url={this.props.article.url} />
+                </div>
+                <div onClick={this.shareFacebook}>
+                  <FacebookShareButton
+                    children={<FacebookIcon size={32} round={true} />}
+                    url={this.props.article.url}/>
+                </div>
+                <div onClick={this.shareLinkedin}>
+                  <LinkedinShareButton
+                    children={<LinkedinIcon size={32} round={true} />}
+                    url={this.props.article.url} />
+                </div>
+                <div onClick={this.shareReddit}>
+                  <RedditShareButton
+                    children={<RedditIcon size={32} round={true} />}
+                    url={this.props.article.url} />
+                </div>
               </div>
           </div>
         </div>

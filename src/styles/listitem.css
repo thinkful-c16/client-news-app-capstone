@@ -1,3 +1,9 @@
+.social-content div {
+  width: 32px;
+  height: 32px;
+  display: inline;
+}
+
 .article-list {
 	list-style-type: none;
 	position: relative;

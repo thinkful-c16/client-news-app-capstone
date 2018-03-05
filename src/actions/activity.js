@@ -28,6 +28,33 @@ export const fetchActivityError = (error) => {
 	}
 }
 
+export const shareActivity = (article, channel) => (dispatch, getState) => {
+  console.log('share activity running:', article, channel)
+  console.log(typeof JSON.stringify({
+	  'data1': article,
+	  'data2': channel
+  }));
+  const authToken = getState().auth.authToken;
+  fetch(`${API_BASE_URL}/activities`, {
+	method: 'POST',
+	headers: {
+		Authorization: `Bearer ${authToken}`
+		},
+	body: JSON.stringify({
+		"data1": article,
+		"data2": channel
+		})	
+	})
+	.then (res => {
+		if(!res.ok) {
+			console.log("There was an issue with your request. Please try again.")
+		}
+		return res.json();
+	})
+	.catch(err => {
+		console.log(err)
+	})
+}
 
 export const fetchActivities = () => (dispatch, getState) => {
 	const authToken = getState().auth.authToken;
