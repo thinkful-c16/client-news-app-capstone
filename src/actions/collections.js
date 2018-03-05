@@ -289,7 +289,7 @@ export const deleteFromCollection = (collectionId, articleId) => (dispatch, getS
 		if(!res.ok) {
 			console.log("There was an issue with your request. Please try again.")
 		}
-		return res.json();
+		return res.status;
 	})
 	.then(data => {
 		dispatch(deleteFromCollectionSuccess(data));

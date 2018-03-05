@@ -16,6 +16,7 @@ export class CollectionsDashboard extends React.Component {
       featuredIndex: 0
     }
     this.modalToggle = this.modalToggle.bind(this);
+    this.removeArticle = this.removeArticle.bind(this);
     this.removeCollection = this.removeCollection.bind(this);
     this.changeFeatured = this.changeFeatured.bind(this);
   }
@@ -27,12 +28,16 @@ export class CollectionsDashboard extends React.Component {
   }
 
   removeCollection(e) {
-    console.log(e.currentTarget.id)
+    console.log(e.currentTarget.id);
     const collectionId = e.currentTarget.id;
     this.props.dispatch(actions.deleteCollection(collectionId));
     this.setState({
       featuredIndex: 0
     })
+  }
+
+  removeArticle(collectionId, articleId) {
+    this.props.dispatch(actions.deleteFromCollection(collectionId, articleId));
   }
 
   changeFeatured(e) {
@@ -73,11 +78,16 @@ export class CollectionsDashboard extends React.Component {
           </div>
 
         featArticleList = this.props.collections[this.state.featuredIndex].collectionArticles.map(data => {
+          const collectionId = this.props.collections[this.state.featuredIndex]._id;
+          const articleId = data._id;
           return(
           <div className="article-list-detail" key={shortid.generate()}>
             <li>
             {data.title}
             </li>
+            <a className='remove-article' onClick={() => this.removeArticle(collectionId, articleId)}>
+                <FontAwesome name='minus-circle' size='2x'/>
+            </a>
           </div>
           )
         })
