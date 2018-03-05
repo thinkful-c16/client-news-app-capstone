@@ -57,6 +57,7 @@ export class ListItem extends React.Component{
   }
 
   shareTwitter() {
+    console.log(this.props);
     this.props.dispatch(shareActivity(this.props.article, 'twitter'));
   }
 
@@ -65,7 +66,7 @@ export class ListItem extends React.Component{
   }
 
   shareLinkedin() {
-    this.props.dispatch(shareActivity(this.props.article, 'linkedin'));
+    this.props.dispatch(shareActivity(this.prop.article, 'linkedin'));
   }
 
   shareReddit() {

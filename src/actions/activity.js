@@ -38,7 +38,8 @@ export const shareActivity = (article, channel) => (dispatch, getState) => {
   fetch(`${API_BASE_URL}/activities`, {
 	method: 'POST',
 	headers: {
-		Authorization: `Bearer ${authToken}`
+		Authorization: `Bearer ${authToken}`,
+		'Content-type': 'application/json'
 		},
 	body: JSON.stringify({
 		"data1": article,

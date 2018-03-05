@@ -1,11 +1,12 @@
 import React from 'react';
+import {fetchActivities} from '../../actions/activity';
 import requiresLogin from '../requires-login';
 import { connect } from 'react-redux';
-import shortid from 'shortid';
-import {fetchActivities} from '../../actions/activity';
 import FontAwesome from 'react-fontawesome';
 import '../../styles/explore.css';
 //remove Dashboard from app.js
+import {ExploreItem} from './exploreitem';
+import shortid from 'shortid';
 
 export class Explore extends React.Component{
   componentWillMount() {
@@ -20,17 +21,23 @@ export class Explore extends React.Component{
         activity = item.data.username.firstName + item.data.username.lastName + "created a new collection called "+ item.data.collectionTitle
       }
       else if(item.activityType === "new collection article"){
-        activity =  item.data.username.firstName + item.data.username.lastName +"added the article "+"to "+item.data.collectionTitle+" collection"
+        activity =  item.data.username.firstName + item.data.username.lastName +"added the article "+item.data.articleTitle+" to "+item.data.collectionTitle+" collection"
       }
+      else if(item.activityType === "share article"){
+        activity = item.user.firstName + item.user.name.lastName +"shared the article "+item.data.articleTitle+" to "+item.channel
+      }
+
+      return(
+        <ExploreItem 
+            key={shortid.generate()}
+            activity={activity} />
+      )
     });
 
-    console.log(this.props.activities.activities);
     return(
       <div className="explore">
         <div className="all-activities">
-          <li key={shortid.generate()}>
-            <span>{activity}</span>
-          </li>
+          {exploreList}
         </div>
         <div className="search-window">
           <div className="my-friend-info">
@@ -46,28 +53,6 @@ export class Explore extends React.Component{
     )
   }
 }
-
-//   render() {
-//     const exploreList = this.props.exploreData.map(item => {
-//       return <li key={shortid.generate()}>
-//         <span>{item.user} {item.activity} this article:</span>
-//         <a href={item.article.url} target="_blank">
-//           <img src={item.article.urlToImage} width='100' alt={item.title} />
-//           {item.article.title}
-//         </a>
-//       </li>
-//     });
-    
-//     return(
-//       <div className='explore'>
-//         <h2>Explore</h2>
-//         <ul>
-//           {exploreList}
-//         </ul>
-//       </div>
-//     )
-//   }
-// }
 
 const mapStateToProps = (state, props) => {
   return {
