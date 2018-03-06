@@ -129,6 +129,48 @@
   align-items: center;
 }
 
+.all-collections-detail li {
+  order: 2;
+  list-style-type: none;
+  padding-left: 50px;
+  padding-right: 25px;
+}
+
+.all-collections-detail a {
+  order: 3;
+  list-style-type: none;
+}
+
+.all-collections-detail li:hover {
+  cursor: pointer;
+  color: cornflowerblue;
+}
+
+.selected-all-collections-detail {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2%;
+  align-items: center;
+}
+
+.selected-all-collections-detail li {
+  order: 2;
+  list-style-type: none;
+  padding-left: 50px;
+  padding-right: 25px;
+  font-weight: bold;
+}
+
+.selected-all-collections-detail a {
+  order: 3;
+  list-style-type: none;
+}
+
+.selected-all-collections-detail li:hover {
+  cursor: pointer;
+  color: cornflowerblue;
+}
+
 .list-img {
   order: 1;
   height: 5em;
