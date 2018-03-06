@@ -75,7 +75,7 @@ export class CollectionsDashboard extends React.Component {
   changeFeaturedArticle(e) {
     const index = e.currentTarget.id;
     this.setState({
-      featuredArticleIndex: index,
+      featuredArticleIndex: index
     })
   }
 
@@ -98,8 +98,6 @@ export class CollectionsDashboard extends React.Component {
 
       if (this.props.collections[this.state.featuredCollectionIndex].collectionArticles.length !== 0) {
 
-        let toReturn;
-        let articleIndex = 0;
         const collectionId = this.props.collections[this.state.featuredCollectionIndex]._id;
 
         featArticle =
@@ -115,19 +113,18 @@ export class CollectionsDashboard extends React.Component {
         featArticleList = this.props.collections[this.state.featuredCollectionIndex].collectionArticles.map((data, index) => {
 
           const articleId = data._id;
+          console.log('index:', index, 'current featured article index:', this.state.featuredArticleIndex);
 
-          toReturn = 
-            <div className={index === this.state.featuredArticleIndex? 'selected-article-list-detail' : 'article-list-detail'} key={shortid.generate()}>
-              <li id={index} onClick={this.changeFeaturedArticle}>
-              {data.title}
-              </li>
-              <a className='remove-article' onClick={() => this.removeArticle(collectionId, articleId)}>
-                  <FontAwesome name='minus-circle' />
-              </a>
-            </div>
-          
-          articleIndex++;
-          return(toReturn);
+          return (
+            <div className={index === parseInt(this.state.featuredArticleIndex, 10)? 'selected-article-list-detail' : 'article-list-detail'} key={shortid.generate()}>
+            <li id={index} onClick={this.changeFeaturedArticle}>
+            {data.title}
+            </li>
+            <a className='remove-article' onClick={() => this.removeArticle(collectionId, articleId)}>
+                <FontAwesome name='minus-circle' />
+            </a>
+          </div>
+          )
         })
       }
       if (this.props.collections[this.state.featuredCollectionIndex].collectionArticles.length === 0) {
@@ -154,35 +151,32 @@ export class CollectionsDashboard extends React.Component {
     }
     if (this.props.collections.length >= 1) {
 
-      let toReturn;
-      let collectionIndex = 0;
-
-      allCollectionsList = this.props.collections.map(data => {
+      allCollectionsList = this.props.collections.map((data, index) => {
 
         if (data.collectionArticles.length !== 0 && data.collectionArticles[0].image) {
-          toReturn =
+          return (
             <div className="all-collections-detail" key={shortid.generate()}>
               <div className="list-img">
                 <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
               </div>
-              <a className='all-collections-title' id={collectionIndex} onClick={this.changeFeaturedCollection}>
+              <a className='all-collections-title' id={index} onClick={this.changeFeaturedCollection}>
                 <li>{data.collectionTitle}</li>
               </a>
               <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
                 <FontAwesome name='minus-circle' />
               </a>
             </div>
-        } else {
-          toReturn =
-              <div className="all-collections-detail" key={shortid.generate()}>
-                <li>{data.collectionTitle}</li>
-                <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
-                  <FontAwesome name='minus-circle' />
-                </a>
-              </div>
+          )
+          } else {
+          return (
+            <div className="all-collections-detail" key={shortid.generate()}>
+              <li>{data.collectionTitle}</li>
+              <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
+                <FontAwesome name='minus-circle' />
+              </a>
+            </div>
+          )
         }
-      collectionIndex += 1;
-      return(toReturn);
       })
     } else {
       featArticleList = 

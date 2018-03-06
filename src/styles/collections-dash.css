@@ -152,6 +152,11 @@
   list-style-type: none;
 }
 
+.all-collections-detail li:hover {
+  cursor: pointer;
+  color: cornflowerblue;
+}
+
 .list-img img {
   display: flex;
   flex-shrink: 0;
