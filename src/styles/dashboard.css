@@ -88,4 +88,5 @@ and (max-device-width : 768px) {
   .main-section-dash, .newsfeed-container {
     min-width: 100%;
   }
+  
 }

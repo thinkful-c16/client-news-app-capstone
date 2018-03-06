@@ -123,7 +123,7 @@ export class ListItem extends React.Component{
           <h2>{this.props.article.title}</h2>
         </div>
         <div className='dropdown'>
-          <div className="dropbtn" onMouseDown= {this.toggleDropdown}>
+          <div className="dropbtn" onClick= {this.toggleDropdown}>
             <FontAwesome name='chevron-circle-down' />
           </div>
           <div id={this.props.id} className={classNames(this.state.dropdownClass, 'dropcontent')} ref={this.props.id}>
@@ -133,7 +133,7 @@ export class ListItem extends React.Component{
             <div className={classNames(this.state.saveToCollectionClass, 'collections-dropcontent')}>
               {collectionsDropdownList}
             </div>
-            <a href="#" onMouseOver={this.toggleSocial} >Share to Social Media</a>
+            <a href="#" onMouseOver={this.toggleSocial} onClick={this.toggleSocial}>Share to Social Media</a>
               <div className={classNames(this.state.socialDropClass, 'social-content')}>
                 <div onClick={this.shareTwitter}>
                   <TwitterShareButton

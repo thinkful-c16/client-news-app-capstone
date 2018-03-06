@@ -139,6 +139,14 @@ and (min-device-width : 768px) {
 
 @media only screen 
 and (max-device-width : 768px) {
+
+  .hidden {
+	display:none !important;
+  }
+  .show{
+	display:flex !important;
+  }
+
   .article-list {
 		width: 100%;
 		max-height: 10vh;
@@ -176,20 +184,35 @@ and (max-device-width : 768px) {
 	}
 
 	.dropbtn {
-		
+		color: #cae4db;
+		font-size: 2em;
 	}
 
 	.dropcontent {
-		background-color: darkgray;
+		border-radius: 5px;
+		background-color: #cae4db;
 		z-index: 5;
-		width: 100%;
 		position: absolute;
-		left: 0;
-		margin-top: 50px;
+		left: 30%;
+		margin-top: 100px;
+		display: flex;
+		flex-direction: column;
+		text-align: right;
+		width: 70%;
 	}
 
 	.dropcontent a {
-		width: 100vw;
+		text-decoration: none;
+		padding-right: 5%;
+		padding-top: 1%;
+		padding-bottom: 3%;
+		color: #00303f;
+		font-weight: 700;
+	}
+	
+	.social-content div {
+		display: inline;
+		padding-right: 3%;
 	}
 
 }
