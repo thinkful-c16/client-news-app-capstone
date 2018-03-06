@@ -15,7 +15,8 @@ export class CollectionsDashboard extends React.Component {
     this.state = {
       isCreateModalVisible: false,
       isRenameModalVisible: false,
-      featuredIndex: 0,
+      featuredCollectionIndex: 0,
+      featuredArticleIndex: 0,
       collectionToRename: null
     }
     this.renameModalToggle = this.renameModalToggle.bind(this);
@@ -23,7 +24,8 @@ export class CollectionsDashboard extends React.Component {
     this.renameCollection = this.renameCollection.bind(this);
     this.removeArticle = this.removeArticle.bind(this);
     this.removeCollection = this.removeCollection.bind(this);
-    this.changeFeatured = this.changeFeatured.bind(this);
+    this.changeFeaturedCollection = this.changeFeaturedCollection.bind(this);
+    this.changeFeaturedArticle = this.changeFeaturedArticle.bind(this);
   }
 
   createModalToggle() {
@@ -33,7 +35,6 @@ export class CollectionsDashboard extends React.Component {
   }
 
   renameModalToggle() {
-    console.log('made it');
     this.setState({
       isRenameModalVisible: !this.state.isRenameModalVisible 
     });
@@ -51,19 +52,30 @@ export class CollectionsDashboard extends React.Component {
     const collectionId = e.currentTarget.id;
     this.props.dispatch(actions.deleteCollection(collectionId));
     this.setState({
-      featuredIndex: 0
+      featuredCollectionIndex: 0,
+      featuredArticleIndex: 0
     })
   }
 
   removeArticle(collectionId, articleId) {
     this.props.dispatch(actions.deleteFromCollection(collectionId, articleId));
+    this.setState({
+      featuredArticleIndex: 0
+    })
   }
 
-  changeFeatured(e) {
+  changeFeaturedCollection(e) {
     const index = e.currentTarget.id;
-    console.log('hiya', index);
     this.setState({
-      featuredIndex: index
+      featuredCollectionIndex: index,
+      featuredArticleIndex: 0
+    })
+  }
+
+  changeFeaturedArticle(e) {
+    const index = e.currentTarget.id;
+    this.setState({
+      featuredArticleIndex: index
     })
   }
 
@@ -73,7 +85,6 @@ export class CollectionsDashboard extends React.Component {
   // }
 
   componentWillMount() {
-    console.log('hi');
     this.props.dispatch(actions.fetchCollections());
   }
 
@@ -85,27 +96,28 @@ export class CollectionsDashboard extends React.Component {
 
     if (this.props.collections.length !== 0){
 
-      if (this.props.collections[this.state.featuredIndex].collectionArticles.length !== 0) {
+      if (this.props.collections[this.state.featuredCollectionIndex].collectionArticles.length !== 0) {
 
-        const collectionId = this.props.collections[this.state.featuredIndex]._id;
+        const collectionId = this.props.collections[this.state.featuredCollectionIndex]._id;
 
         featArticle =
           <div className="featured-article">
-            <h1>{this.props.collections[this.state.featuredIndex].collectionTitle}</h1>
-            <img src={this.props.collections[this.state.featuredIndex].collectionArticles[0].image} alt={this.props.collections[this.state.featuredIndex].collectionArticles[0].title}/>
+            <h1>{this.props.collections[this.state.featuredCollectionIndex].collectionTitle}</h1>
+            <img src={this.props.collections[this.state.featuredCollectionIndex].collectionArticles[this.state.featuredArticleIndex].image} alt={this.props.collections[this.state.featuredCollectionIndex].collectionArticles[this.state.featuredArticleIndex].title}/>
             <div className="edit-title" onClick={() => this.renameCollection(collectionId)}>
               <FontAwesome name='edit'/>
               <p>edit title</p>
             </div>
           </div>
 
-        featArticleList = this.props.collections[this.state.featuredIndex].collectionArticles.map(data => {
+        featArticleList = this.props.collections[this.state.featuredCollectionIndex].collectionArticles.map((data, index) => {
 
           const articleId = data._id;
+          console.log('index:', index, 'current featured article index:', this.state.featuredArticleIndex);
 
-          return(
-          <div className="article-list-detail" key={shortid.generate()}>
-            <li>
+          return (
+            <div className={index === parseInt(this.state.featuredArticleIndex, 10)? 'selected-article-list-detail' : 'article-list-detail'} key={shortid.generate()}>
+            <li id={index} onClick={this.changeFeaturedArticle}>
             {data.title}
             </li>
             <a className='remove-article' onClick={() => this.removeArticle(collectionId, articleId)}>
@@ -115,9 +127,9 @@ export class CollectionsDashboard extends React.Component {
           )
         })
       }
-      if (this.props.collections[this.state.featuredIndex].collectionArticles.length === 0) {
+      if (this.props.collections[this.state.featuredCollectionIndex].collectionArticles.length === 0) {
 
-        const collectionId = this.props.collections[this.state.featuredIndex]._id;
+        const collectionId = this.props.collections[this.state.featuredCollectionIndex]._id;
 
         featArticle =
           <div className="feature-article">
@@ -139,35 +151,32 @@ export class CollectionsDashboard extends React.Component {
     }
     if (this.props.collections.length >= 1) {
 
-      let toReturn;
-      let collectionIndex = 0;
-
-      allCollectionsList = this.props.collections.map(data => {
+      allCollectionsList = this.props.collections.map((data, index) => {
 
         if (data.collectionArticles.length !== 0 && data.collectionArticles[0].image) {
-          toReturn =
-            <div className="all-collections-detail" key={shortid.generate()}>
+          return (
+            <div className={index === parseInt(this.state.featuredCollectionIndex, 10)? 'selected-all-collections-detail' : 'all-collections-detail'} key={shortid.generate()}>
               <div className="list-img">
                 <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
               </div>
-              <a className='all-collections-title' id={collectionIndex} onClick={this.changeFeatured}>
+              <a className='all-collections-title' id={index} onClick={this.changeFeaturedCollection}>
                 <li>{data.collectionTitle}</li>
               </a>
               <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
                 <FontAwesome name='minus-circle' />
               </a>
             </div>
-        } else {
-          toReturn =
-              <div className="all-collections-detail" key={shortid.generate()}>
-                <li>{data.collectionTitle}</li>
-                <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
-                  <FontAwesome name='minus-circle' />
-                </a>
-              </div>
+          )
+          } else {
+          return (
+            <div className={index === parseInt(this.state.featuredCollectionIndex, 10)? 'selected-all-collections-detail' : 'all-collections-detail'} key={shortid.generate()}>
+              <li>{data.collectionTitle}</li>
+              <a className='remove-collection' id={data._id} onClick={this.removeCollection}>
+                <FontAwesome name='minus-circle' />
+              </a>
+            </div>
+          )
         }
-      collectionIndex += 1;
-      return(toReturn);
       })
     } else {
       featArticleList = 
