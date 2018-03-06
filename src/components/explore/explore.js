@@ -15,6 +15,7 @@ export class Explore extends React.Component{
 
   render() {
     let activity;
+    let icon;
 
     const exploreList = this.props.activities.activities.reverse().map(item => {
       if (item.activityType === "new collection") {
@@ -27,10 +28,30 @@ export class Explore extends React.Component{
         activity = item.data.user.firstName + " "+ item.data.user.lastName +" shared the article "+ `"`+item.data.articleTitle+ `"`+" to "+item.channel
       }
 
+      if (item.activityType === "new collection") {
+        icon = <FontAwesome name='database' />
+      }
+      else if(item.activityType === "new collection article"){
+        icon = <FontAwesome name='bookmark' />
+      }
+      else if(item.activityType === "share article" && item.channel === "Twitter"){
+        icon = <FontAwesome name='twitter' />
+      }
+      else if(item.activityType === "share article" && item.channel === "Facebook"){
+        icon = <FontAwesome name='facebook' />
+      }
+      else if(item.activityType === "share article" && item.channel === "LinkedIn"){
+        icon = <FontAwesome name='linkedin' />
+      }
+      else if(item.activityType === "share article" && item.channel === "Reddit"){
+        icon = <FontAwesome name='reddit' />
+      }
+
       return(
         <ExploreItem 
             key={shortid.generate()}
-            activity={activity} />
+            activity={activity}
+            icon={icon} />
       )
     });
 

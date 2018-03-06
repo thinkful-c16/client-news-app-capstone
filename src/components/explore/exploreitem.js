@@ -5,7 +5,8 @@ export function ExploreItem(props){
 
     return(
       <li key={props.key}>
-        <span>{props.activity}</span>
+        <div className="activity-icon">{props.icon}</div>
+        <div className="activity-text">{props.activity}</div>
       </li>
     )
 }

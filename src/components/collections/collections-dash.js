@@ -6,7 +6,7 @@ import shortid from 'shortid';
 import CollectionsCreateModal from './collections-create-modal';
 import CollectionsRenameModal from './collections-rename-modal';
 import * as actions from '../../actions/collections';
-
+import '../../styles/fa/fontawesome-all.css';
 import '../../styles/collections-dash.css';
 
 export class CollectionsDashboard extends React.Component {
