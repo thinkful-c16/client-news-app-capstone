@@ -329,6 +329,10 @@ and (max-device-width : 768px) {
     margin-bottom: 5vh;
   }
 
+  .selected-all-collections-detail li {
+    font-weight: bold;
+  }
+
   .all-collections-title {
     font-size: 24px;
     padding-left: 20px;
