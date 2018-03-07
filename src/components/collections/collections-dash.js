@@ -116,6 +116,7 @@ export class CollectionsDashboard extends React.Component {
                 featuredCollectionIndex={this.state.featuredCollectionIndex} 
                 changeFeaturedCollection={(collectionIndex) => this.changeFeaturedCollection(collectionIndex)}
                 removeCollection={(collectionId) => this.removeCollection(collectionId)}
+                removeArticle={(collectionId, articleId) => this.removeArticle(collectionId, articleId)}
               />
             </div>
 
