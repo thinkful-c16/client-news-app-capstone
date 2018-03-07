@@ -18,7 +18,7 @@ and (min-device-width : 768px) {
 
 .newsfeed-container {
   order: 1;
-  max-width: 70%;
+  min-width: 70%;
   flex-direction: column;
 }
 
@@ -45,7 +45,7 @@ and (min-device-width : 768px) {
 }
 
 .max {
-  width: 30%
+  min-width: 30%
 }
 
 .min {

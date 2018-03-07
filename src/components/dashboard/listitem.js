@@ -39,6 +39,8 @@ export class ListItem extends React.Component{
       this.shareFacebook = this.shareFacebook.bind(this);
       this.shareLinkedin = this.shareLinkedin.bind(this);
       this.shareReddit = this.shareReddit.bind(this);
+      this.setWrapperRef = this.setWrapperRef.bind(this);  
+      this.handleOutsideClick = this.handleOutsideClick.bind(this);
       }
   
   componentDidMount() {
@@ -46,6 +48,11 @@ export class ListItem extends React.Component{
       dropdownClass: 'hidden',
       saveToCollectionClass: 'hidden'
     })
+    document.addEventListener('mousedown', this.handleOutsideClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleOutsideClick);
   }
 
   modalToggle() {
@@ -82,6 +89,18 @@ export class ListItem extends React.Component{
     }
     else{
       this.setState({saveToCollectionClass: "hidden"})
+    }
+  }
+
+  setWrapperRef(node){
+    this.wrapperRef = node;
+  }
+
+  handleOutsideClick(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      if(this.state.dropdownClass==="show") {
+        this.setState({dropdownClass: "hidden"})
+      }
     }
   }
 
@@ -122,7 +141,7 @@ export class ListItem extends React.Component{
           <img src={this.props.article.image} alt={this.props.article.title} />
           <h2>{this.props.article.title}</h2>
         </div>
-        <div className='dropdown'>
+        <div className='dropdown' ref={this.setWrapperRef}>
           <div className="dropbtn" onClick= {this.toggleDropdown}>
             <FontAwesome name='chevron-circle-down' />
           </div>
