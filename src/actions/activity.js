@@ -29,11 +29,6 @@ export const fetchActivityError = (error) => {
 }
 
 export const shareActivity = (article, channel) => (dispatch, getState) => {
-  console.log('share activity running:', article, channel)
-  console.log(typeof JSON.stringify({
-	  'data1': article,
-	  'data2': channel
-  }));
   const authToken = getState().auth.authToken;
   fetch(`${API_BASE_URL}/activities`, {
 	method: 'POST',

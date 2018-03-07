@@ -35,16 +35,16 @@ export class Explore extends React.Component{
         icon = <FontAwesome name='bookmark' />
       }
       else if(item.activityType === "share article" && item.channel === "Twitter"){
-        icon = <FontAwesome name='twitter' />
+        icon = <FontAwesome className="fab" name='twitter' />
       }
       else if(item.activityType === "share article" && item.channel === "Facebook"){
-        icon = <FontAwesome name='facebook' />
+        icon = <FontAwesome className="fab" name='facebook' />
       }
       else if(item.activityType === "share article" && item.channel === "LinkedIn"){
-        icon = <FontAwesome name='linkedin' />
+        icon = <FontAwesome className="fab" name='linkedin' />
       }
       else if(item.activityType === "share article" && item.channel === "Reddit"){
-        icon = <FontAwesome name='reddit' />
+        icon = <FontAwesome className="fab" name='reddit' />
       }
 
       return(
