@@ -69,7 +69,9 @@ export class FeaturedCollection extends React.Component {
     return (
       <div className="featured-collection">
         {featArticle}
-        {featArticleList}
+        <div className="featured-article-list">
+          {featArticleList}
+        </div>
       </div>
     )
   }
