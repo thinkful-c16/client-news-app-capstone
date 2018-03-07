@@ -161,7 +161,7 @@ export class ListItem extends React.Component{
                 </div>
                 <div onClick={this.shareFacebook}>
                   <FacebookShareButton
-                    children={<FacebookIcon size={32} round={true} />}
+                    children={<FacebookIcon size={32} round={true} />} 
                     url={this.props.article.url}/>
                 </div>
                 <div onClick={this.shareLinkedin}>
