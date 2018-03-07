@@ -337,7 +337,9 @@ and (max-device-width : 768px) {
 
   .selected-collection-articles {
     list-style-type: none;
+    display: flex;
     margin-bottom: 5vh;
+    background-color: #cae4db;
   }
 
   .responsive-article-list {
