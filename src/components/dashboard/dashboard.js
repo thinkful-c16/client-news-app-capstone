@@ -106,7 +106,7 @@ export class Dashboard extends React.Component{
         <Search onSimpleSearch={input => this.simpleSearch(input)} onAdvancedSearch={(input, category) => this.advancedSearch(input, category)}/>
         <div className='main-section-dash'>
           <div className='newsfeed-container'>
-            <h2>{this.state.dashboardHeader}</h2>
+            <h2 className="main-newsfeed-head">{this.state.dashboardHeader}</h2>
             <ul className='headlines-list'>
               {headlinesList}
             </ul>

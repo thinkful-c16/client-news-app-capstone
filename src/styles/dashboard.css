@@ -1,3 +1,8 @@
+.main-newsfeed-head {
+  font-family: 'Ubuntu', sans-serif;
+  margin-left: 35px;
+}
+
 @media only screen 
 and (min-device-width : 768px) {
 
@@ -6,6 +11,10 @@ and (min-device-width : 768px) {
 }
 .show{
     display:block;
+}
+
+.mobile-activity-link {
+  display: none;
 }
 
 .main-section-dash {
@@ -63,6 +72,10 @@ and (min-device-width : 768px) {
 
 @media only screen 
 and (max-device-width : 768px) {
+
+  .main-newsfeed-head {
+    margin-left: 0px;
+  }
   
   .hidden {
     display:none;
@@ -74,11 +87,13 @@ and (max-device-width : 768px) {
   .dashboard {
     display: flex;
     flex-direction: column;
+    text-align: center;
   }
 
   .headlines-list {
     list-style-type: none;
     padding: 0;
+    text-align: left !important;
   }
 
   .activity-feed-container {
@@ -89,4 +104,8 @@ and (max-device-width : 768px) {
     min-width: 100%;
   }
   
+  .newsfeed-container {
+    margin-top: 2%;
+  }
+
 }

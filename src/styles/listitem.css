@@ -154,6 +154,7 @@ and (max-device-width : 768px) {
 		flex-direction: row;
 		margin-bottom: 5vh;
 		overflow: hidden;
+		background-color: rgba(51, 54, 59, 0.2);
 	}
 
 	.li-container {
@@ -184,7 +185,7 @@ and (max-device-width : 768px) {
 	}
 
 	.dropbtn {
-		color: #cae4db;
+		color: #00303f;
 		font-size: 2em;
 	}
 
