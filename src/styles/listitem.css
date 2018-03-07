@@ -193,12 +193,11 @@ and (max-device-width : 768px) {
 		background-color: #cae4db;
 		z-index: 5;
 		position: absolute;
-		left: 30%;
+		right: 0%;
 		margin-top: 100px;
-		display: flex;
+		display: flex; 
 		flex-direction: column;
 		text-align: right;
-		width: 70%;
 	}
 
 	.dropcontent a {
@@ -210,9 +209,18 @@ and (max-device-width : 768px) {
 		font-weight: 700;
 	}
 	
+	.social-content {
+		width: 100%;
+		align-items: right !important;
+	}
+
 	.social-content div {
-		display: inline;
-		padding-right: 3%;
+		padding: 2%;
+		align-self: right !important;
+	}
+
+	.social-content div div {
+		align-content: right !important;
 	}
 
 }
