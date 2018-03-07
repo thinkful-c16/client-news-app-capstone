@@ -1,6 +1,8 @@
 import React from 'react';
+import Media from 'react-media';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
+import CollectionArticlesResponsive from './collection-articles-responsive';
 import FontAwesome from 'react-fontawesome';
 import shortid from 'shortid';
 
@@ -19,27 +21,37 @@ export class AllCollections extends React.Component {
 
         if (data.collectionArticles.length !== 0 && data.collectionArticles[0].image) {
           return (
-            <div className={index === parseInt(this.props.featuredCollectionIndex, 10)? 'selected-all-collections-detail' : 'all-collections-detail'} key={shortid.generate()}>
-              <div className="list-img">
-                <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
+            <div className="collections-detail-parent">
+              <div className={index === parseInt(this.props.featuredCollectionIndex, 10)? 'selected-all-collections-detail' : 'all-collections-detail'} key={shortid.generate()}>
+                <div className="list-img">
+                  <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
+                </div>
+                <a className='all-collections-title' onClick={() => this.props.changeFeaturedCollection(index)}>
+                  <li>{data.collectionTitle}</li>
+                </a>
+                <a className='remove-collection' onClick={() => this.props.removeCollection(data._id)}>
+                  <FontAwesome name='minus-circle' />
+                </a>
+              </div>             
+              <div className={index === parseInt(this.props.featuredCollectionIndex, 10)? 'selected-collection-articles' : 'collection-articles'} key={shortid.generate()}>
+                <CollectionArticlesResponsive collectionIndex={index} removeArticle={(collectionId, articleId) => this.props.removeArticle(collectionId, articleId)}/>
               </div>
-              <a className='all-collections-title' onClick={() => this.props.changeFeaturedCollection(index)}>
-                <li>{data.collectionTitle}</li>
-              </a>
-              <a className='remove-collection' onClick={() => this.props.removeCollection(data._id)}>
-                <FontAwesome name='minus-circle' />
-              </a>
             </div>
           )
           } else {
           return (
-            <div className={index === parseInt(this.props.featuredCollectionIndex, 10)? 'selected-all-collections-detail' : 'all-collections-detail'} key={shortid.generate()}>
-              <a className='all-collections-title' onClick={() => this.props.changeFeaturedCollection(index)}>
-                <li>{data.collectionTitle}</li>
-              </a>
-              <a className='remove-collection' onClick={() => this.props.removeCollection(data._id)}>
-                <FontAwesome name='minus-circle' />
-              </a>
+            <div className="collections-detail-parent">
+              <div className={index === parseInt(this.props.featuredCollectionIndex, 10)? 'selected-all-collections-detail' : 'all-collections-detail'} key={shortid.generate()}>
+                <a className='all-collections-title' onClick={() => this.props.changeFeaturedCollection(index)}>
+                  <li>{data.collectionTitle}</li>
+                </a>
+                <a className='remove-collection' onClick={() => this.props.removeCollection(data._id)}>
+                  <FontAwesome name='minus-circle' />
+                </a>
+              </div>
+              <div className={index === parseInt(this.props.featuredCollectionIndex, 10)? 'selected-collection-articles' : 'collection-articles'} key={shortid.generate()}>
+                <CollectionArticlesResponsive collectionIndex={index} removeArticle={(collectionId, articleId) => this.props.removeArticle(collectionId, articleId)} />
+              </div>
             </div>
           )
         }

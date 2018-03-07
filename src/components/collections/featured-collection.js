@@ -49,7 +49,7 @@ export class FeaturedCollection extends React.Component {
       const collectionId = this.props.collections[this.props.featuredCollectionIndex]._id;
 
       featArticle =
-        <div className="feature-article">
+        <div className="featured-article">
           <h1>{this.props.collections[this.props.featuredCollectionIndex].collectionTitle}</h1>
           <div className="edit-title" onClick={() => this.renameCollection(collectionId)}>
             <FontAwesome name='edit'/>
