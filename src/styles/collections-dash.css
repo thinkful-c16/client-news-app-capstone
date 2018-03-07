@@ -326,7 +326,7 @@ and (max-device-width : 768px) {
     align-items: center;
     list-style-type: none;
     background-color: rgba(51, 54, 59, 0.2);
-    margin-bottom: 5vh;
+    margin-bottom: 2vh;
   }
 
   .selected-all-collections-detail li {
@@ -342,8 +342,10 @@ and (max-device-width : 768px) {
   .selected-collection-articles {
     list-style-type: none;
     display: flex;
-    margin-bottom: 5vh;
+    margin-bottom: 2vh;
     background-color: #cae4db;
+    color: #33363b;
+    font-weight: bold;
   }
 
   .responsive-article-list {
