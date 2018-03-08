@@ -148,11 +148,11 @@ export class ListItem extends React.Component{
           <div id={this.props.id} className={classNames(this.state.dropdownClass, 'dropcontent')} ref={this.props.id}>
             <a target="_blank" href={this.props.article.url}>Read article on {this.props.article.source.name}</a>
             <a onClick={this.modalToggle}>Save to New Collection</a>
-            <a onMouseOver={this.toggleSaveToCollection} onMouseOut={this.toggleSaveToCollection}>Save to Existing Collection</a>
+            <a onMouseOver={this.toggleSaveToCollection}>Save to Existing Collection</a>
             <div className={classNames(this.state.saveToCollectionClass, 'collections-dropcontent')}>
               {collectionsDropdownList}
             </div>
-            <a onMouseOver={this.toggleSocial} onMouseOut={this.toggleSocial} onClick={this.toggleSocial}>Share to Social Media</a>
+            <a onMouseOver={this.toggleSocial} onClick={this.toggleSocial}>Share to Social Media</a>
 
               <div className={classNames(this.state.socialDropClass, 'social-content')}>
                 <div onClick={this.shareTwitter}>
