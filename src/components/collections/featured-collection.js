@@ -14,7 +14,9 @@ export class FeaturedCollection extends React.Component {
 
     if (this.props.collections[this.props.featuredCollectionIndex].collectionArticles.length !== 0) {
 
+
       const collectionId = this.props.collections[this.props.featuredCollectionIndex]._id;
+      const collection = this.props.collections[this.props.featuredCollectionIndex];
 
       featArticle =
         <div className="featured-article">
@@ -33,9 +35,10 @@ export class FeaturedCollection extends React.Component {
             </li>
             <CollectionsDropdown dropDownType="article"
               collectionId={collectionId}
+              collection={collection}
               articleId={articleId}
               article={data}
-              removeArticle={(collectionId, articleId) => this.props.removeArticle(collectionId, articleId)}
+              removeArticle={(collectionId, articleId) => this.removeArticle(collectionId, articleId)}
             />
           </div>
         )

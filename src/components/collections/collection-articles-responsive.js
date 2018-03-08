@@ -9,6 +9,7 @@ export class CollectionArticlesResponsive extends React.Component {
 
   render() {
 
+    const collection = this.props.collections[this.props.collectionIndex];
     const collectionId = this.props.collections[this.props.collectionIndex]._id;
 
     const articleList = this.props.collections[this.props.collectionIndex].collectionArticles.map(article => {
@@ -21,6 +22,7 @@ export class CollectionArticlesResponsive extends React.Component {
           {article.title}
           </li>
           <CollectionsDropdown dropDownType="article"
+            collection={collection}
             collectionId={collectionId}
             articleId={articleId}
             article={article}

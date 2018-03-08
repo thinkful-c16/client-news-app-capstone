@@ -15,6 +15,8 @@ import {
 } from 'react-share';
 import {shareActivity} from '../../actions/activity';
 
+import CollectionsDeleteModal from './collections-delete-modal';
+
 export class CollectionsDropdown extends React.Component {
   constructor(props) {
     super(props);
@@ -22,8 +24,8 @@ export class CollectionsDropdown extends React.Component {
       dropdownClass: 'hidden',
       socialDropClass: 'hidden'
     }
-    super(props);
-
+    
+    this.deleteModalToggle = this.deleteModalToggle.bind(this)
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.toggleSocial = this.toggleSocial.bind(this);
     this.shareTwitter = this.shareTwitter.bind(this);
@@ -98,6 +100,12 @@ export class CollectionsDropdown extends React.Component {
     }
   }
 
+  deleteModalToggle() {
+    this.setState({
+      isModalVisible: !this.state.isModalVisible 
+    });
+  }
+
 
   render() {
     return (
@@ -137,7 +145,7 @@ export class CollectionsDropdown extends React.Component {
                     url={this.props.article.url} />
                 </div>
               </div>
-              <a className='remove-article' onClick={() => this.props.removeArticle(this.props.collectionId, this.props.articleId)}>
+              <a className='remove-article' onClick={this.deleteModalToggle}>
                 <FontAwesome name='minus-circle' />
                 <span>Remove Article</span>
               </a>
@@ -148,12 +156,15 @@ export class CollectionsDropdown extends React.Component {
                 <FontAwesome name='edit' />
                 <span>Rename Collection</span>
               </a>
-              <a className='remove-collection' onClick={() => this.props.removeCollection(this.props.collectionId)}>
+              <a className='remove-collection' onClick={this.deleteModalToggle}>
                   <FontAwesome name='minus-circle' />
                   <span>Remove Collection</span>
                 </a>
             </div>
           )}
+          { this.state.isModalVisible &&
+            <CollectionsDeleteModal collection={this.props.collection} article={this.props.article} deleteType={this.props.dropDownType} onCloseModal={this.deleteModalToggle} removeArticle={(collectionId, articleId) => this.props.removeArticle(collectionId, articleId)}/>
+          }
         </div>
     )
   }

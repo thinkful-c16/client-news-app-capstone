@@ -16,6 +16,7 @@ export class AllCollections extends React.Component {
 
       allCollectionsList = this.props.collections.map((data, index) => {
 
+        const collection = data;
         const collectionId = data._id;
 
         if (data.collectionArticles.length !== 0 && data.collectionArticles[0].image) {
@@ -30,6 +31,7 @@ export class AllCollections extends React.Component {
                   <li>{data.collectionTitle}</li>
                 </a>
                 <CollectionsDropdown dropDownType="collection"
+                  collection={collection}
                   collectionId={collectionId}
                   renameCollection={(collectionId) => this.props.renameCollection(collectionId)}
                   removeCollection={(collectionId) => this.props.removeCollection(collectionId)}
@@ -48,6 +50,7 @@ export class AllCollections extends React.Component {
                   <li>{data.collectionTitle}</li>
                 </a>
                 <CollectionsDropdown dropDownType="collection"
+                  collection={collection}
                   collectionId={collectionId}
                   renameCollection={(collectionId) => this.props.renameCollection(collectionId)}
                   removeCollection={(collectionId) => this.props.removeCollection(collectionId)}
