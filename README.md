@@ -7,9 +7,7 @@
 
 A event-driven platform in which users can discover, curate and share news stories. In an effort to combat the increasingly pessisistic view of news sources, the application allows users to have unfiltered access to over [5,000+ news sources](https://newsapi.org/sources). See a stream of activity from other users. Uncover insights of what your fellow citizens are reading and sharing at the News Spot.
 
-
-
-[LIVE Demo](#)
+[LIVE Demo](http://newsspot.netlify.com/)
 
 
 ## TECH STACK
