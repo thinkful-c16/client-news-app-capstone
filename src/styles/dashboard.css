@@ -3,6 +3,26 @@
   margin-left: 35px;
 }
 
+.loadingBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(51, 54, 59, 0.8);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.loadingBar h1{
+  font-size: 2em;
+  color: #cae4db;
+  width: 100%;
+}
+
 @media only screen 
 and (min-device-width : 768px) {
 

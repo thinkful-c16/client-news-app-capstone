@@ -16,6 +16,12 @@ const matchesPassword = matches('password');
 
 export class RegistrationForm extends React.Component {
 
+  componentWillUpdate() {
+    if (this.props.error !== null) {
+      alert(this.props.error.message)
+    }
+  }
+
   responseGoogle (googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
     console.log({accessToken: id_token});
@@ -140,7 +146,8 @@ export class RegistrationForm extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  loggedIn: state.auth.currentUser !== null
+  loggedIn: state.auth.currentUser !== null,
+  error: state.auth.error
 })
 
 RegistrationForm = connect(mapStateToProps)(RegistrationForm);
