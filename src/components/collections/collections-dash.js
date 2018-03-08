@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
 import FontAwesome from 'react-fontawesome';
-import shortid from 'shortid';
 import FeaturedCollection from './featured-collection';
 import AllCollections from './all-collections';
 import CollectionsCreateModal from './collections-create-modal';

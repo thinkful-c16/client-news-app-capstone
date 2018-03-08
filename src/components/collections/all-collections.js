@@ -1,5 +1,4 @@
 import React from 'react';
-import Media from 'react-media';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
 import CollectionsDropdown from './collections-dropdown';
@@ -8,9 +7,6 @@ import FontAwesome from 'react-fontawesome';
 import shortid from 'shortid';
 
 export class AllCollections extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
 

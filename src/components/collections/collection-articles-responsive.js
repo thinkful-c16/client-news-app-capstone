@@ -1,8 +1,6 @@
 import React from 'react';
-import Media from 'react-media';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
-import FontAwesome from 'react-fontawesome';
 import shortid from 'shortid';
 
 import CollectionsDropdown from './collections-dropdown';

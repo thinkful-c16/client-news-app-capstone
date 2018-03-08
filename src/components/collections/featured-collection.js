@@ -1,15 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
-import FontAwesome from 'react-fontawesome';
 import shortid from 'shortid';
 
 import CollectionsDropdown from './collections-dropdown';
 
 export class FeaturedCollection extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
 
@@ -46,8 +42,6 @@ export class FeaturedCollection extends React.Component {
       })
     }
     if (this.props.collections[this.props.featuredCollectionIndex].collectionArticles.length === 0) {
-
-      const collectionId = this.props.collections[this.props.featuredCollectionIndex]._id;
 
       featArticle =
         <div className="featured-article">
