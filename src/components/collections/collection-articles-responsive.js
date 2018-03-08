@@ -5,6 +5,8 @@ import requiresLogin from '../requires-login';
 import FontAwesome from 'react-fontawesome';
 import shortid from 'shortid';
 
+import CollectionsDropdown from './collections-dropdown';
+
 export class CollectionArticlesResponsive extends React.Component {
 
   render() {
@@ -20,9 +22,12 @@ export class CollectionArticlesResponsive extends React.Component {
           <li>
           {article.title}
           </li>
-          <a className='remove-article' onClick={() => this.props.removeArticle(collectionId, articleId)}>
-              <FontAwesome name='minus-circle' />
-          </a>
+          <CollectionsDropdown dropDownType="article"
+            collectionId={collectionId}
+            articleId={articleId}
+            article={article}
+            removeArticle={(collectionId, articleId) => this.props.removeArticle(collectionId, articleId)}
+          />
         </div>
       )
     })
