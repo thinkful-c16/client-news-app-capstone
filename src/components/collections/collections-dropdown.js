@@ -2,12 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
 import FontAwesome from 'react-fontawesome';
+import classNames from 'classnames';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  RedditShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  RedditIcon
+} from 'react-share';
+import {shareActivity} from '../../actions/activity';
 import '../../styles/listitem.css';
 
 export class CollectionsDropdown extends React.Component {
   constructor(props) {
+    super(props);
     this.state = {
-      dropdownClass: 'hidden'
+      dropdownClass: 'hidden',
+      socialDropClass: 'hidden'
     }
     super(props);
 
@@ -24,8 +38,7 @@ export class CollectionsDropdown extends React.Component {
 
   componentDidMount() {
     this.setState({
-      dropdownClass: 'hidden',
-      saveToCollectionClass: 'hidden'
+      dropdownClass: 'hidden'
     })
     document.addEventListener('mousedown', this.handleOutsideClick);
   }
@@ -119,17 +132,18 @@ export class CollectionsDropdown extends React.Component {
                     url={this.props.article.url} />
                 </div>
               </div>
-              <a className='remove-article' onClick={() => this.props.removeArticle(collectionId, articleId)}>
+              <a className='remove-article' onClick={() => this.props.removeArticle(this.props.collectionId, this.props.articleId)}>
                 <FontAwesome name='minus-circle' />
+                <span>Remove Article</span>
               </a>
             </div>
           ) : (
-            <div id={this.props.id} className={classNames(this.state.dropdownClass, 'dropcontent')} ref={this.props.id}>
-              <a onClick={() => this.props.renameCollection(collectionId)}>
-                <FontAwesome name='minus-circle' />
-                <span>Rename collection</span>
+            <div id={this.props.collectionId} className={classNames(this.state.dropdownClass, 'dropcontent')} ref={this.props.collectionId}>
+              <a onClick={() => this.props.renameCollection(this.props.collectionId)}>
+                <FontAwesome name='edit' />
+                <span>Rename Collection</span>
               </a>
-              <a className='remove-collection' onClick={() => this.props.removeCollection(data._id)}>
+              <a className='remove-collection' onClick={() => this.props.removeCollection(this.props.collectionId)}>
                   <FontAwesome name='minus-circle' />
                   <span>Remove Collection</span>
                 </a>
@@ -140,3 +154,5 @@ export class CollectionsDropdown extends React.Component {
   }
 
 }
+
+export default requiresLogin()(connect()(CollectionsDropdown));

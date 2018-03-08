@@ -4,6 +4,8 @@ import requiresLogin from '../requires-login';
 import FontAwesome from 'react-fontawesome';
 import shortid from 'shortid';
 
+import CollectionsDropdown from './collections-dropdown';
+
 export class FeaturedCollection extends React.Component {
   constructor(props) {
     super(props);
@@ -22,10 +24,11 @@ export class FeaturedCollection extends React.Component {
         <div className="featured-article">
           <h1>{this.props.collections[this.props.featuredCollectionIndex].collectionTitle}</h1>
           <img src={this.props.collections[this.props.featuredCollectionIndex].collectionArticles[this.props.featuredArticleIndex].image} alt={this.props.collections[this.props.featuredCollectionIndex].collectionArticles[this.props.featuredArticleIndex].title}/>
-          <div className="edit-title" onClick={() => this.props.renameCollection(collectionId)}>
-            <FontAwesome name='edit'/>
-            <p>edit title</p>
-          </div>
+          <CollectionsDropdown dropDownType="collection"
+            collectionId={collectionId}
+            renameCollection={(collectionId) => this.props.renameCollection(collectionId)}
+            removeCollection={(collectionId) => this.props.removeCollection(collectionId)}
+          />
         </div>
 
       featArticleList = this.props.collections[this.props.featuredCollectionIndex].collectionArticles.map((data, index) => {
