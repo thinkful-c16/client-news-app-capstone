@@ -163,7 +163,15 @@ export class CollectionsDropdown extends React.Component {
             </div>
           )}
           { this.state.isModalVisible &&
-            <CollectionsDeleteModal collection={this.props.collection} article={this.props.article} deleteType={this.props.dropDownType} onCloseModal={this.deleteModalToggle} removeArticle={(collectionId, articleId) => this.props.removeArticle(collectionId, articleId)}/>
+            <CollectionsDeleteModal 
+              collection={this.props.collection}
+              collectionId={this.props.collectionId}
+              article={this.props.article}
+              articleId={this.props.articleId}
+              deleteType={this.props.dropDownType}
+              onCloseModal={this.deleteModalToggle}
+              removeCollection={(collectionId) => this.props.removeCollection(collectionId)}
+              removeArticle={(collectionId, articleId) => this.props.removeArticle(collectionId, articleId)}/>
           }
         </div>
     )

@@ -38,7 +38,7 @@ export class FeaturedCollection extends React.Component {
               collection={collection}
               articleId={articleId}
               article={data}
-              removeArticle={(collectionId, articleId) => this.removeArticle(collectionId, articleId)}
+              removeArticle={(collectionId, articleId) => this.props.removeArticle(collectionId, articleId)}
             />
           </div>
         )
