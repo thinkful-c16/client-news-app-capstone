@@ -25,6 +25,12 @@ export class LoginForm extends React.Component {
     return this.props.dispatch(login(values.email, values.password));
   }
 
+  componentWillUpdate(){
+    if (this.props.error !== null){
+      alert('Wrong username or password! Please try again')
+    }
+  }
+
   render(){
 
     if (this.props.loggedIn) {
@@ -101,7 +107,8 @@ export class LoginForm extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  loggedIn: state.auth.currentUser !== null
+  loggedIn: state.auth.currentUser !== null,
+  error: state.auth.error
 })
 
 LoginForm = connect(mapStateToProps)(LoginForm)
