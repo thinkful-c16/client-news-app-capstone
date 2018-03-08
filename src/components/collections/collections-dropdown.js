@@ -106,9 +106,15 @@ export class CollectionsDropdown extends React.Component {
             <FontAwesome name='chevron-circle-down' />
           </div>
           { this.props.dropDownType === "article" ? (
-            <div id={this.props.id} className={classNames(this.state.dropdownClass, 'collections-dropcontent')} ref={this.props.id}>
-              <a target="_blank" href={this.props.article.url}>Read article on {this.props.article.source.name}</a>
-              <a href="#" onMouseOver={this.toggleSocial} onClick={this.toggleSocial}>Share to Social Media</a>
+            <div id={this.props.id} className={classNames(this.state.dropdownClass, 'collections-article-dropcontent')} ref={this.props.id}>
+              <a target="_blank" href={this.props.article.url}>
+                <FontAwesome name='book' />
+                <span>Read article on {this.props.article.source.name}</span>
+              </a>
+              <a href="#" onMouseOver={this.toggleSocial} onClick={this.toggleSocial}>
+                <FontAwesome name='share' />
+                <span>Share to Social Media</span>
+              </a>
               <div className={classNames(this.state.socialDropClass, 'social-content')}>
                 <div onClick={this.shareTwitter}>
                   <TwitterShareButton
@@ -137,7 +143,7 @@ export class CollectionsDropdown extends React.Component {
               </a>
             </div>
           ) : (
-            <div id={this.props.collectionId} className={classNames(this.state.dropdownClass, 'collections-dropcontent')} ref={this.props.collectionId}>
+            <div id={this.props.collectionId} className={classNames(this.state.dropdownClass, 'collections-collection-dropcontent')} ref={this.props.collectionId}>
               <a onClick={() => this.props.renameCollection(this.props.collectionId)}>
                 <FontAwesome name='edit' />
                 <span>Rename Collection</span>

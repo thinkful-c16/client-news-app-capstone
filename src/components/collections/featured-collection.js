@@ -35,9 +35,12 @@ export class FeaturedCollection extends React.Component {
             <li onClick={() => this.props.changeFeaturedArticle(index)}>
             {data.title}
             </li>
-            <a className='remove-article' onClick={() => this.props.removeArticle(collectionId, articleId)}>
-                <FontAwesome name='minus-circle' />
-            </a>
+            <CollectionsDropdown dropDownType="article"
+              collectionId={collectionId}
+              articleId={articleId}
+              article={data}
+              removeArticle={(collectionId, articleId) => this.props.removeArticle(collectionId, articleId)}
+            />
           </div>
         )
       })
@@ -49,10 +52,6 @@ export class FeaturedCollection extends React.Component {
       featArticle =
         <div className="featured-article">
           <h1>{this.props.collections[this.props.featuredCollectionIndex].collectionTitle}</h1>
-          <div className="edit-title" onClick={() => this.renameCollection(collectionId)}>
-            <FontAwesome name='edit'/>
-            <p>edit title</p>
-          </div>
         </div>
 
       featArticleList =
