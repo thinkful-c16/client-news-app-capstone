@@ -18,7 +18,21 @@ export class Dashboard extends React.Component{
     this.state = {
       dashboardHeader: null,
       feedClass: 'max',
-      feedButton: <FontAwesome name='chevron-circle-right' />,
+      feedButton:
+        <div className="arrows"> 
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+        </div>,
       activityContent: <Explore />
     }
     this.simpleSearch = this.simpleSearch.bind(this);
@@ -69,12 +83,40 @@ export class Dashboard extends React.Component{
 	toggleFeedClass(){
 		if(this.state.feedClass === "max") {
       this.setState({feedClass: "min",
-      feedButton: <FontAwesome name='chevron-circle-left' />,
-      activityContent: '...'})
+      feedButton: 
+      <div className="arrows"> 
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+      </div>,
+      activityContent: ''})
 		}
 		else {
       this.setState({feedClass: "max",
-      feedButton: <FontAwesome name='chevron-circle-right' />,
+      feedButton: 
+        <div className="arrows"> 
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+        </div>,
       activityContent: <Explore />})
 		}
 	}

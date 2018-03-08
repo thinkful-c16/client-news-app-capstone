@@ -51,17 +51,17 @@ export class NavLinks extends React.Component {
                 </div>
                 <div className={classNames(this.state.mobileDropClass, 'mobile-nav-drop')}>
                   <div className="mobile-links">
-                    <Link to="/dashboard">Dashboard</Link>
-                    <Link to="/collections">My Collections</Link>
-                    <Link to="/explore">Activity</Link>
-                    <a onClick={() => this.logOut()}>Log Out</a>
+                    <Link to="/dashboard">DASHBOARD</Link>
+                    <Link to="/collections">MY COLLECTIONS</Link>
+                    <Link to="/explore">ACTIVITY</Link>
+                    <a onClick={() => this.logOut()}>LOG OUT</a>
                   </div>
                 </div>
               </div>
             ) : (
               <div className="desktop-links">
-                <Link to="/dashboard">Dashboard</Link>
-                <Link to ="/collections">My Collections</Link>
+                <Link to="/dashboard">DASHBOARD</Link>
+                <Link to ="/collections">MY COLLECTIONS</Link>
               </div>
             )
           }

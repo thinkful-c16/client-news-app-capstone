@@ -87,7 +87,7 @@ export class LoginForm extends React.Component {
               </button>
               <div className="memory">
                 <p><input id="checkBox" type="checkbox" /> Remember Me</p>
-                <a href="#">Forgot Password?</a>
+                <a>Forgot Password?</a>
               </div>
             </form>
           </div>
