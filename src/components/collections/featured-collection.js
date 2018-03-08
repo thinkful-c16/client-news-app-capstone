@@ -24,11 +24,6 @@ export class FeaturedCollection extends React.Component {
         <div className="featured-article">
           <h1>{this.props.collections[this.props.featuredCollectionIndex].collectionTitle}</h1>
           <img src={this.props.collections[this.props.featuredCollectionIndex].collectionArticles[this.props.featuredArticleIndex].image} alt={this.props.collections[this.props.featuredCollectionIndex].collectionArticles[this.props.featuredArticleIndex].title}/>
-          <CollectionsDropdown dropDownType="collection"
-            collectionId={collectionId}
-            renameCollection={(collectionId) => this.props.renameCollection(collectionId)}
-            removeCollection={(collectionId) => this.props.removeCollection(collectionId)}
-          />
         </div>
 
       featArticleList = this.props.collections[this.props.featuredCollectionIndex].collectionArticles.map((data, index) => {

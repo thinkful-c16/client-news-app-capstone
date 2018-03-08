@@ -7,8 +7,6 @@ import CollectionArticlesResponsive from './collection-articles-responsive';
 import FontAwesome from 'react-fontawesome';
 import shortid from 'shortid';
 
-import '../../styles/listitem.css';
-
 export class AllCollections extends React.Component {
   constructor(props) {
     super(props);

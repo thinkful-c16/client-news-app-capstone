@@ -130,6 +130,10 @@ and (min-device-width : 768px) {
   z-index: 1;
 }
 
+.collections-detail-parent {
+  margin-bottom: 20px;
+}
+
 .all-collections-detail {
   display: flex;
   flex-direction: row;
@@ -229,11 +233,6 @@ and (min-device-width : 768px) {
   cursor: pointer;
 }
 
-.remove-collection svg:hover {
-  height: 40px;
-  width: 40px;
-}
-
 .edit-title {
   position: absolute;
   z-index: 3;
@@ -264,6 +263,70 @@ and (min-device-width : 768px) {
 
 .collection-articles {
   display: none;
+}
+
+.collections-dropdown {
+  order: 3;
+	display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.collections-dropcontent {
+  position: absolute;
+  margin-left: 50px;
+  overflow: visible !important;
+}
+
+.collections-dropcontent, .social-content {
+	z-index: 5;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	overflow: visible !important;
+}
+
+.collections-dropcontent a, .social-content a {
+	z-index: 5;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+}
+
+.collections-dropcontent a {
+	display: block;
+}
+
+.social-content {
+  text-align: center;
+}
+
+.SocialMediaShareButton, .SocialMediaShareButton div {
+	display: inline;
+	padding: 2px;
+}
+
+.social-icon:hover {
+	cursor: pointer;
+}
+
+.collections-dropcontent a:hover, .social-content a:hover {
+	background-color: #ddd;
+}
+
+.collections-dropbtn {
+	z-index: 4;
+	background-color: transparent;
+	color: rgba(202, 228, 219, 1.0);
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	font-size: 30px;
+	width: 100%;
+}
+
+.collections-dropbtn:hover, .collections-dropbtn:focus {
+	color: rgba(202, 228, 219, 0.7);
 }
 
 }

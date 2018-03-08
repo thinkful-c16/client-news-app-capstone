@@ -14,7 +14,6 @@ import {
   RedditIcon
 } from 'react-share';
 import {shareActivity} from '../../actions/activity';
-import '../../styles/listitem.css';
 
 export class CollectionsDropdown extends React.Component {
   constructor(props) {
@@ -102,12 +101,12 @@ export class CollectionsDropdown extends React.Component {
 
   render() {
     return (
-      <div className='dropdown' ref={this.setWrapperRef}>
-          <div className="dropbtn" onClick= {this.toggleDropdown}>
+      <div className='collections-dropdown' ref={this.setWrapperRef}>
+          <div className="collections-dropbtn" onClick= {this.toggleDropdown}>
             <FontAwesome name='chevron-circle-down' />
           </div>
           { this.props.dropDownType === "article" ? (
-            <div id={this.props.id} className={classNames(this.state.dropdownClass, 'dropcontent')} ref={this.props.id}>
+            <div id={this.props.id} className={classNames(this.state.dropdownClass, 'collections-dropcontent')} ref={this.props.id}>
               <a target="_blank" href={this.props.article.url}>Read article on {this.props.article.source.name}</a>
               <a href="#" onMouseOver={this.toggleSocial} onClick={this.toggleSocial}>Share to Social Media</a>
               <div className={classNames(this.state.socialDropClass, 'social-content')}>
@@ -138,7 +137,7 @@ export class CollectionsDropdown extends React.Component {
               </a>
             </div>
           ) : (
-            <div id={this.props.collectionId} className={classNames(this.state.dropdownClass, 'dropcontent')} ref={this.props.collectionId}>
+            <div id={this.props.collectionId} className={classNames(this.state.dropdownClass, 'collections-dropcontent')} ref={this.props.collectionId}>
               <a onClick={() => this.props.renameCollection(this.props.collectionId)}>
                 <FontAwesome name='edit' />
                 <span>Rename Collection</span>
