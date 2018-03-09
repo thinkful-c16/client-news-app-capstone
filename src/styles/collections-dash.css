@@ -451,7 +451,7 @@ and (max-device-width : 768px) {
 		justify-content: center;
 	}
 
-	.dropbtn {
+	.collections-dropbtn {
 		color: #00303f;
 		font-size: 2em;
 	}
@@ -475,6 +475,10 @@ and (max-device-width : 768px) {
 		padding-bottom: 3%;
 		color: #00303f;
 		font-weight: 700;
+  }
+  
+  .collections-collection-dropcontent span, .collections-article-dropcontent span {
+    padding-left: 4px;
 	}
 	
 	.social-content {
