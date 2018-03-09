@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from '../requires-login';
 import FontAwesome from 'react-fontawesome';
-import * as actions from '../../actions/collections';
 
 import '../../styles/collections-modal.css'
 

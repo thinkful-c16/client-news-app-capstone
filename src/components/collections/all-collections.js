@@ -22,7 +22,7 @@ export class AllCollections extends React.Component {
         if (data.collectionArticles.length !== 0 && data.collectionArticles[0].image) {
 
           return (
-            <div className="collections-detail-parent">
+            <div key={shortid.generate()} className="collections-detail-parent">
               <div className={index === parseInt(this.props.featuredCollectionIndex, 10)? 'selected-all-collections-detail' : 'all-collections-detail'} key={shortid.generate()}>
                 <div className="list-img">
                   <img src={data.collectionArticles[0].image} alt={data.collectionArticles[0].title}/>
