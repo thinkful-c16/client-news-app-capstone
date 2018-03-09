@@ -14,6 +14,7 @@
 
 .modal-div h3 {
   text-align: center;
+  margin-top: 10%;
 }
 
 .modal-close-clickable {
@@ -59,8 +60,25 @@
   border: none;
   border-radius: 5px;
   height: 40px;
-  width: 200px;
-  background-color: #2980B9;
+  width: 100%;
+  background-color: #00303f;
+  color: white;
+}
+
+.modal-delete-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-delete-buttons button {
+  height: 40px;
+  width: 90%;
+  margin-top: 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #00303f;
   color: white;
 }
 
@@ -93,4 +111,13 @@
   left: 0px;
   z-index: 9998;
   background: rgba(0, 0, 0, 0.5);
+}
+
+@media only screen 
+and (max-device-width : 768px) {
+
+  .modal-div h3 {
+    margin-top: 20%;
+  }
+
 }
