@@ -138,6 +138,7 @@ export class ListItem extends React.Component{
       return ( 
       <li className="article-list">
         <div className="li-container">
+          <div className="overlay"></div>
           { this.props.article.image ? (
             <img src={this.props.article.image} alt={this.props.article.title} />
           ) : (
