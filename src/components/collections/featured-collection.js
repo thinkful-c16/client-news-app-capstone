@@ -20,6 +20,7 @@ export class FeaturedCollection extends React.Component {
 
       featArticle =
         <div className="featured-article">
+          <div className="overlay"></div>
           <h1>{this.props.collections[this.props.featuredCollectionIndex].collectionTitle}</h1>
           <img src={this.props.collections[this.props.featuredCollectionIndex].collectionArticles[this.props.featuredArticleIndex].image} alt={this.props.collections[this.props.featuredCollectionIndex].collectionArticles[this.props.featuredArticleIndex].title}/>
         </div>
@@ -48,6 +49,7 @@ export class FeaturedCollection extends React.Component {
 
       featArticle =
         <div className="featured-article">
+          <div className="overlay"></div>
           <h1>{this.props.collections[this.props.featuredCollectionIndex].collectionTitle}</h1>
           <img src="../../images/default.png" alt="default"/>
         </div>
