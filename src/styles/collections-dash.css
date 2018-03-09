@@ -109,10 +109,10 @@ and (min-device-width : 768px) {
   display: flex;
   align-items: center;
   padding-left: 20px;
-  font-weight: bold;
 }
 
 .selected-article-list-detail li {
+  font-weight: bold;
   list-style-type: none;
   padding-right: 10px;
 }
