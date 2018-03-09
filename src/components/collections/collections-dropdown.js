@@ -119,7 +119,7 @@ export class CollectionsDropdown extends React.Component {
                 <FontAwesome name='book' />
                 <span>Read article on {this.props.article.source.name}</span>
               </a>
-              <a onMouseOver={this.toggleSocial} onClick={this.toggleSocial}>
+              <a onClick={this.toggleSocial}>
                 <FontAwesome name='share' />
                 <span>Share to Social Media</span>
               </a>
