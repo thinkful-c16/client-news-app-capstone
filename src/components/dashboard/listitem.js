@@ -138,7 +138,11 @@ export class ListItem extends React.Component{
       return ( 
       <li className="article-list">
         <div className="li-container">
-          <img src={this.props.article.image} alt={this.props.article.title} />
+          { this.props.article.image ? (
+            <img src={this.props.article.image} alt={this.props.article.title} />
+          ) : (
+            <img src="../../images/default.png" alt="default"/>
+          )}
           <h2>{this.props.article.title}</h2>
         </div>
         <div className='dropdown' ref={this.setWrapperRef}>

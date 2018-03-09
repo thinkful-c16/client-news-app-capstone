@@ -46,6 +46,9 @@ export class AllCollections extends React.Component {
           return (
             <div className="collections-detail-parent">
               <div className={index === parseInt(this.props.featuredCollectionIndex, 10)? 'selected-all-collections-detail' : 'all-collections-detail'} key={shortid.generate()}>
+              <div className="list-img">
+                  <img src="../../images/default.png" alt="default"/>
+                </div>
                 <a className='all-collections-title' onClick={() => this.props.changeFeaturedCollection(index)}>
                   <li>{data.collectionTitle}</li>
                 </a>

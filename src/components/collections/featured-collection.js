@@ -49,6 +49,7 @@ export class FeaturedCollection extends React.Component {
       featArticle =
         <div className="featured-article">
           <h1>{this.props.collections[this.props.featuredCollectionIndex].collectionTitle}</h1>
+          <img src="../../images/default.png" alt="default"/>
         </div>
 
       featArticleList =
