@@ -203,6 +203,7 @@ and (max-device-width : 768px) {
 		display: flex; 
 		flex-direction: column;
 		text-align: right;
+		padding: 2%;
 	}
 
 	.dropcontent a {
@@ -212,9 +213,21 @@ and (max-device-width : 768px) {
 		padding-bottom: 3%;
 		color: #00303f;
 		font-weight: 700;
+		border-bottom: 2px solid black;
+	}
+
+	.collections-dropcontent {
+		display: flex;
+		flex-direction: column;
+		background-color: #f1f1f1;
+	}
+
+	.collections-dropcontent a {
+		border: none;
 	}
 	
 	.social-content {
+		background-color: #f1f1f1;
 		width: 100%;
 		align-items: right !important;
 	}
