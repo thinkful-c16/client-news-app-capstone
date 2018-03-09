@@ -119,10 +119,14 @@ and (min-device-width : 768px) {
 	background-color: #ddd;
 }
 
+.dropcontent a:hover {
+	cursor: pointer;
+}
+
 .dropbtn {
 	z-index: 4;
 	background-color: transparent;
-	color: rgba(51, 54, 59, 1.0);
+	color: rgba(249, 248, 253, 1);
 	border-radius: 8px;
 	border: none;
 	cursor: pointer;
@@ -185,7 +189,7 @@ and (max-device-width : 768px) {
 	}
 
 	.dropbtn {
-		color: #00303f;
+		color: rgba(249, 248, 253, 1);
 		font-size: 2em;
 	}
 

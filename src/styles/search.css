@@ -45,11 +45,15 @@
   border: 1px solid #33363b;
 }
 
-.search-icon, .search-options-icon {
+.search-icon, .search-options-icon, .trash-icon {
   color: rgba(51, 54, 59, 1.0)
 }
 
-.search-options-icon {
+.search-icon:hover, .search-options-icon:hover, .trash-icon:hover {
+  cursor: pointer;
+}
+
+.search-options-icon, .trash-icon {
   font-size: 0.5em;
   margin-top: 2px;
 }

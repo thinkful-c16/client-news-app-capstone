@@ -4,6 +4,10 @@ import FontAwesome from 'react-fontawesome';
 
 export class SearchAdvanced extends React.Component {
 
+  resetField(){
+    document.getElementById('searchInput').value= "";
+  }
+
   render() {
     return (
       <div className="advanced-search-div">
@@ -20,6 +24,9 @@ export class SearchAdvanced extends React.Component {
           <option value="sports">sports</option>
           <option value="technology">technology</option>
         </select>
+        <button className="trash-icon" onClick={this.resetField}>
+            <FontAwesome name='trash-alt' size='2x' />
+        </button>
       </div>
     )
   }
