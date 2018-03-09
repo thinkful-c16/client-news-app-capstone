@@ -1,3 +1,11 @@
+
+.collections-head {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+@media only screen 
+and (min-device-width : 768px) {
+
 .collections-dash-container {
   display: flex;
   flex-direction: column;
@@ -5,6 +13,7 @@
 
 .collections-head {
   order: 1;
+  margin-left: 2%;
 }
 
 .noCollections-dash-container h1 {
@@ -21,6 +30,7 @@
 .add-collection-div {
   display: flex;
   align-items: center;
+  margin-left: 2%;
 }
 
 .add-collection-div a {
@@ -72,15 +82,17 @@
 }
 
 .featured-article-list {
-  order: 2;
-  width: 40%;
   display: flex;
   flex-direction: column;
+  order: 2;
+  width: 40%;
+  height: 100%;
+  overflow: scroll;
 }
 
 .article-list-detail {
   border-bottom: 1px solid black;
-  height: 70px;
+  height: 10%;
   display: flex;
   align-items: center;
   padding-left: 20px;
@@ -93,14 +105,14 @@
 
 .selected-article-list-detail {
   border-bottom: 1px solid black;
-  height: 70px;
+  height: 10%;
   display: flex;
   align-items: center;
   padding-left: 20px;
-  font-weight: bold;
 }
 
 .selected-article-list-detail li {
+  font-weight: bold;
   list-style-type: none;
   padding-right: 10px;
 }
@@ -120,6 +132,10 @@
   min-width: 100%;
   min-height: 100%;
   z-index: 1;
+}
+
+.collections-detail-parent {
+  margin-bottom: 20px;
 }
 
 .all-collections-detail {
@@ -211,19 +227,9 @@
   cursor: pointer;
 }
 
-.remove-article svg:hover {
-  height: 40px;
-  width: 40px;
-}
-
 .remove-collection {
   color: red;
   cursor: pointer;
-}
-
-.remove-collection svg:hover {
-  height: 40px;
-  width: 40px;
 }
 
 .edit-title {
@@ -248,4 +254,244 @@
 .edit-title p:hover {
   font-weight: bold;
   cursor: pointer;
+}
+
+.selected-collection-articles {
+  display: none;
+}
+
+.collection-articles {
+  display: none;
+}
+
+.collections-dropdown {
+  order: 3;
+	display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.collections-collection-dropcontent {
+  position: absolute;
+  margin-left: 50px;
+  overflow: visible !important;
+}
+
+.collections-article-dropcontent {
+  position: absolute;
+  margin-top: 50px;
+  right: 0;
+  overflow: visible !important;
+}
+
+.collections-collection-dropcontent, .collections-article-dropcontent, .social-content {
+	z-index: 5;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	overflow: visible !important;
+}
+
+.collections-collection-dropcontent a, .collections-article-dropcontent a, .social-content a {
+	z-index: 5;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+}
+
+.collections-collection-dropcontent a:hover, .collections-article-dropcontent a:hover, .social-content a:hover {
+	cursor: pointer;
+}
+
+.collections-collection-dropcontent a, .collections-article-dropcontent a {
+	display: block;
+}
+
+.collections-collection-dropcontent span, .collections-article-dropcontent span {
+	padding-left: 8px;
+}
+
+.social-content {
+  text-align: center;
+}
+
+.SocialMediaShareButton, .SocialMediaShareButton div {
+	display: inline;
+	padding: 2px;
+}
+
+.social-icon:hover {
+	cursor: pointer;
+}
+
+.collections-collection-dropcontent a:hover, .collections-article-dropcontent a:hover, .social-content a:hover {
+	background-color: #ddd;
+}
+
+.collections-dropbtn {
+	z-index: 4;
+	background-color: transparent;
+	color: rgba(202, 228, 219, 1.0);
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	font-size: 30px;
+	width: 100%;
+}
+
+.collections-dropbtn:hover, .collections-dropbtn:focus {
+	color: rgba(202, 228, 219, 0.7);
+}
+
+}
+
+@media only screen 
+and (max-device-width : 768px) {
+
+  .add-collection-div {
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+  }
+
+  .add-collection-div h3 {
+    padding-left: 2%;
+  }
+
+  .collections-head {
+    text-align: center;
+    font-size: 24px;
+  }
+
+  .featured-article {
+    display: none;
+  }
+
+  .featured-article-list {
+    display: none;
+  }
+
+  .all-collections-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .all-collections-list img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .list-img {
+    width: 25%;
+    height: 100%;
+  }
+
+  .all-collections-detail {
+    height: 90px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    background-color: rgba(51, 54, 59, 0.2);
+    margin-bottom: 5vh;
+  }
+
+  .selected-all-collections-detail {
+    height: 90px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    background-color: rgba(51, 54, 59, 0.2);
+    margin-bottom: 2vh;
+  }
+
+  .selected-all-collections-detail li {
+    font-weight: bold;
+  }
+
+  .all-collections-title {
+    font-size: 24px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .selected-collection-articles {
+    list-style-type: none;
+    display: flex;
+    margin-bottom: 2vh;
+    color: #33363b;
+    font-weight: bold;
+  }
+
+  .responsive-article-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .responsive-article-list-detail {
+    display: flex;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    border-bottom: 2px solid black;
+  }
+
+  .collection-articles {
+    display: none;
+  }
+
+  .collections-dropdown {
+		order: 2;
+		display: flex;
+		flex-wrap: wrap;
+		min-width: 15%;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.collections-dropbtn {
+		color: #00303f;
+		font-size: 2em;
+	}
+
+	.collections-collection-dropcontent, .collections-article-dropcontent {
+		border-radius: 5px;
+		background-color: #cae4db;
+		z-index: 5;
+		position: absolute;
+    right: 0;
+		margin-top: 70px;
+		display: flex; 
+		flex-direction: column;
+		text-align: right;
+  }
+
+	.collections-collection-dropcontent a, .collections-article-dropcontent a {
+		text-decoration: none;
+		padding-right: 5%;
+		padding-top: 1%;
+		padding-bottom: 3%;
+		color: #00303f;
+		font-weight: 700;
+  }
+  
+  .collections-collection-dropcontent span, .collections-article-dropcontent span {
+    padding-left: 4px;
+	}
+	
+	.social-content {
+		width: 100%;
+		align-items: right !important;
+	}
+
+	.social-content div {
+		padding: 2%;
+		align-self: right !important;
+	}
+
+	.social-content div div {
+		align-content: right !important;
+	}
+
 }

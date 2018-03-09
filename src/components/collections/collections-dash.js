@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
 import FontAwesome from 'react-fontawesome';
-import shortid from 'shortid';
 import FeaturedCollection from './featured-collection';
 import AllCollections from './all-collections';
 import CollectionsCreateModal from './collections-create-modal';
@@ -110,12 +109,15 @@ export class CollectionsDashboard extends React.Component {
                 featuredArticleIndex={this.state.featuredArticleIndex}
                 renameCollection={(collectionId) => this.renameCollection(collectionId)}
                 changeFeaturedArticle={(articleIndex) => this.changeFeaturedArticle(articleIndex)}
+                removeCollection={(collectionId) => this.removeCollection(collectionId)}
                 removeArticle={(collectionId, articleId) => this.removeArticle(collectionId, articleId)}
               />
               <AllCollections
                 featuredCollectionIndex={this.state.featuredCollectionIndex} 
                 changeFeaturedCollection={(collectionIndex) => this.changeFeaturedCollection(collectionIndex)}
                 removeCollection={(collectionId) => this.removeCollection(collectionId)}
+                renameCollection={(collectionId) => this.renameCollection(collectionId)}
+                removeArticle={(collectionId, articleId) => this.removeArticle(collectionId, articleId)}
               />
             </div>
 

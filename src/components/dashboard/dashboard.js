@@ -18,7 +18,21 @@ export class Dashboard extends React.Component{
     this.state = {
       dashboardHeader: null,
       feedClass: 'max',
-      feedButton: <FontAwesome name='chevron-circle-right' />,
+      feedButton:
+        <div className="arrows"> 
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+        </div>,
       activityContent: <Explore />
     }
     this.simpleSearch = this.simpleSearch.bind(this);
@@ -69,17 +83,48 @@ export class Dashboard extends React.Component{
 	toggleFeedClass(){
 		if(this.state.feedClass === "max") {
       this.setState({feedClass: "min",
-      feedButton: <FontAwesome name='chevron-circle-left' />,
-      activityContent: '...'})
+      feedButton: 
+      <div className="arrows"> 
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+        <FontAwesome name='chevron-circle-left' />
+      </div>,
+      activityContent: ''})
 		}
 		else {
       this.setState({feedClass: "max",
-      feedButton: <FontAwesome name='chevron-circle-right' />,
+      feedButton: 
+        <div className="arrows"> 
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+          <FontAwesome name='chevron-circle-right' />
+        </div>,
       activityContent: <Explore />})
 		}
 	}
 
   render() {
+
+    let content; 
+
     const myList = this.props.headlines;
 
     const headlinesList = myList.map(headline => {
@@ -100,26 +145,39 @@ export class Dashboard extends React.Component{
         collections={this.props.collections}
       />
     });
-    
-    return(
-      <div className='dashboard'>
-        <Search onSimpleSearch={input => this.simpleSearch(input)} onAdvancedSearch={(input, category) => this.advancedSearch(input, category)}/>
-        <div className='main-section-dash'>
-          <div className='newsfeed-container'>
-            <h2 className="main-newsfeed-head">{this.state.dashboardHeader}</h2>
-            <ul className='headlines-list'>
-              {headlinesList}
-            </ul>
-          </div>
-          <div className={classNames('activity-feed-container', this.state.feedClass)}>
-            <div className='feed-btn' onClick={this.toggleFeedClass}>
-              {this.state.feedButton}
+
+    if (this.props.api === true) {
+      content = 
+        <div className="loadingBar">
+          <h1>Loading...</h1>
+        </div>
+    }
+
+    if(this.props.api === false) {
+      content =
+        <div className='dashboard'>
+          <Search onSimpleSearch={input => this.simpleSearch(input)} onAdvancedSearch={(input, category) => this.advancedSearch(input, category)}/>
+          <div className='main-section-dash'>
+            <div className='newsfeed-container'>
+              <h2 className="main-newsfeed-head">{this.state.dashboardHeader}</h2>
+              <ul className='headlines-list'>
+                {headlinesList}
+              </ul>
             </div>
-            <div className='activity'>
-              {this.state.activityContent}
+            <div className={classNames('activity-feed-container', this.state.feedClass)}>
+              <div className='feed-btn' onClick={this.toggleFeedClass}>
+                {this.state.feedButton}
+              </div>
+              <div className='activity'>
+                {this.state.activityContent}
+              </div>
             </div>
           </div>
         </div>
+    }
+    return(
+      <div>
+        {content}
       </div>
     )
   }
@@ -128,7 +186,9 @@ export class Dashboard extends React.Component{
 const mapStateToProps = (state, props) => {
   return {
     headlines: state.api.headlines,
-    collections: state.collections.collections
+    collections: state.collections.collections,
+    api: state.api.loading,
+    activity: state.activities.loading
   }
 }
 

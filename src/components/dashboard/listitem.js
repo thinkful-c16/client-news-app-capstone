@@ -128,11 +128,11 @@ export class ListItem extends React.Component{
     if (this.props.collections.length !== 0) {
       collectionsDropdownList = this.props.collections.map(collection => {
         return(
-          <a key={shortid.generate()} id={collection._id} href="#" onClick={this.onSaveToCollection}>{collection.collectionTitle}</a>
+          <a key={shortid.generate()} id={collection._id} onClick={this.onSaveToCollection}>{collection.collectionTitle}</a>
         )
       })
     } else {
-      collectionsDropdownList = <a href="#">No collections found! Make one!</a>
+      collectionsDropdownList = <a>No collections found! Make one!</a>
     }
 
       return ( 
@@ -148,11 +148,12 @@ export class ListItem extends React.Component{
           <div id={this.props.id} className={classNames(this.state.dropdownClass, 'dropcontent')} ref={this.props.id}>
             <a target="_blank" href={this.props.article.url}>Read article on {this.props.article.source.name}</a>
             <a onClick={this.modalToggle}>Save to New Collection</a>
-            <a href="#" onMouseOver={this.toggleSaveToCollection}>Save to Existing Collection</a>
+            <a onMouseOver={this.toggleSaveToCollection}>Save to Existing Collection</a>
             <div className={classNames(this.state.saveToCollectionClass, 'collections-dropcontent')}>
               {collectionsDropdownList}
             </div>
-            <a href="#" onMouseOver={this.toggleSocial} onClick={this.toggleSocial}>Share to Social Media</a>
+            <a onMouseOver={this.toggleSocial} onClick={this.toggleSocial}>Share to Social Media</a>
+
               <div className={classNames(this.state.socialDropClass, 'social-content')}>
                 <div onClick={this.shareTwitter}>
                   <TwitterShareButton
@@ -161,7 +162,7 @@ export class ListItem extends React.Component{
                 </div>
                 <div onClick={this.shareFacebook}>
                   <FacebookShareButton
-                    children={<FacebookIcon size={32} round={true} />}
+                    children={<FacebookIcon size={32} round={true} />} 
                     url={this.props.article.url}/>
                 </div>
                 <div onClick={this.shareLinkedin}>

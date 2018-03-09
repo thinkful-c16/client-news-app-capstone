@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
-import FontAwesome from 'react-fontawesome';
 import shortid from 'shortid';
 
+import CollectionsDropdown from './collections-dropdown';
+
 export class FeaturedCollection extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
 
@@ -16,16 +14,14 @@ export class FeaturedCollection extends React.Component {
 
     if (this.props.collections[this.props.featuredCollectionIndex].collectionArticles.length !== 0) {
 
+
       const collectionId = this.props.collections[this.props.featuredCollectionIndex]._id;
+      const collection = this.props.collections[this.props.featuredCollectionIndex];
 
       featArticle =
         <div className="featured-article">
           <h1>{this.props.collections[this.props.featuredCollectionIndex].collectionTitle}</h1>
           <img src={this.props.collections[this.props.featuredCollectionIndex].collectionArticles[this.props.featuredArticleIndex].image} alt={this.props.collections[this.props.featuredCollectionIndex].collectionArticles[this.props.featuredArticleIndex].title}/>
-          <div className="edit-title" onClick={() => this.props.renameCollection(collectionId)}>
-            <FontAwesome name='edit'/>
-            <p>edit title</p>
-          </div>
         </div>
 
       featArticleList = this.props.collections[this.props.featuredCollectionIndex].collectionArticles.map((data, index) => {
@@ -37,24 +33,22 @@ export class FeaturedCollection extends React.Component {
             <li onClick={() => this.props.changeFeaturedArticle(index)}>
             {data.title}
             </li>
-            <a className='remove-article' onClick={() => this.props.removeArticle(collectionId, articleId)}>
-                <FontAwesome name='minus-circle' />
-            </a>
+            <CollectionsDropdown dropDownType="article"
+              collectionId={collectionId}
+              collection={collection}
+              articleId={articleId}
+              article={data}
+              removeArticle={(collectionId, articleId) => this.props.removeArticle(collectionId, articleId)}
+            />
           </div>
         )
       })
     }
     if (this.props.collections[this.props.featuredCollectionIndex].collectionArticles.length === 0) {
 
-      const collectionId = this.props.collections[this.props.featuredCollectionIndex]._id;
-
       featArticle =
-        <div className="feature-article">
+        <div className="featured-article">
           <h1>{this.props.collections[this.props.featuredCollectionIndex].collectionTitle}</h1>
-          <div className="edit-title" onClick={() => this.renameCollection(collectionId)}>
-            <FontAwesome name='edit'/>
-            <p>edit title</p>
-          </div>
         </div>
 
       featArticleList =

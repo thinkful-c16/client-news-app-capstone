@@ -4,15 +4,28 @@
   justify-content: flex-end;
   padding-top: 4px;
   padding-bottom: 4px;
-  background-color: #33363b;
-  color: #f9f8fd;
+  border-top: 1px solid #33363b;
+  border-bottom: 1px solid #33363b;
+  background-color: #f9f8fd;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#categoryDropdown {
+  height: 20px;
+  border: 0px none;
+  background-color: #f9f8fd;
+  border-radius: 5px;
+  border: 1px solid #33363b;
 }
 
 .search-div button {
-  height: 28px;
+  height: 20px;
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 5px;
+  background-color: #f9f8fd;
+  border: 0px;
+  border: 1px solid #33363b;
 }
 .search-input {
   display: flex;
@@ -26,16 +39,41 @@
   width: 16em;
   margin-left: 5px;
   margin-right: 5px;
+  border: 0px;
+  background-color: #f9f8fd;
+  border-radius: 5px;
+  border: 1px solid #33363b;
+}
+
+.search-icon, .search-options-icon, .trash-icon {
+  color: rgba(51, 54, 59, 1.0)
+}
+
+.search-icon:hover, .search-options-icon:hover, .trash-icon:hover {
+  cursor: pointer;
+}
+
+.search-options-icon, .trash-icon {
+  font-size: 0.5em;
+  margin-top: 2px;
 }
 
 .search-message {
-  padding-top: 8px;
   font-weight: bold;
+  padding-top: 2px;
+  color: rgba(51, 54, 59, 1.0)
 }
 
 @media only screen 
 and (max-device-width : 768px) {
-  .search-div {
+  .search-message {
     display: none;
+  }
+  .search-div {
+    border-top: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 10px;
   }
 }

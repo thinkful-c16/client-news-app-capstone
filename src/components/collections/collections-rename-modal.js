@@ -4,7 +4,7 @@ import requiresLogin from '../requires-login';
 import FontAwesome from 'react-fontawesome';
 import * as actions from '../../actions/collections';
 
-import '../../styles/collections-create-modal.css'
+import '../../styles/collections-modal.css'
 
 export class CollectionsRenameModal extends React.Component {
   constructor(props) {
