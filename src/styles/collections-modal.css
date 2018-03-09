@@ -84,6 +84,17 @@
   color: white;
 }
 
+.includes {
+  padding: 2%;
+  background-color: #cae4db;;
+}
+
+.includes h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  border-bottom: 2px solid black;
+}
+
 .includes-detail {
   display: flex;
   justify-content: center;
@@ -108,7 +119,7 @@
 .backdrop-div {
   position: fixed;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   top: 0px;
   left: 0px;
   z-index: 9998;
@@ -120,6 +131,15 @@ and (max-device-width : 768px) {
 
   .modal-div h3 {
     margin-top: 20%;
+  }
+
+  .includes img {
+    display: none;
+  }
+
+  .includes-detail {
+    display: flex;
+    flex-direction: column;
   }
 
 }
