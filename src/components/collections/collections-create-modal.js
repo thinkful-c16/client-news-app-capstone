@@ -75,7 +75,7 @@ export class CollectionsCreateModal extends React.Component {
         </form>
         { this.props.article &&
           <div className="includes">
-            <h3>Collection will include:</h3>
+            <h4>Collection will include:</h4>
             <div className="includes-detail">
               <img src={this.props.article.image} alt={this.props.article.title} />
               <a target="_blank" href={this.props.article.url}>{this.props.article.title}</a>
