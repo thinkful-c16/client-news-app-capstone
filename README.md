@@ -7,10 +7,15 @@
 
 A event-driven platform in which users can discover, curate and share news stories. In an effort to combat the increasingly pessisistic view of news sources, the application allows users to have unfiltered access to over [5,000+ news sources](https://newsapi.org/sources). See a stream of activity from other users. Uncover insights of what your fellow citizens are reading and sharing at the News Spot.
 
+[LIVE Demo](https://newsspot.netlify.com/)
 
+### Demo Account Login
 
-[LIVE Demo](#)
+```
+login: demo@demo.com  
+password: demo123456
 
+```
 
 ## TECH STACK
 * React via [Create React App](https://github.com/facebookincubator/create-react-app)
@@ -111,6 +116,6 @@ Shouts to open source community for any code borrowed, libraries used, etc..
 
 ## DEVS 
 
-* Wade C
-* Nicole G
-* Kayla W
+* [Wade C](https://github.com/owcollier)
+* [Nicole G](https://github.com/nicoledanielle)
+* [Kayla W](https://github.com/webbkyr)
