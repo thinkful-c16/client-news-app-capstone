@@ -184,6 +184,11 @@
   padding-bottom: 10px;
 }
 
+.error-alert {
+  padding: 10px;
+  color: white;
+}
+
 @media only screen 
 and (max-device-width : 768px) {
   .login-container {

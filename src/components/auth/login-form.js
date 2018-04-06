@@ -25,13 +25,20 @@ export class LoginForm extends React.Component {
     return this.props.dispatch(login(values.email, values.password));
   }
 
-  componentWillUpdate(){
-    if (this.props.error !== null){
-      alert('Wrong username or password! Please try again')
-    }
-  }
+  // componentDidUpdate(){
+  //   const error = null;
+  //   if (this.props.error !== null){
+  //     error = <div className="error-alert">Wrong username or password! Please try again</div>
+  //   }
+  // }
 
   render(){
+
+    let error;
+
+    if (this.props.error !== null){
+      error = <div className="error-alert">Wrong username or password! Please try again.</div>
+    }
 
     if (this.props.loggedIn) {
       return <Redirect to="/dashboard" />;
@@ -95,6 +102,7 @@ export class LoginForm extends React.Component {
                 <p><input id="checkBox" type="checkbox" /> Remember Me</p>
                 <a>Forgot Password?</a>
               </div>
+              {error}
             </form>
           </div>
         </div>
